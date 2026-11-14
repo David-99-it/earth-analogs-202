@@ -1,13 +1,57 @@
+from pathlib import Path
+
 from django.conf import settings
-from django.http import JsonResponse
+from django.http import FileResponse, Http404, JsonResponse
 from django.shortcuts import render
 
 from . import dataset, metrics
 from .models import Site
 
 
+ASSETS_DIR = Path(__file__).resolve().parent / "assets"
+ASSET_TYPES = {
+    "app.css": "text/css; charset=utf-8",
+    "app.js": "text/javascript; charset=utf-8",
+    "engine.js": "text/javascript; charset=utf-8",
+}
+
+
+def _asset_version():
+    """Меняется при каждом обновлении файлов, чтобы браузер не держал старые стили и скрипты."""
+    try:
+        return int(max(p.stat().st_mtime for p in ASSETS_DIR.iterdir()))
+    except (OSError, ValueError):
+        return 0
+
+
+def _page(request, template, page):
+    return render(request, template, {"page": page, "asset_v": _asset_version()})
+
+
 def index(request):
-    return render(request, "index.html")
+    return _page(request, "locator.html", "loc")
+
+
+def compare(request):
+    return _page(request, "compare.html", "cmp")
+
+
+def calculator(request):
+    return _page(request, "calculator.html", "calc")
+
+
+def method(request):
+    return _page(request, "method.html", "meth")
+
+
+def asset(request, name):
+    """Отдаёт общие стили и скрипты сайта. Отдельная настройка статических файлов не нужна."""
+    ctype = ASSET_TYPES.get(name)
+    if not ctype:
+        raise Http404
+    response = FileResponse(open(ASSETS_DIR / name, "rb"), content_type=ctype)
+    response["Cache-Control"] = "public, max-age=3600"
+    return response
 
 
 def _fact(m):

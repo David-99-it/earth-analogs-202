@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{% block title %}NASA Локатор{% endblock %}</title>
+<meta name="description" content="Земные аналоги мест на Луне и Марсе по реальным данным NASA: температура, перепад высот, осадки, ветер, лёд, пещеры. Пропуски данных не считаются нулями.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Unbounded:wght@500;700&display=swap">
+{% block head %}{% endblock %}
+<link rel="stylesheet" href="/assets/app.css?v={{ asset_v }}">
+</head>
+<body data-page="{{ page }}">
+<div class="top"><div class="wrap bar">
+ <a class="brand" id="brand" href="/">NASA Локатор</a>
+ <nav class="nav" id="nav" aria-label="Разделы">
+  <a href="/" data-page="loc" data-i="nLoc">Локатор</a>
+  <a href="/compare/" data-page="cmp" data-i="nCmp">Сравнение</a>
+  <a href="/calculator/" data-page="calc" data-i="nCalc">Мой участок</a>
+  <a href="/method/" data-page="meth" data-i="nMeth">Методика</a>
+ </nav>
+ <div class="seg" id="lg"><button class="chip" data-l="ru" aria-pressed="false">RU</button><button class="chip" data-l="en" aria-pressed="false">EN</button></div>
+</div></div>
+<div class="wrap">
+<noscript><p class="err">Для работы нужен JavaScript.</p></noscript>
+<div id="status"></div>
+{% block body %}{% endblock %}
+</div>
+<footer><div class="wrap" data-i="foot"></div></footer>
+<script src="/assets/engine.js?v={{ asset_v }}"></script>
+<script src="/assets/app.js?v={{ asset_v }}"></script>
+</body>
+</html>

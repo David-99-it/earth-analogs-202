@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}NASA Локатор · Сравнение{% endblock %}
+{% block body %}
+<h1 class="pgh" data-i="nCmp"></h1>
+<p class="lead" style="margin-top:0" data-i="leadCmp"></p>
+{% include "_target.html" %}
+<div class="box"><h2 data-i="cmpT"></h2>
+ <p class="mu" data-i="cmpP"></p>
+ <div class="cmpg"><select id="ca" aria-label="A"></select><select id="cb" aria-label="B"></select></div>
+ <div id="cmpout"></div>
+</div>
+<div class="box"><h2 data-i="recT"></h2><p class="mu" data-i="recP"></p><div class="rec" id="rec"></div></div>
+<div class="next">
+ <a class="box" href="/"><b data-i="nxLocT"></b><span data-i="nxLocP"></span></a>
+ <a class="box" href="/calculator/"><b data-i="nxCalcT"></b><span data-i="nxCalcP"></span></a>
+</div>
+{% endblock %}

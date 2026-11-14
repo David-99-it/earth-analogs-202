@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}NASA Локатор · Мой участок{% endblock %}
+{% block body %}
+<h1 class="pgh" data-i="nCalc"></h1>
+<p class="lead" style="margin-top:0" data-i="leadCalc"></p>
+{% include "_target.html" %}
+<div class="box src" id="calc">
+ <h2 data-i="ct"></h2>
+ <p class="mu" data-i="cp"></p>
+ <div class="csec">
+  <div class="csh"><span data-i="calcSite"></span></div>
+  <div class="cg">
+   <label class="fl"><span data-i="cn"></span><input class="fi" id="cn" type="text" maxlength="60" data-p="cnph"></label>
+   <label class="fl"><span data-i="cla"></span><input class="fi" id="cla" type="number" step="any" min="-90" max="90" placeholder="-90 … 90"></label>
+   <label class="fl"><span data-i="clo"></span><input class="fi" id="clo" type="number" step="any" min="-180" max="180" placeholder="-180 … 180"></label>
+  </div>
+  <div class="row" style="margin-top:10px"><button class="btn" id="cnasa" data-i="cnasa"></button><span class="mu" style="margin:0" id="cnmsg"></span></div>
+ </div>
+ <div class="csec">
+  <div class="csh"><span data-i="calcMeas"></span><button class="chip" id="cclr" data-i="cclr"></button></div>
+  <p class="mu" data-i="calcEmpty"></p>
+  <div class="cg" id="cfields"></div>
+ </div>
+ <div class="row" style="margin:12px 0">
+  <button class="btn btn-prim" id="cadd" data-i="cadd"></button>
+  <button class="btn" id="cuse" data-i="cuse"></button>
+  <span class="sim-pill" id="cres" aria-live="polite"></span>
+  <span id="cmsg" class="mu" style="margin:0"></span>
+ </div>
+ <details class="sub"><summary data-i="csvt"></summary>
+  <p class="mu" style="margin-top:8px" data-i="csvp"></p>
+  <div class="row" style="margin:8px 0">
+   <label class="btn file-btn" for="csvFile"><span data-i="csvUpload"></span><input id="csvFile" type="file" accept=".csv,text/csv"></label>
+   <button class="btn" id="csvTemplate" type="button" data-i="csvTemplate"></button>
+  </div>
+  <textarea id="csv" rows="5" spellcheck="false" data-p="csvPh"></textarea>
+  <div class="row" style="margin-top:8px">
+   <button class="btn btn-prim" id="cimp" type="button" data-i="cimp"></button>
+   <button class="btn" id="ccopy" type="button" data-i="ccopy"></button>
+   <span id="csvStatus" class="csv-status" role="status" aria-live="polite"></span>
+  </div>
+  <div id="csvErr" class="mu" style="margin-top:8px"></div>
+ </details>
+</div>
+<div class="next">
+ <a class="box" href="/"><b data-i="nxLocT"></b><span data-i="nxLocP"></span></a>
+ <a class="box" href="/method/"><b data-i="nxMethT"></b><span data-i="nxMethP"></span></a>
+</div>
+{% endblock %}

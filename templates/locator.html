@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}NASA Локатор{% endblock %}
+{% block head %}
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+{% endblock %}
+{% block body %}
+<p class="lead" data-i="lead"></p>
+{% include "_target.html" %}
+<div class="box flt">
+ <div class="row"><small data-i="fTask"></small><div class="seg" id="ps"></div></div>
+ <div class="row"><small data-i="fTopic"></small><div class="seg" id="tags"></div><button class="chip" id="un" aria-pressed="false" data-i="fUnder"></button></div>
+ <div class="row"><input id="q" type="search" data-p="sph" data-a="sph"></div>
+</div>
+<div class="app">
+ <div class="box gw g1">
+  <canvas id="map" tabindex="0" data-a="mapa"></canvas>
+  <div class="tools"><button class="chip" id="vg" data-i="vg" aria-pressed="true"></button><button class="chip" id="vf" data-i="vf" aria-pressed="false"></button><button class="ic" id="sp" data-a="spin" aria-pressed="true">⟳</button></div>
+  <div class="zs"><button class="ic" id="zi" data-a="zin">+</button><button class="ic" id="zo" data-a="zout">−</button><button class="ic" id="rs" data-a="rst">⌂</button></div>
+  <div class="tip" id="tip"></div>
+  <div class="hint" data-i="hint"></div>
+ </div>
+ <div class="side">
+  <div class="box" id="det" aria-live="polite"></div>
+  <details class="box" id="prmbox"><summary data-i="params"></summary><div id="prm" style="margin-top:10px"></div></details>
+  <div class="box"><div class="row"><button class="btn" id="rep" data-i="rep"></button><span id="msg" class="mu" style="margin:0"></span></div></div>
+ </div>
+ <div class="box g2"><h2 data-i="rank"></h2><div id="under"></div><div class="list" id="list"></div></div>
+</div>
+<div class="next">
+ <a class="box" href="/compare/"><b data-i="nxCmpT"></b><span data-i="nxCmpP"></span></a>
+ <a class="box" href="/calculator/"><b data-i="nxCalcT"></b><span data-i="nxCalcP"></span></a>
+ <a class="box" href="/method/"><b data-i="nxMethT"></b><span data-i="nxMethP"></span></a>
+</div>
+{% endblock %}
