@@ -2,12 +2,19 @@ from django.db import models
 
 
 class EarthAnalog(models.Model):
+    """Earth environment used as an analog for Moon or Mars mission planning.
+
+    The frontend expects a flat data structure with a seven-parameter similarity
+    vector plus a few description fields for the selected target body.
+    """
+
     name_ru = models.CharField("Название (RU)", max_length=200)
     name_en = models.CharField("Название (EN)", max_length=200)
     latitude = models.FloatField("Широта")
     longitude = models.FloatField("Долгота")
 
-    # Оценки (0-10)
+    # Vector used to compare sites by geology, terrain, temperature, water/ice,
+    # dust, caves and potential habitability. All values are normalized to 0-10.
     score_geology = models.FloatField("Геология")
     score_relief = models.FloatField("Рельеф")
     score_temperature = models.FloatField("Температура")
@@ -24,7 +31,7 @@ class EarthAnalog(models.Model):
     break_ru = models.CharField("Где аналогия ломается (RU)", max_length=255)
     break_en = models.CharField("Где аналогия ломается (EN)", max_length=255)
 
-    # --- НОВЫЕ ПОЛЯ ДЛЯ КОСМИЧЕСКИХ ОБЪЕКТОВ ---
+    # Target objects shown on the Moon or Mars for the selected analog.
     moon_target_ru = models.CharField(
         "Объект на Луне (RU)",
         max_length=255,
