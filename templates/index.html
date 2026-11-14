@@ -8,6 +8,7 @@
 <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
 <style>
+
 :root{--bg:#10141b;--panel:#171d27;--line:#2a3342;--text:#e9e5da;--mute:#9aa3b2;--ice:#86d9e8;--dust:#d8c9a8;--land:#33404f;--bd:#4a5a6e;--ocean:#0c1826;--ink:#0b1016;
 --h:'Unbounded','Trebuchet MS',system-ui,sans-serif;--b:'Onest',system-ui,-apple-system,'Segoe UI',sans-serif;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
@@ -29,6 +30,7 @@ h2{font:500 14.5px var(--h);margin:0 0 10px;color:var(--dust)}
 .chip,.btn,.ic{background:transparent;border:1px solid var(--line);color:var(--mute);padding:7px 13px;border-radius:99px;font:inherit;font-size:14px;cursor:pointer}
 .chip[aria-pressed="true"]{background:var(--ice);border-color:var(--ice);color:var(--ink);font-weight:600}
 .btn{color:var(--ice);border-color:var(--ice)}
+.btn-prim{background:var(--ice);color:var(--ink);font-weight:600}
 .ic{width:38px;height:38px;padding:0;font-size:18px;background:var(--panel);color:var(--text)}
 .ic[aria-pressed="true"]{color:var(--ice);border-color:var(--ice)}
 button:focus-visible,input:focus-visible,canvas:focus-visible{outline:2px solid var(--ice);outline-offset:2px}
@@ -36,7 +38,7 @@ button:focus-visible,input:focus-visible,canvas:focus-visible{outline:2px solid 
 canvas{width:100%;height:clamp(360px,66vh,640px);display:block;cursor:grab;touch-action:none;background:var(--bg)}
 canvas:active{cursor:grabbing}
 .tools{position:absolute;left:10px;top:10px;display:flex;gap:6px;flex-wrap:wrap;max-width:calc(100% - 60px)}
-.tools .chip{background:var(--panel)}
+.tools .chip{background:var(--panel)}.tools .chip[aria-pressed="true"]{background:var(--ice)}
 .zs{position:absolute;right:10px;top:10px;display:flex;flex-direction:column;gap:6px}
 .tip{position:absolute;pointer-events:none;background:var(--panel);border:1px solid var(--ice);border-radius:12px;padding:10px 12px;font-size:12.5px;display:none;width:320px;box-shadow:0 10px 28px rgba(0,0,0,.7);z-index:99;line-height:1.35}
 .tip-section{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:7px;margin-top:6px}
@@ -59,10 +61,58 @@ svg text{fill:var(--mute);font:11px var(--b)}
 .pr{display:grid;grid-template-columns:96px 1fr 1fr;gap:8px;align-items:center;font-size:13.5px;color:var(--mute);padding:3px 0}
 .pr.hd{font-size:12.5px}
 .cl{display:flex;gap:6px;align-items:center}.cl input{width:100%;min-width:0;accent-color:var(--ice)}.cl output{width:16px;text-align:right;color:var(--text)}
-.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin:12px 0}.fl{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--mute)}.fi{width:100%}.mu{color:var(--mute);font-size:14px;margin:0 0 6px}.rc{border:1px solid var(--line);border-radius:8px;padding:4px 10px;font-size:13px;color:var(--mute)}.rc b{color:var(--text)}details{margin:12px 0}.src a{color:var(--ice);text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:4px 10px;font-size:13.5px}
+.csec{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px;margin:12px 0}
+.csh{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px;font-size:13.5px;font-weight:600;color:var(--dust)}
+.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.cg3{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
+.fl{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--mute);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 10px;transition:border-color .15s}
+.fl:focus-within{border-color:var(--ice)}
+.fl-top{display:flex;justify-content:space-between;align-items:flex-start;gap:6px;min-height:32px}
+.fi{width:100%}
+.fl .fi{border:none;border-top:1px solid var(--line);border-radius:0;padding:6px 0 0;margin-top:4px;background:transparent;font-weight:500}
+.fl .fi:focus-visible{outline:none}
+.scb{font-size:11.5px;font-weight:600;color:var(--ice);background:rgba(134,217,232,.14);padding:2px 7px;border-radius:6px;white-space:nowrap}
+.sim-pill{border:1px solid var(--ice);background:rgba(134,217,232,.08);border-radius:99px;padding:6px 14px;font-size:14px;color:var(--text)}
+.sim-pill b{color:var(--ice);font-family:var(--h)}
+.mu{color:var(--mute);font-size:14px;margin:0 0 6px}
+.rc{border:1px solid var(--line);border-radius:8px;padding:4px 10px;font-size:13px;color:var(--mute)}.rc b{color:var(--text)}
+details{margin:12px 0}.src a{color:var(--ice);text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:4px 10px;font-size:13.5px}
 footer{border-top:1px solid var(--line);padding:18px 0 32px;color:var(--mute);font-size:13px}
 @media (max-width:900px){.app{grid-template-columns:1fr;grid-template-areas:"g" "s" "r"}.side{position:static;max-height:none;overflow:visible}canvas{height:clamp(320px,58vh,520px)}.tip{width:260px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* Methodology and CSV workspace */
+.method-panel,.csv-panel{border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:12px 14px;margin:12px 0}
+.method-panel summary,.csv-panel summary{cursor:pointer;list-style:none;font-weight:650;color:var(--ice);display:flex;align-items:center;gap:9px}
+.method-panel summary::-webkit-details-marker,.csv-panel summary::-webkit-details-marker{display:none}
+.method-panel summary:before,.csv-panel summary:before{content:"＋";display:grid;place-items:center;width:22px;height:22px;border:1px solid var(--line);border-radius:7px;font-size:14px}
+.method-panel[open] summary:before,.csv-panel[open] summary:before{content:"−"}
+.method-intro{margin:12px 0}
+.formula-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px}
+.formula-grid>div{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:9px 10px;border:1px solid var(--line);border-radius:9px;background:var(--bg);font-size:12.5px}
+.formula-grid b{font-weight:550;color:var(--text)}
+.formula-grid code{font-size:11.5px;color:var(--ice);white-space:nowrap}
+.method-note{margin:12px 0 0;padding:9px 11px;border-left:2px solid var(--ice);background:rgba(134,217,232,.06);color:var(--mute);font-size:12px}
+.csv-panel{margin-top:14px}
+.csv-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:10px 0}
+.file-btn{position:relative;overflow:hidden;cursor:pointer}
+.file-btn input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer}
+.csv-label{display:block;margin:12px 0 6px;color:var(--text);font-size:12.5px;font-weight:600}
+#csv{display:block;width:100%;min-height:116px;resize:vertical;line-height:1.55;font:12px ui-monospace,SFMono-Regular,Consolas,monospace}
+.csv-status{font-size:12px;color:var(--mute);flex:1 1 180px}
+.csv-status.error{color:#f0a18e}.csv-status.success{color:#8bd9b1}
+.csv-results{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
+.csv-result-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px;font-size:13px}
+.csv-result-head span{color:var(--mute);font-size:12px}
+.csv-table-wrap{overflow:auto;border:1px solid var(--line);border-radius:9px}
+.csv-table{width:100%;border-collapse:collapse;font-size:12px;min-width:440px}
+.csv-table th,.csv-table td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line)}
+.csv-table th{color:var(--mute);font-weight:550;background:var(--bg)}
+.csv-table tr:last-child td{border-bottom:0}
+.csv-score{color:var(--ice);font-weight:700;font-variant-numeric:tabular-nums}
+.csv-ok{color:#8bd9b1}.csv-bad{color:#f0a18e}
+@media(max-width:600px){.formula-grid>div{align-items:flex-start;flex-direction:column;gap:4px}.csv-actions .btn{flex:1 1 auto}}
+
 </style>
 </head>
 <body>
@@ -89,61 +139,108 @@ footer{border-top:1px solid var(--line);padding:18px 0 32px;color:var(--mute);fo
  </div>
  <div class="box g2"><div class="row"><h2 style="margin:0" data-i="rank"></h2><input id="q" type="search" data-p="sph" data-a="sph"><button class="chip" id="lit" data-i="lit" aria-pressed="false"></button></div><div class="list" id="list"></div></div>
 </div>
-<div class="box src" id="calc" style="margin-bottom:22px"><h2 data-i="ct"></h2><p class="mu" data-i="cp"></p>
-<div class="cg">
-<label class="fl"><span data-i="cn"></span><input class="fi" id="cn" type="text" maxlength="60"></label>
-<label class="fl"><span data-i="cla"></span><input class="fi" id="cla" type="number" step="any" min="-90" max="90" placeholder="-24.5"></label>
-<label class="fl"><span data-i="clo"></span><input class="fi" id="clo" type="number" step="any" min="-180" max="180" placeholder="-69.2"></label>
-<label class="fl"><span data-i="f1"></span><input class="fi cx" id="c1" type="number" step="any" min="0" max="100"></label>
-<label class="fl"><span data-i="f2"></span><input class="fi cx" id="c2" type="number" step="any" min="0" max="90"></label>
-<label class="fl"><span data-i="f3"></span><input class="fi cx" id="c3" type="number" step="any" min="0" max="600"></label>
-<label class="fl"><span data-i="f4"></span><input class="fi cx" id="c4" type="number" step="any" min="0" max="100"></label>
-<label class="fl"><span data-i="f5"></span><input class="fi cx" id="c5" type="number" step="any" min="0" max="100"></label>
-<label class="fl"><span data-i="f6"></span><input class="fi cx" id="c6" type="number" step="any" min="0" max="1000"></label>
-<label class="fl"><span data-i="f7"></span><input class="fi cx" id="c7" type="number" step="any" min="0" max="365"></label>
+<div class="box src" id="calc" style="margin-bottom:22px">
+  <h2 data-i="ct"></h2>
+  <p class="mu" data-i="cp"></p>
+
+  <div class="csec">
+    <div class="csh"><span data-i="calcParams"></span></div>
+    <div class="cg3">
+      <label class="fl"><span data-i="cn"></span><input class="fi" id="cn" type="text" maxlength="60" data-p="cnph"></label>
+      <label class="fl"><span data-i="cla"></span><input class="fi" id="cla" type="number" step="any" min="-90" max="90" placeholder="-90 … 90"></label>
+      <label class="fl"><span data-i="clo"></span><input class="fi" id="clo" type="number" step="any" min="-180" max="180" placeholder="-180 … 180"></label>
+    </div>
+  </div>
+
+  <div class="csec">
+    <div class="csh">
+      <span data-i="calcAdditional"></span>
+      <div class="seg">
+        <button class="chip" id="cmoon" data-i="cmoon"></button>
+        <button class="chip" id="cmars" data-i="cmars"></button>
+      </div>
+    </div>
+    <div class="cg">
+      <label class="fl"><div class="fl-top"><span data-i="f1"></span><span class="scb" id="cb1">0.0 / 10</span></div><input class="fi cx" id="c1" type="number" step="any" min="0" max="100" placeholder="0 – 100"></label>
+      <label class="fl"><div class="fl-top"><span data-i="f2"></span><span class="scb" id="cb2">0.0 / 10</span></div><input class="fi cx" id="c2" type="number" step="any" min="0" max="90" placeholder="0 – 90"></label>
+      <label class="fl"><div class="fl-top"><span data-i="f3"></span><span class="scb" id="cb3">0.0 / 10</span></div><input class="fi cx" id="c3" type="number" step="any" min="0" max="600" placeholder="0 – 600"></label>
+      <label class="fl"><div class="fl-top"><span data-i="f4"></span><span class="scb" id="cb4">0.0 / 10</span></div><input class="fi cx" id="c4" type="number" step="any" min="0" max="100" placeholder="0 – 100"></label>
+      <label class="fl"><div class="fl-top"><span data-i="f5"></span><span class="scb" id="cb5">0.0 / 10</span></div><input class="fi cx" id="c5" type="number" step="any" min="0" max="100" placeholder="0 – 100"></label>
+      <label class="fl"><div class="fl-top"><span data-i="f6"></span><span class="scb" id="cb6">0.0 / 10</span></div><input class="fi cx" id="c6" type="number" step="any" min="0" max="1000" placeholder="0 – 1000"></label>
+      <label class="fl"><div class="fl-top"><span data-i="f7"></span><span class="scb" id="cb7">0.0 / 10</span></div><input class="fi cx" id="c7" type="number" step="any" min="0" max="365" placeholder="0 – 365"></label>
+    </div>
+  </div>
+
+  <div class="row" style="margin:12px 0">
+    <button class="btn btn-prim" id="cadd" data-i="cadd"></button>
+    <button class="btn" id="cuse" data-i="cuse"></button>
+    <span class="sim-pill" id="cres" aria-live="polite"></span>
+    <span id="cmsg" style="font-size:13px;color:var(--mute)"></span>
+  </div>
+
+  <details class="method-panel">
+    <summary data-i="cft"></summary>
+    <p class="mu method-intro" data-i="cf"></p>
+    <div class="formula-grid">
+      <div><b data-i="fgeo"></b><code>x₁ ÷ 10</code></div><div><b data-i="frel"></b><code>x₂ × 0.7</code></div>
+      <div><b data-i="ftemp"></b><code>x₃ ÷ 28</code></div><div><b data-i="fwater"></b><code>6.705 × log₁₀(1 + x₄)</code></div>
+      <div><b data-i="fdust"></b><code>x₅ ÷ 10</code></div><div><b data-i="fcaves"></b><code>5 × log₁₀(1 + x₆)</code></div>
+      <div><b data-i="flife"></b><code>x₇ ÷ 36.5</code></div>
+    </div>
+    <p class="method-note" data-i="fclamp"></p>
+  </details>
+  <details class="csv-panel" id="csvPanel">
+    <summary data-i="csvt"></summary>
+    <p class="mu" data-i="csvp"></p>
+    <div class="csv-actions">
+      <label class="btn file-btn" for="csvFile"><span data-i="csvUpload"></span><input id="csvFile" type="file" accept=".csv,text/csv"></label>
+      <button class="btn" id="csvTemplate" type="button" data-i="csvTemplate"></button>
+    </div>
+    <label class="csv-label" for="csv" data-i="csvDataLabel"></label>
+    <textarea id="csv" rows="5" spellcheck="false" data-p="csvPlaceholder"></textarea>
+    <div class="row csv-actions">
+      <button class="btn btn-prim" id="cimp" type="button" data-i="cimp"></button>
+      <button class="btn" id="ccopy" type="button" data-i="ccopy"></button>
+      <span id="csvStatus" class="csv-status" role="status" aria-live="polite"></span>
+    </div>
+    <div id="csvResults" class="csv-results" hidden>
+      <div class="csv-result-head"><b data-i="csvResultsTitle"></b><span id="csvCount"></span></div>
+      <div class="csv-table-wrap"><table class="csv-table">
+        <thead><tr><th data-i="csvColName"></th><th data-i="csvColCoords"></th><th data-i="csvColScore"></th><th data-i="csvColStatus"></th></tr></thead>
+        <tbody id="csvResultRows"></tbody>
+      </table></div>
+    </div>
+  </details>
+
+  <h2 style="margin-top:16px" data-i="srct"></h2>
+  <p class="mu" data-i="srcp"></p>
+  <div class="row" id="src"></div>
 </div>
-<div class="row"><button class="btn" id="cadd" data-i="cadd"></button><button class="btn" id="cuse" data-i="cuse"></button><button class="chip" id="cmoon" data-i="cmoon"></button><button class="chip" id="cmars" data-i="cmars"></button><span id="cmsg" style="font-size:13px;color:var(--mute)"></span></div>
-<div class="row" id="cres" style="margin:12px 0" aria-live="polite"></div>
-<p class="mu" style="font-size:13px" data-i="cf"></p>
-<details><summary data-i="csvt" style="cursor:pointer;color:var(--ice)"></summary><p class="mu" style="font-size:13px;margin-top:8px" data-i="csvp"></p><textarea id="csv" rows="4" style="width:100%"></textarea><div class="row" style="margin-top:8px"><button class="btn" id="cimp" data-i="cimp"></button><button class="btn" id="ccopy" data-i="ccopy"></button></div></details>
-<h2 style="margin-top:16px" data-i="srct"></h2><p class="mu" data-i="srcp"></p><div class="row" id="src"></div></div>
 <footer data-i="foot"></footer>
 </div>
 <script>
-var LAND=null,BORD=null;
-var L={ru:{brand:"NASA Локатор",lead:"Вращайте глобус, выбирайте цель и задавайте важность параметров. Сайт покажет земные аналоги лунной базы или марсианской площадки и честно скажет, где аналогия ломается.",moon:"Луна, южный полюс",mars:"Марс",custom:"Своя цель",params:"Параметры",tval:"Цель",imp:"Важность",msl:"Ползунки",mnum:"Цифры",rank:"Рейтинг мест",sph:"Поиск места",lit:"Только малоизученные",vg:"Глобус",vf:"Карта",spin:"Вращение",zin:"Приблизить",zout:"Отдалить",rst:"Сбросить вид",mapa:"Интерактивный глобус с земными аналогами",hint:"Тяните, чтобы вращать, колёсико меняет масштаб, нажмите на точку.",leg:"Крупнее и холоднее точка означает выше сходство.",simw:"сходство с целью",fit:"Подходит для:",brk:"Где аналогия ломается:",wk:"Сильнее всего расходится параметр",ltag:"малоизучено",rep:"Скопировать отчёт: топ-5",ok:"Скопировано",fail:"Не удалось скопировать",rt:"Земные аналоги",rsim:"сходство",rfit:"Подходит",rlim:"Ограничение",rfoot:"Оценки предварительные. Земля не воспроизводит гравитацию, вакуум и радиацию Луны и Марса.",srct:"Где взять значения для полей",srcp:"Оценки готовых мест экспертные и предварительные. Для точных значений берите измерения из открытых данных.",foot:"NASA не поддерживает негосударственные организации США и не отвечает за сторонние сайты. Условия использования данных смотрите на сайте каждого источника. Земля не воспроизводит пониженную гравитацию, лунный вакуум, разреженную атмосферу Марса и радиацию.",none:"Нет мест по этому запросу.",ct:"Калькулятор: оценка участка по измерениям",cp:"Введите измерения участка. Сайт сразу переведёт их в оценки от 0 до 10, сравнит с выбранной целью и добавит точку на глобус. Значения можно взять из источников ниже.",cf:"Формулы: геология = доля÷10; рельеф = уклон×0,7; температура = размах÷28; вода и лёд = 6,7·lg(1+доля); пыль = доля÷10; пещеры = 5·lg(1+число); жизнь = дни÷36,5. Результат ограничен диапазоном 0–10.",cn:"Название участка",cla:"Широта, °",clo:"Долгота, °",f1:"Вулканические и ударные породы, %",f2:"Средний уклон, °",f3:"Размах температур, °C",f4:"Лёд в грунте, % по массе",f5:"Пыль и мелкий реголит, %",f6:"Пещеры и ямы в радиусе 100 км, шт.",f7:"Дни с жидкой водой в грунте, в год",cadd:"Рассчитать и добавить на глобус",cuse:"Взять как цель",cmoon:"Заполнить как Луна",cmars:"Заполнить как Марс",csvt:"Пакетный расчёт из CSV",csvp:"Одна строка на участок: название;широта;долгота;породы;уклон;размах;лёд;пыль;пещеры;дни. Дробные числа пишите с точкой.",cimp:"Рассчитать все строки",ccopy:"Скопировать рейтинг CSV",bad:"Проверьте широту и долготу",added:"Добавлено",mine:"ваш расчёт",del:"Удалить участок",empty:"База пуста. Добавьте места в админке Django.",dims:["Геология","Рельеф","Температура","Вода и лёд","Пыль и ветер","Пещеры","Жизнь"]},
-en:{brand:"NASA Locator",lead:"Spin the globe, pick a target and set what matters. The site ranks Earth analogs for a lunar base or a Mars landing site and shows where each analogy breaks.",moon:"Moon, south pole",mars:"Mars",custom:"Custom target",params:"Parameters",tval:"Target",imp:"Weight",msl:"Sliders",mnum:"Numbers",rank:"Site ranking",sph:"Search sites",lit:"Lesser-studied only",vg:"Globe",vf:"Map",spin:"Auto-rotate",zin:"Zoom in",zout:"Zoom out",rst:"Reset view",mapa:"Interactive globe with Earth analog sites",hint:"Drag to rotate, scroll to zoom, click a dot.",leg:"Larger, cooler dots mean higher similarity.",simw:"similarity to target",fit:"Good for:",brk:"Where the analogy breaks:",wk:"The biggest gap is",ltag:"lesser-studied",rep:"Copy report: top 5",ok:"Copied",fail:"Copy failed",rt:"Earth analogs",rsim:"similarity",rfit:"Good for",rlim:"Limitation",rfoot:"Scores are preliminary. Earth cannot reproduce the gravity, vacuum or radiation of the Moon and Mars.",srct:"Where to find the field values",srcp:"Scores of the built-in sites are expert estimates. For exact values, use measurements from open data.",foot:"NASA does not endorse non-US-government organizations and is not responsible for third-party sites. Follow the data use terms of each source. Earth cannot reproduce reduced gravity, the lunar vacuum, the thin Martian atmosphere or radiation.",none:"No sites match.",ct:"Calculator: score a site from measurements",cp:"Enter site measurements. The site converts them to 0-10 scores right away, compares them with the selected target and adds a dot to the globe. Use the sources below to find the values.",cf:"Formulas: geology = share÷10; relief = slope×0.7; temperature = range÷28; water and ice = 6.7·lg(1+share); dust = share÷10; caves = 5·lg(1+count); life = days÷36.5. Results are limited to 0-10.",cn:"Site name",cla:"Latitude, °",clo:"Longitude, °",f1:"Volcanic and impact rock, %",f2:"Mean slope, °",f3:"Temperature range, °C",f4:"Ground ice, % by mass",f5:"Dust and fine regolith, %",f6:"Caves and pits within 100 km, count",f7:"Days per year with liquid water in soil",cadd:"Calculate and add to globe",cuse:"Use as target",cmoon:"Fill as Moon",cmars:"Fill as Mars",csvt:"Batch calculation from CSV",csvp:"One row per site: name;lat;lon;rock;slope;range;ice;dust;caves;days. Use a dot for decimals.",cimp:"Calculate all rows",ccopy:"Copy ranking as CSV",bad:"Check latitude and longitude",added:"Added",mine:"your calculation",del:"Delete site",empty:"The database is empty. Add sites in the Django admin.",dims:["Geology","Relief","Temperature","Water and ice","Dust and wind","Caves","Life"]}};
+var L={ru:{cnph:"Например: Моя долина",empty:"База пуста. Добавьте места в админке Django.",calcParams:"Параметры участка",calcAdditional:"Дополнительные измерения",cft:"Методика расчёта",fgeo:"Геология",frel:"Рельеф",ftemp:"Температура",fwater:"Вода и лёд",fdust:"Пыль",fcaves:"Пещеры",flife:"Жидкая вода",fclamp:"Каждая итоговая оценка ограничивается диапазоном от 0 до 10. Формулы показывают расчётную модель, а не прямое измерение пригодности.",csvUpload:"Загрузить CSV",csvTemplate:"Скачать шаблон",csvDataLabel:"Данные участков",csvPlaceholder:"Название;широта;долгота;породы;уклон;размах;лёд;пыль;пещеры;дни",csvResultsTitle:"Результаты пакетного расчёта",csvColName:"Участок",csvColCoords:"Координаты",csvColScore:"Сходство",csvColStatus:"Статус",csvNoRows:"Нет корректных строк. Проверьте формат и значения.",csvImported:"Добавлено участков",csvSkipped:"Строк с ошибками",csvRowError:"Ошибка данных",csvValid:"Рассчитано",csvHeader:"Название;широта;долгота;породы;уклон;размах;лёд;пыль;пещеры;дни",csvExample:"Пример: Долина А; -85; 30; 80; 11; 330; 5.6; 80; 24; 0",csvCopied:"CSV скопирован",csvCopyFail:"Не удалось скопировать CSV",csvNeedData:"Сначала добавьте или импортируйте участки",brand:"NASA Локатор",lead:"Вращайте глобус, выбирайте цель и задавайте важность параметров. Сайт покажет земные аналоги лунной базы или марсианской площадки и честно скажет, где аналогия ломается.",moon:"Луна, южный полюс",mars:"Марс",custom:"Своя цель",params:"Параметры",tval:"Цель",imp:"Важность",msl:"Ползунки",mnum:"Цифры",rank:"Рейтинг мест",sph:"Поиск места",lit:"Только малоизученные",vg:"Глобус",vf:"Карта",spin:"Вращение",zin:"Приблизить",zout:"Отдалить",rst:"Сбросить вид",mapa:"Интерактивный глобус с земными аналогами",hint:"Тяните, чтобы вращать, колёсико меняет масштаб, нажмите на точку.",leg:"Крупнее и холоднее точка означает выше сходство.",simw:"сходство с целью",fit:"Подходит для:",brk:"Где аналогия ломается:",wk:"Сильнее всего расходится параметр",ltag:"малоизучено",rep:"Скопировать отчёт: топ-5",ok:"Скопировано",fail:"Не удалось скопировать",rt:"Земные аналоги",rsim:"сходство",rfit:"Подходит",rlim:"Ограничение",rfoot:"Оценки предварительные. Земля не воспроизводит гравитацию, вакуум и радиацию Луны и Марса.",srct:"Где взять значения для полей",srcp:"Оценки готовых мест экспертные и предварительные. Для точных значений берите измерения из открытых данных.",foot:"NASA не поддерживает негосударственные организации США и не отвечает за сторонние сайты. Условия использования данных смотрите на сайте каждого источника. Земля не воспроизводит пониженную гравитацию, лунный вакуум, разреженную атмосферу Марса и радиацию.",none:"Нет мест по этому запросу.",ct:"Калькулятор: оценка участка по измерениям",cp:"Введите измерения участка. Сайт сразу переведёт их в оценки от 0 до 10, сравнит с выбранной целью и добавит точку на глобус. Значения можно взять из источников ниже.",cf:"Формулы: геология = доля÷10; рельеф = уклон×0,7; температура = размах÷28; вода и лёд = 6,7·lg(1+доля); пыль = доля÷10; пещеры = 5·lg(1+число); жизнь = дни÷36,5. Результат ограничен диапазоном 0–10.",cn:"Название участка",cla:"Широта, °",clo:"Долгота, °",f1:"Вулканические и ударные породы, %",f2:"Средний уклон, °",f3:"Размах температур, °C",f4:"Лёд в грунте, % по массе",f5:"Пыль и мелкий реголит, %",f6:"Пещеры и ямы в радиусе 100 км, шт.",f7:"Дни с жидкой водой в грунте, в год",cadd:"Рассчитать и добавить на глобус",cuse:"Взять как цель",cmoon:"Заполнить как Луна",cmars:"Заполнить как Марс",csvt:"Пакетный расчёт из CSV",csvp:"Одна строка на участок: название;широта;долгота;породы;уклон;размах;лёд;пыль;пещеры;дни. Дробные числа пишите с точкой.",cimp:"Рассчитать все строки",ccopy:"Скопировать рейтинг CSV",bad:"Проверьте широту и долготу",added:"Добавлено",mine:"ваш расчёт",del:"Удалить участок",dims:["Геология","Рельеф","Температура","Вода и лёд","Пыль и ветер","Пещеры","Жизнь"]},
+en:{cnph:"E.g. My valley",empty:"The database is empty. Add sites in the Django admin.",calcParams:"Site parameters",calcAdditional:"Additional measurements",cft:"Scoring methodology",fgeo:"Geology",frel:"Relief",ftemp:"Temperature",fwater:"Water and ice",fdust:"Dust",fcaves:"Caves",flife:"Liquid water",fclamp:"Each final score is limited to the 0–10 range. These formulas describe an estimation model, not a direct measurement of site suitability.",csvUpload:"Upload CSV",csvTemplate:"Download template",csvDataLabel:"Site data",csvPlaceholder:"Name;latitude;longitude;rock;slope;range;ice;dust;caves;days",csvResultsTitle:"Batch calculation results",csvColName:"Site",csvColCoords:"Coordinates",csvColScore:"Similarity",csvColStatus:"Status",csvNoRows:"No valid rows found. Check the format and values.",csvImported:"Sites added",csvSkipped:"Rows with errors",csvRowError:"Invalid data",csvValid:"Calculated",csvHeader:"Name;latitude;longitude;rock;slope;range;ice;dust;caves;days",csvExample:"Example: Valley A; -85; 30; 80; 11; 330; 5.6; 80; 24; 0",csvCopied:"CSV copied",csvCopyFail:"Could not copy CSV",csvNeedData:"Add or import sites first",brand:"NASA Locator",lead:"Spin the globe, pick a target and set what matters. The site ranks Earth analogs for a lunar base or a Mars landing site and shows where each analogy breaks.",moon:"Moon, south pole",mars:"Mars",custom:"Custom target",params:"Parameters",tval:"Target",imp:"Weight",msl:"Sliders",mnum:"Numbers",rank:"Site ranking",sph:"Search sites",lit:"Lesser-studied only",vg:"Globe",vf:"Map",spin:"Auto-rotate",zin:"Zoom in",zout:"Zoom out",rst:"Reset view",mapa:"Interactive globe with Earth analog sites",hint:"Drag to rotate, scroll to zoom, click a dot.",leg:"Larger, cooler dots mean higher similarity.",simw:"similarity to target",fit:"Good for:",brk:"Where the analogy breaks:",wk:"The biggest gap is",ltag:"lesser-studied",rep:"Copy report: top 5",ok:"Copied",fail:"Copy failed",rt:"Earth analogs",rsim:"similarity",rfit:"Good for",rlim:"Limitation",rfoot:"Scores are preliminary. Earth cannot reproduce the gravity, vacuum or radiation of the Moon and Mars.",srct:"Where to find the field values",srcp:"Scores of the built-in sites are expert estimates. For exact values, use measurements from open data.",foot:"NASA does not endorse non-US-government organizations and is not responsible for third-party sites. Follow the data use terms of each source. Earth cannot reproduce reduced gravity, the lunar vacuum, the thin Martian atmosphere or radiation.",none:"No sites match.",ct:"Calculator: score a site from measurements",cp:"Enter site measurements. The site converts them to 0-10 scores right away, compares them with the selected target and adds a dot to the globe. Use the sources below to find the values.",cf:"Formulas: geology = share÷10; relief = slope×0.7; temperature = range÷28; water and ice = 6.7·lg(1+share); dust = share÷10; caves = 5·lg(1+count); life = days÷36.5. Results are limited to 0-10.",cn:"Site name",cla:"Latitude, °",clo:"Longitude, °",f1:"Volcanic and impact rock, %",f2:"Mean slope, °",f3:"Temperature range, °C",f4:"Ground ice, % by mass",f5:"Dust and fine regolith, %",f6:"Caves and pits within 100 km, count",f7:"Days per year with liquid water in soil",cadd:"Calculate and add to globe",cuse:"Use as target",cmoon:"Fill as Moon",cmars:"Fill as Mars",csvt:"Batch calculation from CSV",csvp:"One row per site: name;lat;lon;rock;slope;range;ice;dust;caves;days. Use a dot for decimals.",cimp:"Calculate all rows",ccopy:"Copy ranking as CSV",bad:"Check latitude and longitude",added:"Added",mine:"your calculation",del:"Delete site",dims:["Geology","Relief","Temperature","Water and ice","Dust and wind","Caves","Life"]}};
 var T={moon:{p:[8,8,10,6,8,7,0],w:[3,3,3,3,2,2,0]},mars:{p:[8,7,6,6,9,6,5],w:[3,3,2,3,3,2,3]}};
 var SRC=[["Earthdata Search","https://search.earthdata.nasa.gov"],["Worldview","https://worldview.earthdata.nasa.gov"],["NASA PDS","https://pds.nasa.gov"],["LRO","https://science.nasa.gov/mission/lro/"],["Copernicus","https://dataspace.copernicus.eu"],["JAXA G-Portal","https://gportal.jaxa.jp"],["LRO Diviner","","LRO Diviner lunar radiometer data"],["RADARSAT RCM","","RADARSAT Constellation Mission data"],["ESA Open Science Catalogue","","ESA Open Science Catalogue"]];
-
-var S=[],BASE=[],B=0,U=[];
+var LAND=null,BORD=null,S=[],BASE=[],B=0,U=[],started=false;
 try{U=JSON.parse(localStorage.getItem("nl-user")||"[]")}catch(e){U=[]}
-var $=function(i){return document.getElementById(i)},lang="ru",tg="moon",C={p:[8,8,10,6,8,7,0]},w=T.moon.w.slice(),pm="slider",sel=0,lit=false,qs="",view="globe",c=[20,25],k=1,spin=true,dirty=true,hit=[],tw=null,drag=null,hv=-1,prj,SC=300,started=false;
+var $=function(i){return document.getElementById(i)},lang="ru",tg="moon",C={p:[8,8,10,6,8,7,0]},w=T.moon.w.slice(),pm="slider",sel=0,lit=false,qs="",view="globe",c=[20,25],k=1,spin=true,dirty=true,hit=[],tw=null,drag=null,hv=-1,prj,SC=300;
 try{lang=localStorage.getItem("nl-lang")||(/^ru|^ky|^kk/.test(navigator.language||"")?"ru":"en")}catch(e){}
 if(window.matchMedia&&matchMedia("(prefers-reduced-motion:reduce)").matches)spin=false;
-
 function t(x){var v=L[lang][x];return v===undefined?x:v}
-function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(m){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]})}
 function P(){return tg==="custom"?C.p:T[tg].p}
 function tn(){return t(tg)}
 function nm(s){return s[lang==="ru"?0:1]||s[0]||""}
 function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v)}
 function sim(s){var a=0,b=0,p=P();for(var i=0;i<7;i++){a+=w[i]*Math.abs(p[i]-s[4][i]);b+=w[i]}return b?Math.max(0,Math.round(100*(1-1.25*a/(10*b)))):0}
 function vis(){var f=qs.toLowerCase();return S.map(function(s,i){return{s:s,i:i,m:sim(s)}}).filter(function(o){return(!lit||o.s[5])&&(!f||(o.s[0]+" "+o.s[1]).toLowerCase().indexOf(f)>=0)}).sort(function(a,b){return b.m-a.m})}
-
-/* ---- карта мира с CDN ---- */
 function loadGeo(){
   fetch("https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json")
     .then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json()})
-    .then(function(w){
-      LAND=topojson.feature(w,w.objects.land);
-      BORD=topojson.mesh(w,w.objects.countries,function(a,b){return a!==b});
-      dirty=true;
-    })
+    .then(function(w){LAND=topojson.feature(w,w.objects.land);BORD=topojson.mesh(w,w.objects.countries,function(a,b){return a!==b});dirty=true})
     .catch(function(e){console.error("Карта мира не загрузилась:",e)});
 }
-
-/* ---- отрисовка ---- */
 function draw(){var cv=$("map"),W=cv.clientWidth,H=cv.clientHeight,d=window.devicePixelRatio||1;
 if(!W||!H)return;
 if(cv.width!==Math.round(W*d)||cv.height!==Math.round(H*d)){cv.width=Math.round(W*d);cv.height=Math.round(H*d)}
@@ -165,8 +262,6 @@ if(dirty){dirty=false;draw()}requestAnimationFrame(loop)}
 function fly(i){var s=S[i];tw={t0:performance.now(),f:c.slice(),to:[s[3],s[2]],dl:((s[3]-c[0]+540)%360)-180,k0:k,k1:Math.max(k,view==="globe"?1.5:2.2)};tw.to[1]=Math.max(-70,Math.min(70,s[2]))}
 function pick(i,f){sel=i;if(f){spin=false;$("sp").setAttribute("aria-pressed","false");fly(i)}all()}
 function near(e,m){var r=$("map").getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top,b=null,bd=m;hit.forEach(function(h){var d=Math.hypot(h[0]-x,h[1]-y);if(d<bd){bd=d;b=h[2]}});return{i:b,x:x,y:y}}
-
-/* ---- подсказка: космическая цель + земной аналог + фото ---- */
 function getSpaceTarget(s){
   var en=lang==="en";
   if(tg==="mars")return{planet:en?"🔴 Mars":"🔴 Марс",name:s[en?16:15]||(en?"Jezero Crater":"Кратер Езеро"),desc:s[en?18:17]||(en?"Ancient river delta":"Древняя дельта реки"),img:s[21]||""};
@@ -179,8 +274,7 @@ function getSimilarEarthSite(idx){
   if(best<0)return null;
   return{name:nm(S[best]),score:Math.max(0,Math.round(100*(1-min/70)))};
 }
-function imgTag(u){return u?'<img src="'+esc(u)+'" class="tip-img" alt="" loading="lazy" onerror="this.style.display=\'none\'">':''}
-
+function imgTag(u){return u?'<img src="'+esc(u)+'" class="tip-img" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display=\'none\'">':''}
 var cv=$("map");
 cv.onpointerdown=function(e){cv.setPointerCapture(e.pointerId);drag={x:e.clientX,y:e.clientY,x0:e.clientX,y0:e.clientY};tw=null};
 cv.onpointermove=function(e){
@@ -210,8 +304,6 @@ $("zi").onclick=function(){zoom(1.3)};$("zo").onclick=function(){zoom(.77)};$("r
 $("sp").onclick=function(){spin=!spin;this.setAttribute("aria-pressed",spin)};
 function setView(v){view=v;$("vg").setAttribute("aria-pressed",v==="globe");$("vf").setAttribute("aria-pressed",v==="flat");k=1;dirty=true}
 $("vg").onclick=function(){setView("globe")};$("vf").onclick=function(){setView("flat")};
-
-/* ---- панели ---- */
 function radar(s){var cx=150,cy=118,R=88,pt=function(v,j){var a=-Math.PI/2+j*2*Math.PI/7;return[cx+R*v/10*Math.cos(a),cy+R*v/10*Math.sin(a)]},
 pl=function(arr){return arr.map(function(v,j){return pt(v,j).map(function(n){return n.toFixed(1)}).join(",")}).join(" ")},o="";
 [3.3,6.6,10].forEach(function(r){o+='<polygon points="'+pl([r,r,r,r,r,r,r])+'" fill="none" stroke="'+css("--line")+'"/>'});
@@ -232,7 +324,7 @@ $("prm").oninput=function(e){var kk=e.target.getAttribute("data-k");if(!kk)retur
 if(kk==="t"){if(tg!=="custom"){C.p=P().slice();tg="custom";tgb()}C.p[i]=v}else w[i]=v;var o=e.target.nextElementSibling;if(o&&o.tagName==="OUTPUT")o.textContent=v;all()};
 function setPm(m){pm=m;$("ms").setAttribute("aria-pressed",m==="slider");$("mn").setAttribute("aria-pressed",m==="num");prm()}
 $("ms").onclick=function(){setPm("slider")};$("mn").onclick=function(){setPm("num")};
-$("tg").onclick=function(e){var x=e.target.getAttribute("data-t");if(!x)return;if(x==="custom"){if(tg!=="custom")C.p=P().slice()}else w=T[x].w.slice();tg=x;tgb();prm();all()};
+$("tg").onclick=function(e){var x=e.target.getAttribute("data-t");if(!x)return;if(x==="custom"){if(tg!=="custom")C.p=P().slice()}else w=T[x].w.slice();tg=x;tgb();prm();all();cprev()};
 $("list").onclick=function(e){var b=e.target.closest(".it");if(b)pick(+b.getAttribute("data-i"),true)};
 $("lit").onclick=function(){lit=!lit;this.setAttribute("aria-pressed",lit);all()};
 $("q").oninput=function(){qs=this.value.trim();all()};
@@ -244,34 +336,119 @@ document.querySelectorAll("[data-i]").forEach(function(n){n.textContent=t(n.getA
 document.querySelectorAll("[data-p]").forEach(function(n){n.placeholder=t(n.getAttribute("data-p"))});
 document.querySelectorAll("[data-a]").forEach(function(n){var v=t(n.getAttribute("data-a"));n.setAttribute("aria-label",v);if(n.id!=="map")n.title=v});
 document.querySelectorAll("#lg .chip").forEach(function(b){b.setAttribute("aria-pressed",b.getAttribute("data-l")===l)});$("msg").textContent="";tgb();prm();all();cprev()}
-
-/* ---- калькулятор ---- */
 function cl(v){return Math.max(0,Math.min(10,isFinite(v)?v:0))}
 function calc(r){var a=[r[0]/10,r[1]*.7,r[2]/28,6.705*Math.log10(1+Math.max(0,r[3])),r[4]/10,5*Math.log10(1+Math.max(0,r[5])),r[6]/36.5];return a.map(function(v){return Math.round(cl(v)*10)/10})}
 function mk(u){return[u[0],u[0],u[1],u[2],calc(u[3]),0,"Добавлено вами","Added by you","Оценка рассчитана по вашим измерениям.","Scores calculated from your measurements.",1]}
 function rebuild(){S=BASE.concat(U.map(mk));B=BASE.length}
 function sv(){try{localStorage.setItem("nl-user",JSON.stringify(U))}catch(e){}}
 function raw(){var r=[];for(var i=1;i<=7;i++)r.push(parseFloat($("c"+i).value)||0);return r}
-function cprev(){var s=calc(raw());$("cres").innerHTML=t("dims").map(function(n,i){return'<span class="rc">'+n+': <b>'+s[i].toFixed(1)+'</b></span>'}).join("")+'<span class="rc" style="border-color:var(--ice)">'+t("simw")+': <b>'+sim([0,0,0,0,s])+'%</b></span>'}
-function fill(a){a.forEach(function(v,i){$("c"+(i+1)).value=v});cprev()}
-$("calc").oninput=function(e){if(/cx/.test(e.target.className))cprev()};
-$("cmoon").onclick=function(){fill([80,11,330,5.6,80,24,0])};$("cmars").onclick=function(){fill([80,10,180,6,90,15,180])};
-$("cuse").onclick=function(){C.p=calc(raw());tg="custom";tgb();prm();all()};
+function cprev(){var s=calc(raw());
+s.forEach(function(v,i){var b=$("cb"+(i+1));if(b)b.textContent=v.toFixed(1)+" / 10"});
+$("cres").innerHTML=t("simw")+': <b>'+sim([0,0,0,0,s])+'%</b>'}
+function fill(a,planet){
+    a.forEach(function(v,i){$("c"+(i+1)).value=v});
+    cprev();
+    $("cmsg").textContent=planet==="moon"?(lang==="ru"?"Профиль Луны загружен":"Moon profile loaded"):(lang==="ru"?"Профиль Марса загружен":"Mars profile loaded");
+    $("cmoon").setAttribute("aria-pressed",planet==="moon");
+    $("cmars").setAttribute("aria-pressed",planet==="mars");
+}
+$("calc").oninput=function(e){if(/cx/.test(e.target.className)){cprev();$("cmoon").setAttribute("aria-pressed","false");$("cmars").setAttribute("aria-pressed","false")}};
+$("cmoon").onclick=function(){fill([80,11,330,5.6,80,24,0],"moon")};
+$("cmars").onclick=function(){fill([80,10,180,6,90,15,180],"mars")};
+$("cuse").onclick=function(){C.p=calc(raw());tg="custom";tgb();prm();all();cprev()};
 $("cadd").onclick=function(){var la=parseFloat($("cla").value),lo=parseFloat($("clo").value),m=$("cmsg");if(!(la>=-90&&la<=90&&lo>=-180&&lo<=180)){m.textContent=t("bad");return}
 U.push([$("cn").value.trim()||(lang==="ru"?"Мой участок ":"My site ")+(U.length+1),la,lo,raw()]);sv();rebuild();m.textContent=t("added");qs="";$("q").value="";pick(S.length-1,true);try{$("map").scrollIntoView({behavior:"smooth",block:"center"})}catch(x){}};
-$("cimp").onclick=function(){var n=0;$("csv").value.split(/\n/).forEach(function(l){var f=l.split(/[;,]/).map(function(x){return x.trim()});if(f.length<10)return;var la=parseFloat(f[1]),lo=parseFloat(f[2]);if(!(la>=-90&&la<=90&&lo>=-180&&lo<=180))return;U.push([f[0],la,lo,f.slice(3,10).map(function(x){return parseFloat(x)||0})]);n++});sv();rebuild();all();$("cmsg").textContent=t("added")+": "+n};
-$("ccopy").onclick=function(){var tx="name,lat,lon,geology,relief,temperature,ice,dust,caves,life,similarity\n"+vis().map(function(o){return[nm(o.s).replace(/,/g," "),o.s[2],o.s[3]].concat(o.s[4],[o.m]).join(",")}).join("\n"),m=$("cmsg");try{navigator.clipboard.writeText(tx).then(function(){m.textContent=t("ok")},function(){m.textContent=t("fail")})}catch(e){m.textContent=t("fail")}};
+function csvLine(line,delimiter){
+    var out=[],value="",quoted=false;
+    for(var i=0;i<line.length;i++){
+        var ch=line[i];
+        if(ch==='"'&&quoted&&line[i+1]==='"'){value+='"';i++}
+        else if(ch==='"'){quoted=!quoted}
+        else if(ch===delimiter&&!quoted){out.push(value.trim());value=""}
+        else{value+=ch}
+    }
+    out.push(value.trim());return out;
+}
+function csvEscape(value){
+    var x=String(value==null?"":value);
+    return /[",;\n]/.test(x)?'"'+x.replace(/"/g,'""')+'"':x;
+}
+function esc(value){
+    return String(value==null?"":value).replace(/[&<>"']/g,function(ch){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]});
+}
+function setCsvStatus(message,kind){
+    var el=$("csvStatus");el.textContent=message;el.className="csv-status"+(kind?" "+kind:"");
+}
+function parseCsvText(text){
+    var lines=text.replace(/^\uFEFF/,"").split(/\r?\n/).filter(function(line){return line.trim()!==""});
+    if(!lines.length)return{valid:[],errors:[]};
+    var delimiter=lines[0].indexOf(";")>=0?";":",",valid=[],errors=[];
+    lines.forEach(function(line,index){
+        var fields=csvLine(line,delimiter);
+        if(index===0&&/^(name|название|site|участок)/i.test(fields[0]))return;
+        if(fields.length!==10){errors.push({name:fields[0],reason:t("csvRowError")});return}
+        var nums=fields.slice(1).map(function(v){return v===""?NaN:Number(v)});
+        var limits=[[-90,90],[-180,180],[0,100],[0,90],[0,600],[0,100],[0,100],[0,1000],[0,365]];
+        var invalid=nums.some(function(v,i){return !Number.isFinite(v)||v<limits[i][0]||v>limits[i][1]});
+        if(invalid){errors.push({name:fields[0],reason:t("csvRowError")});return}
+        valid.push([fields[0]||((lang==="ru"?"Участок ":"Site ")+(valid.length+1)),nums[0],nums[1],nums.slice(2)]);
+    });
+    return{valid:valid,errors:errors};
+}
+function renderCsvResults(items,errors){
+    var html="";
+    items.forEach(function(item){
+        var score=sim(mk(item));
+        html+='<tr><td>'+esc(item[0])+'</td><td>'+item[1].toFixed(2)+', '+item[2].toFixed(2)+'</td><td class="csv-score">'+score+'%</td><td class="csv-ok">'+t("csvValid")+'</td></tr>';
+    });
+    errors.forEach(function(err){
+        html+='<tr><td>'+esc(err.name||"—")+'</td><td>—</td><td>—</td><td class="csv-bad">'+esc(err.reason)+'</td></tr>';
+    });
+    $("csvResultRows").innerHTML=html;
+    $("csvResults").hidden=!html;
+    $("csvCount").textContent=items.length+" / "+(items.length+errors.length);
+}
+$("cimp").onclick=function(){
+    var parsed=parseCsvText($("csv").value);
+    if(!parsed.valid.length){setCsvStatus(t("csvNoRows"),"error");renderCsvResults([],parsed.errors);return}
+    parsed.valid.forEach(function(row){U.push(row)});
+    sv();rebuild();all();renderCsvResults(parsed.valid,parsed.errors);
+    var message=t("csvImported")+": "+parsed.valid.length;
+    if(parsed.errors.length)message+=" · "+t("csvSkipped")+": "+parsed.errors.length;
+    setCsvStatus(message,parsed.errors.length?"error":"success");
+    $("cmsg").textContent=t("added")+": "+parsed.valid.length;
+};
+$("csvFile").onchange=function(){
+    var file=this.files&&this.files[0];if(!file)return;
+    var reader=new FileReader();
+    reader.onload=function(){$("csv").value=String(reader.result||"");setCsvStatus(file.name,"success")};
+    reader.onerror=function(){setCsvStatus(t("csvNoRows"),"error")};
+    reader.readAsText(file,"UTF-8");
+};
+$("csvTemplate").onclick=function(){
+    var content=t("csvHeader")+"\n"+t("csvExample")+"\n";
+    var blob=new Blob(["\uFEFF",content],{type:"text/csv;charset=utf-8"});
+    var url=URL.createObjectURL(blob),a=document.createElement("a");
+    a.href=url;a.download="nasa-locator-template.csv";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+};
+$("ccopy").onclick=function(){
+    var rows=vis().map(function(o){return[nm(o.s),o.s[2],o.s[3]].concat(o.s[4],[o.m])});
+    if(!rows.length){setCsvStatus(t("csvNeedData"),"error");return}
+    var tx=[["name","lat","lon","geology","relief","temperature","ice","dust","caves","life","similarity"].join(",")].concat(rows.map(function(row){return row.map(csvEscape).join(",")}));
+    var text=tx.join("\n"),m=$("cmsg");
+    function done(ok){setCsvStatus(ok?t("csvCopied"):t("csvCopyFail"),ok?"success":"error");m.textContent=ok?t("ok"):t("fail")}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){done(true)},function(){done(false)})}
+    else{var area=document.createElement("textarea");area.value=text;document.body.appendChild(area);area.select();try{done(document.execCommand("copy"))}catch(e){done(false)}area.remove()}
+};
 $("det").onclick=function(e){if(e.target.id==="dl"){var i=sel-B;if(i>=0){U.splice(i,1);sv();rebuild();sel=0;all()}}};
 $("src").innerHTML=SRC.map(function(s){return'<a target="_blank" rel="noopener" href="'+(s[1]||"https://duckduckgo.com/?q="+encodeURIComponent(s[2]))+'">'+s[0]+'</a>'}).join("");
 window.onresize=function(){dirty=true};
-
-/* ---- загрузка данных из Django ---- */
 function startLoop(){if(!started){started=true;requestAnimationFrame(loop)}}
 function loadDjangoData(){
-  fetch("/api/analogs/")
+  fetch("/api/analogs/",{headers:{"Accept":"application/json"}})
     .then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json()})
     .then(function(data){
-      BASE=Array.isArray(data)?data:[];
+      BASE=Array.isArray(data)?data.filter(function(r){return Array.isArray(r)&&r.length>=10&&Array.isArray(r[4])&&r[4].length===7}):[];
       rebuild();
       var v=vis();if(v.length)sel=v[0].i;
       setLang(lang);
