@@ -242,7 +242,7 @@ try{navigator.clipboard.writeText(tx).then(function(){m.textContent=t("ok")},fun
 function setLang(l){lang=l;try{localStorage.setItem("nl-lang",l)}catch(e){}document.documentElement.lang=l;document.title=t("brand");$("brand").textContent=t("brand");
 document.querySelectorAll("[data-i]").forEach(function(n){n.textContent=t(n.getAttribute("data-i"))});
 document.querySelectorAll("[data-p]").forEach(function(n){n.placeholder=t(n.getAttribute("data-p"))});
-document.querySelectorAll("[data-a]").forEach(function(n){var v=t(n.getAttribute("data-a"));n.setAttribute("aria-label",v);n.title=v});
+document.querySelectorAll("[data-a]").forEach(function(n){var v=t(n.getAttribute("data-a"));n.setAttribute("aria-label",v);if(n.id!=="map")n.title=v});
 document.querySelectorAll("#lg .chip").forEach(function(b){b.setAttribute("aria-pressed",b.getAttribute("data-l")===l)});$("msg").textContent="";tgb();prm();all();cprev()}
 
 /* ---- калькулятор ---- */
