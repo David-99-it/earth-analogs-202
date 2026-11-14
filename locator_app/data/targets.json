@@ -1,0 +1,296 @@
+{
+ "targets": [
+  {
+   "key": "moon",
+   "planet": "moon",
+   "name": [
+    "Луна: дно кратера Шеклтон",
+    "Moon: Shackleton crater floor"
+   ],
+   "place": [
+    "Южный полюс Луны, 89.9° ю. ш.",
+    "Lunar south pole, 89.9° S"
+   ],
+   "lat": -89.9,
+   "lon": 0.0,
+   "area_km2": 346,
+   "blurb": [
+    "Кратер диаметром 21 км и глубиной 4,2 км. Дно в вечной тени, там около −183 °C: холодная ловушка, где может сохраняться водяной лёд. Гребни кратера освещены 80–90 % времени. Лёд на самом дне не доказан: Lunar Prospector видел избыток водорода у полюса, а Kaguya открытого льда не нашёл.",
+    "A crater 21 km wide and 4.2 km deep. The floor is in permanent shadow at about -183 C: a cold trap where water ice may survive. The rim is sunlit 80-90 % of the time. Ice on the floor is not proven: Lunar Prospector saw excess hydrogen near the pole, Kaguya found no exposed ice."
+   ],
+   "image_query": "Shackleton crater Moon south pole",
+   "values": {
+    "origin": {
+     "v": [
+      "impact"
+     ],
+     "kind": "literature",
+     "src": "Ударный кратер (Wikipedia: Shackleton)",
+     "url": "https://en.wikipedia.org/wiki/Shackleton_(crater)"
+    },
+    "relief_m": {
+     "v": 4200,
+     "kind": "literature",
+     "src": "Глубина кратера 4,2 км (Wikipedia: Shackleton)",
+     "url": "https://en.wikipedia.org/wiki/Shackleton_(crater)"
+    },
+    "temp_mean_c": {
+     "v": -183,
+     "kind": "literature",
+     "src": "≈90 K, среднее по кратеру (Haruyama 2008; Ingersoll 1992, по Wikipedia)",
+     "url": "https://en.wikipedia.org/wiki/Shackleton_(crater)"
+    },
+    "temp_min_c": {
+     "v": -185,
+     "kind": "literature",
+     "src": "≈88 K, дно кратера (там же)",
+     "url": "https://en.wikipedia.org/wiki/Shackleton_(crater)"
+    },
+    "precip_mm": {
+     "v": 0,
+     "kind": "physical",
+     "src": "Атмосферы нет, осадков нет (NASA Moon Fact Sheet)",
+     "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    "wind_ms": {
+     "v": 0,
+     "kind": "physical",
+     "src": "Атмосферы нет, ветра нет (NASA Moon Fact Sheet)",
+     "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    "ice": {
+     "v": true,
+     "kind": "literature",
+     "src": "Избыток водорода у полюса (Lunar Prospector, по Wikipedia). Для дна Шеклтона данные противоречивы.",
+     "url": "https://en.wikipedia.org/wiki/Shackleton_(crater)"
+    },
+    "bio": {
+     "v": false,
+     "kind": "inferred",
+     "src": "Лунные миссии ищут воду и ресурсы, а не жизнь",
+     "url": ""
+    }
+   }
+  },
+  {
+   "key": "moon_pit",
+   "planet": "moon",
+   "name": [
+    "Луна: яма в Море Спокойствия",
+    "Moon: Mare Tranquillitatis pit"
+   ],
+   "place": [
+    "Море Спокойствия, 8.3° с. ш.",
+    "Mare Tranquillitatis, 8.3° N"
+   ],
+   "lat": 8.335,
+   "lon": 33.222,
+   "area_km2": null,
+   "blurb": [
+    "Яма глубиной около 100 м, возможный вход в лавовую трубку. По данным радиометра Diviner (LRO), внутри в постоянной тени около +17 °C почти без суточных колебаний, а на поверхности от +127 °C днём до −173 °C ночью. Из 200 с лишним известных лунных ям около 16, вероятно, обрушенные лавовые трубки.",
+    "A pit about 100 m deep, a possible entrance to a lava tube. LRO Diviner shows about +17 C inside the permanent shadow with little daily variation, while the surface swings from +127 C by day to -173 C at night. Of 200+ known lunar pits, about 16 are probably collapsed lava tubes."
+   ],
+   "image_query": "Mare Tranquillitatis pit Moon",
+   "values": {
+    "origin": {
+     "v": [
+      "volcanic"
+     ],
+     "kind": "literature",
+     "src": "Яма — обрушенный свод лавовой трубки (NASA, LRO)",
+     "url": "https://www.nasa.gov/solar-system/nasas-lro-finds-lunar-pits-harbor-comfortable-temperatures"
+    },
+    "relief_m": {
+     "v": 100,
+     "kind": "literature",
+     "src": "Глубина ямы ≈100 м (NASA, LRO). Это глубина самой ямы, а не рельеф округи.",
+     "url": "https://www.nasa.gov/solar-system/nasas-lro-finds-lunar-pits-harbor-comfortable-temperatures"
+    },
+    "temp_mean_c": {
+     "v": 17,
+     "kind": "literature",
+     "src": "≈17 °C внутри ямы в тени (Diviner, LRO)",
+     "url": "https://www.nasa.gov/solar-system/nasas-lro-finds-lunar-pits-harbor-comfortable-temperatures"
+    },
+    "precip_mm": {
+     "v": 0,
+     "kind": "physical",
+     "src": "Атмосферы нет, осадков нет (NASA Moon Fact Sheet)",
+     "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    "wind_ms": {
+     "v": 0,
+     "kind": "physical",
+     "src": "Атмосферы нет, ветра нет (NASA Moon Fact Sheet)",
+     "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+    },
+    "caves": {
+     "v": true,
+     "kind": "literature",
+     "src": "Снимки LRO указывают на возможную пещеру от дна ямы",
+     "url": "https://www.nasa.gov/solar-system/nasas-lro-finds-lunar-pits-harbor-comfortable-temperatures"
+    },
+    "bio": {
+     "v": false,
+     "kind": "inferred",
+     "src": "Лунные миссии ищут воду и ресурсы, а не жизнь",
+     "url": ""
+    }
+   }
+  },
+  {
+   "key": "mars",
+   "planet": "mars",
+   "name": [
+    "Марс: кратер Езеро",
+    "Mars: Jezero crater"
+   ],
+   "place": [
+    "Кратер Езеро, 18.4° с. ш.",
+    "Jezero crater, 18.4° N"
+   ],
+   "lat": 18.44,
+   "lon": 77.45,
+   "area_km2": 1590,
+   "blurb": [
+    "Кратер диаметром около 45 км с древней речной дельтой. Здесь работает марсоход Perseverance: он ищет следы древней жизни. По метеостанции MEDA средняя температура около −55 °C, суточные перепады 50–60 °C, давление 650–760 Па.",
+    "A crater about 45 km wide with an ancient river delta. The Perseverance rover searches here for traces of ancient life. Its MEDA weather station shows a mean of about -55 C, daily swings of 50-60 C, pressure 650-760 Pa."
+   ],
+   "image_query": "Jezero crater Mars",
+   "values": {
+    "origin": {
+     "v": [
+      "impact",
+      "volcanic",
+      "sedimentary"
+     ],
+     "kind": "literature",
+     "src": "Ударный кратер, магматические породы дна и осадки дельты (NASA, Farley et al. 2022)",
+     "url": "https://science.nasa.gov/mission/mars-2020-perseverance/"
+    },
+    "temp_mean_c": {
+     "v": -55,
+     "kind": "literature",
+     "src": "Около −55 °C, сезонное среднее (MEDA, ScienceDaily 2023)",
+     "url": "https://www.sciencedaily.com/releases/2023/01/230118111707.htm"
+    },
+    "temp_diurnal_c": {
+     "v": 55,
+     "kind": "literature",
+     "src": "Суточный перепад 50–60 °C (MEDA, ScienceDaily 2023)",
+     "url": "https://www.sciencedaily.com/releases/2023/01/230118111707.htm"
+    },
+    "precip_mm": {
+     "v": 0,
+     "kind": "physical",
+     "src": "Жидких осадков нет (NASA Mars Fact Sheet)",
+     "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html"
+    },
+    "wind_ms": {
+     "v": 4,
+     "kind": "estimate",
+     "src": "Ночью 2–4 м/с, днём 5–7 м/с, максимум около 7 м/с (MEDA, Nature Geoscience 2022): взято округлённое среднее",
+     "url": "https://link.springer.com/article/10.1038/s41561-022-01084-0"
+    },
+    "bio": {
+     "v": true,
+     "kind": "literature",
+     "src": "Миссия Perseverance ищет признаки древней жизни (NASA)",
+     "url": "https://science.nasa.gov/mission/mars-2020-perseverance/"
+    }
+   }
+  }
+ ],
+ "physics": [
+  {
+   "key": "gravity",
+   "ru": "Сила тяжести",
+   "en": "Gravity",
+   "unit": "м/с²",
+   "unit_en": "m/s²",
+   "fmt": "num",
+   "earth": {
+    "v": 9.81,
+    "kind": "literature",
+    "src": "NASA Earth Fact Sheet",
+    "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html"
+   },
+   "moon": {
+    "v": 1.62,
+    "kind": "literature",
+    "src": "NASA Moon Fact Sheet",
+    "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+   },
+   "mars": {
+    "v": 3.71,
+    "kind": "literature",
+    "src": "NASA Mars Fact Sheet",
+    "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html"
+   },
+   "note": [
+    "Земная гравитация в 6 раз сильнее лунной и в 2,6 раза сильнее марсианской. Лавовые трубки, осыпи и пыль ведут себя на Земле иначе.",
+    "Earth's gravity is 6x the Moon's and 2.6x Mars's. Lava tubes, slopes and dust behave differently on Earth."
+   ]
+  },
+  {
+   "key": "pressure",
+   "ru": "Давление у поверхности",
+   "en": "Surface pressure",
+   "unit": "Па",
+   "unit_en": "Pa",
+   "fmt": "sci",
+   "earth": {
+    "v": 101325,
+    "kind": "literature",
+    "src": "Стандартная атмосфера",
+    "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html"
+   },
+   "moon": {
+    "v": 3e-10,
+    "kind": "literature",
+    "src": "NASA Moon Fact Sheet (ночью 3·10⁻¹⁵ бар)",
+    "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/moonfact.html"
+   },
+   "mars": {
+    "v": 636,
+    "kind": "literature",
+    "src": "NASA Mars Fact Sheet (в среднем; в Езеро по MEDA 650–760 Па)",
+    "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/marsfact.html"
+   },
+   "note": [
+    "На Земле нет ни лунного вакуума, ни тонкой марсианской атмосферы: в вакуумных камерах это приходится воспроизводить отдельно.",
+    "Earth has neither lunar vacuum nor Mars's thin air: vacuum chambers have to reproduce this separately."
+   ]
+  },
+  {
+   "key": "radiation",
+   "ru": "Доза радиации у поверхности",
+   "en": "Surface radiation dose",
+   "unit": "мЗв/сут",
+   "unit_en": "mSv/day",
+   "fmt": "num",
+   "earth": {
+    "v": 0.007,
+    "kind": "literature",
+    "src": "Около 0,3 мкЗв/ч (оценка по phys.org)",
+    "url": "https://phys.org/news/2020-10-humans-moon-earth.html"
+   },
+   "moon": {
+    "v": 1.44,
+    "kind": "literature",
+    "src": "60 мкЗв/ч по прибору LND, Chang'E-4",
+    "url": "https://phys.org/news/2020-10-humans-moon-earth.html"
+   },
+   "mars": {
+    "v": 0.64,
+    "kind": "literature",
+    "src": "Прибор RAD марсохода Curiosity (Hassler et al., Science 2014)",
+    "url": "https://doi.org/10.1126/science.1244797"
+   },
+   "note": [
+    "Атмосфера и магнитное поле защищают Землю: на Луне доза примерно в 200 раз выше, на Марсе примерно в 90 раз. Этого не повторить в полевых испытаниях.",
+    "Earth's air and magnetic field shield it: the Moon's dose is about 200x higher, Mars's about 90x. Field tests cannot reproduce it."
+   ]
+  }
+ ]
+}

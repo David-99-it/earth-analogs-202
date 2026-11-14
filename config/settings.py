@@ -126,3 +126,5 @@ MAILERS = {
         "BACKEND": "django.core.mail.backends.console.EmailBackend",
     },
 }
+
+CLOUDINARY_CLOUD_NAME = "ark2rmfx"

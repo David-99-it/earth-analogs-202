@@ -4,299 +4,447 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>NASA Локатор</title>
+<meta name="description" content="Земные аналоги мест на Луне и Марсе по реальным данным NASA: температура, перепад высот, осадки, ветер, лёд, пещеры. Пропуски данных не считаются нулями.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&family=Unbounded:wght@500;700&display=swap">
 <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
 <style>
-
-:root{--bg:#10141b;--panel:#171d27;--line:#2a3342;--text:#e9e5da;--mute:#9aa3b2;--ice:#86d9e8;--dust:#d8c9a8;--land:#33404f;--bd:#4a5a6e;--ocean:#0c1826;--ink:#0b1016;
+:root{--bg:#10141b;--panel:#171d27;--line:#2a3342;--text:#e9e5da;--mute:#9aa3b2;--ice:#86d9e8;--dust:#d8c9a8;--land:#33404f;--bd:#4a5a6e;--ocean:#0c1826;--ink:#0b1016;--ok:#8bd9b1;--bad:#f0a18e;
 --h:'Unbounded','Trebuchet MS',system-ui,sans-serif;--b:'Onest',system-ui,-apple-system,'Segoe UI',sans-serif;
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:dark}
-@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f3f1ea;--panel:#fff;--line:#d9d4c6;--text:#1c2430;--mute:#5d6676;--ice:#0f6f84;--dust:#7a5f23;--land:#efe9d8;--bd:#c9c1ab;--ocean:#cfe3ee;--ink:#fff;color-scheme:light}}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f3f1ea;--panel:#fff;--line:#d9d4c6;--text:#1c2430;--mute:#5d6676;--ice:#0f6f84;--dust:#7a5f23;--land:#efe9d8;--bd:#c9c1ab;--ocean:#cfe3ee;--ink:#fff;--ok:#1d7a4d;--bad:#b4472f;color-scheme:light}}
 :root[data-theme="dark"]{--bg:#10141b;--panel:#171d27;--line:#2a3342;--text:#e9e5da;--mute:#9aa3b2;--ice:#86d9e8;--dust:#d8c9a8;--land:#33404f;--bd:#4a5a6e;--ocean:#0c1826;--ink:#0b1016}
 html{height:100%;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 64px)}*{box-sizing:border-box}
+[hidden]{display:none!important}
 body{margin:0;background:var(--bg);color:var(--text);font:15.5px/1.5 var(--b)}
 .wrap{max-width:1180px;margin:0 auto;padding:0 16px}
 .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--bg);border-bottom:1px solid var(--line)}
 .top::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:-1}
 .bar{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:10px 16px}
 .brand{font:700 17px var(--h)}
-.lead{color:var(--mute);max-width:78ch;margin:16px 0 14px}
-.app{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(310px,1fr);grid-template-areas:"g s" "r s";gap:16px;padding-bottom:20px}
-.g1{grid-area:g}.g2{grid-area:r}.side{grid-area:s;display:flex;flex-direction:column;gap:16px;align-self:start;position:sticky;top:calc(env(safe-area-inset-top,0px) + 64px);max-height:calc(100vh - 84px);overflow:auto;padding-bottom:4px}
-.box{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px}
+.lead{color:var(--mute);max-width:80ch;margin:16px 0 12px}
+.box{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:16px}
 h2{font:500 14.5px var(--h);margin:0 0 10px;color:var(--dust)}
+h3{font:600 13.5px var(--b);margin:14px 0 6px;color:var(--dust)}
 .seg{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
 .chip,.btn,.ic{background:transparent;border:1px solid var(--line);color:var(--mute);padding:7px 13px;border-radius:99px;font:inherit;font-size:14px;cursor:pointer}
 .chip[aria-pressed="true"]{background:var(--ice);border-color:var(--ice);color:var(--ink);font-weight:600}
-.btn{color:var(--ice);border-color:var(--ice)}
-.btn-prim{background:var(--ice);color:var(--ink);font-weight:600}
+.btn{color:var(--ice);border-color:var(--ice)}.btn-prim{background:var(--ice);color:var(--ink);font-weight:600}
 .ic{width:38px;height:38px;padding:0;font-size:18px;background:var(--panel);color:var(--text)}
 .ic[aria-pressed="true"]{color:var(--ice);border-color:var(--ice)}
-button:focus-visible,input:focus-visible,canvas:focus-visible{outline:2px solid var(--ice);outline-offset:2px}
+button:focus-visible,input:focus-visible,select:focus-visible,canvas:focus-visible,summary:focus-visible{outline:2px solid var(--ice);outline-offset:2px}
+.flt{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+.flt .row{align-items:center}
+.flt small{color:var(--mute);min-width:64px;font-size:12.5px}
+.app{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(320px,1fr);grid-template-areas:"g s" "r s";gap:16px;align-items:start}
+.app>.box{margin-bottom:0}
+.g1{grid-area:g}.g2{grid-area:r}
+.side{grid-area:s;display:flex;flex-direction:column;gap:16px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 64px);max-height:calc(100vh - 84px);overflow:auto;padding-bottom:4px}
+.side>.box{margin-bottom:0}
 .gw{position:relative;padding:0;overflow:hidden}
-canvas{width:100%;height:clamp(360px,66vh,640px);display:block;cursor:grab;touch-action:none;background:var(--bg)}
+canvas{width:100%;height:clamp(340px,62vh,600px);display:block;cursor:grab;touch-action:none;background:var(--bg)}
 canvas:active{cursor:grabbing}
 .tools{position:absolute;left:10px;top:10px;display:flex;gap:6px;flex-wrap:wrap;max-width:calc(100% - 60px)}
 .tools .chip{background:var(--panel)}.tools .chip[aria-pressed="true"]{background:var(--ice)}
 .zs{position:absolute;right:10px;top:10px;display:flex;flex-direction:column;gap:6px}
-.tip{position:absolute;pointer-events:none;background:var(--panel);border:1px solid var(--ice);border-radius:12px;padding:10px 12px;font-size:12.5px;display:none;width:320px;box-shadow:0 10px 28px rgba(0,0,0,.7);z-index:99;line-height:1.35}
-.tip-section{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:7px;margin-top:6px}
-.tip-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;margin-bottom:3px}
-.tip-img{width:100%;height:95px;object-fit:cover;border-radius:6px;margin-top:5px;display:block}
+.tip{position:absolute;pointer-events:none;background:var(--panel);border:1px solid var(--ice);border-radius:12px;padding:10px 12px;font-size:12.5px;display:none;width:260px;box-shadow:0 10px 28px rgba(0,0,0,.6);z-index:99;line-height:1.35}
+.tip img{width:100%;height:92px;object-fit:cover;border-radius:6px;margin-top:6px;display:block}
 .hint{padding:8px 14px;color:var(--mute);font-size:12.5px;border-top:1px solid var(--line)}
 .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-input[type=search],.nm,.fi,textarea{background:var(--bg);border:1px solid var(--line);color:var(--text);border-radius:10px;padding:8px 12px;font:inherit}
-input[type=search]{flex:1 1 180px}.nm{width:72px;text-align:center}
-.list{display:flex;flex-direction:column;gap:8px;max-height:440px;overflow:auto;margin-top:12px}
-.it{display:grid;grid-template-columns:1fr 48px;gap:2px 10px;text-align:left;background:transparent;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:9px 12px;font:inherit;cursor:pointer}
+input[type=search],input[type=text],input[type=number],select,textarea{background:var(--bg);border:1px solid var(--line);color:var(--text);border-radius:10px;padding:8px 12px;font:inherit;min-width:0}
+input[type=search]{flex:1 1 180px}
+.list{display:flex;flex-direction:column;gap:8px;max-height:480px;overflow:auto;margin-top:12px}
+.it{display:grid;grid-template-columns:1fr auto;gap:2px 10px;text-align:left;background:transparent;border:1px solid var(--line);color:var(--text);border-radius:10px;padding:9px 12px;font:inherit;cursor:pointer}
 .it[aria-pressed="true"]{border-color:var(--ice);background:rgba(134,217,232,.09)}
 .it small{color:var(--mute);grid-column:1}.it b{grid-row:1/3;grid-column:2;align-self:center;text-align:right;color:var(--ice);font:500 16px var(--h)}
-.bb{height:4px;border-radius:2px;background:var(--line);grid-column:1/3}.bb i{display:block;height:100%;background:var(--ice);border-radius:2px}
+.it b.low{color:var(--mute)}
+.bb{height:4px;border-radius:2px;background:var(--line);grid-column:1/3;overflow:hidden}.bb i{display:block;height:100%;background:var(--ice);border-radius:2px}
 .sim{font:700 34px var(--h);color:var(--ice);line-height:1.1}
-.tag{display:inline-block;font:500 12px var(--b);border:1px solid var(--dust);color:var(--dust);border-radius:99px;padding:1px 9px;margin-left:8px;vertical-align:middle}
-.warn{border-left:3px solid var(--dust);padding:2px 0 2px 12px;color:var(--mute);margin:10px 0 0}
-.leg{font-size:12.5px;color:var(--mute);display:flex;gap:14px;flex-wrap:wrap}
-svg text{fill:var(--mute);font:11px var(--b)}
-.pr{display:grid;grid-template-columns:96px 1fr 1fr;gap:8px;align-items:center;font-size:13.5px;color:var(--mute);padding:3px 0}
-.pr.hd{font-size:12.5px}
-.cl{display:flex;gap:6px;align-items:center}.cl input{width:100%;min-width:0;accent-color:var(--ice)}.cl output{width:16px;text-align:right;color:var(--text)}
+.sim.low{color:var(--mute)}
+.tag{display:inline-block;font:500 12px var(--b);border:1px solid var(--dust);color:var(--dust);border-radius:99px;padding:1px 9px;margin:0 6px 4px 0;vertical-align:middle}
+.mu{color:var(--mute);font-size:14px;margin:0 0 8px}
+.warn{border-left:3px solid var(--dust);padding:2px 0 2px 12px;color:var(--mute);margin:10px 0 0;font-size:14px}
+.warn ul{margin:6px 0 0;padding-left:18px}.warn li{margin:3px 0}
+.lowcov{border:1px solid var(--bad);color:var(--bad);border-radius:10px;padding:6px 10px;font-size:13px;margin:8px 0}
+.meter{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--mute);margin:4px 0 6px}
+.meter .bb{flex:0 0 90px;grid-column:auto}
+.photos{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:10px 0}
+.photos figure{margin:0}
+.photos img{width:100%;aspect-ratio:3/2;object-fit:cover;border-radius:8px;display:block;background:var(--line)}
+.photos figcaption{font-size:11.5px;color:var(--mute);margin-top:3px;line-height:1.3}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th,.tbl td{text-align:left;padding:6px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.tbl th{color:var(--mute);font-weight:500;font-size:12px}
+.tbl td.n{color:var(--mute)}
+.tbl tr.dim td{opacity:.45}
+.tbl .m{display:flex;align-items:center;gap:6px;min-width:70px}
+.tbl .m .bb{flex:1;grid-column:auto;min-width:30px}
+.tbl .m span{font-variant-numeric:tabular-nums;min-width:34px;text-align:right}
+.tblw{overflow:auto;border:1px solid var(--line);border-radius:9px}
+.nd{color:var(--mute);font-style:italic}
+.kd{display:inline-block;font-size:10.5px;line-height:1;padding:2px 5px;border-radius:5px;border:1px solid var(--line);color:var(--mute);margin-left:5px;text-decoration:none;vertical-align:middle;white-space:nowrap}
+.kd.k-measured{border-color:var(--ice);color:var(--ice)}
+.kd.k-literature{border-color:var(--dust);color:var(--dust)}
+a.kd:hover{background:rgba(134,217,232,.12)}
+.refs a{color:var(--ice);text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:3px 9px;font-size:12.5px;display:inline-block;margin:0 6px 6px 0}
+.wr{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr) minmax(0,.9fr);gap:8px;align-items:center;padding:7px 0;border-bottom:1px solid var(--line);font-size:13px}
+.wr.hd{color:var(--mute);font-size:12px;border-bottom:1px solid var(--line)}
+.wr .wn b{font-weight:550;display:block}.wr .wn small{color:var(--mute);font-size:11.5px;line-height:1.25;display:block}
+.wr.off{opacity:.5}
+.cl{display:flex;gap:6px;align-items:center}.cl input{width:100%;min-width:0;accent-color:var(--ice)}.cl output{width:14px;text-align:right}
+.cv input,.cv select{width:100%;padding:5px 8px;font-size:13px}
+.cv .og{display:flex;flex-wrap:wrap;gap:4px}.cv .og label{font-size:12px;border:1px solid var(--line);border-radius:99px;padding:1px 7px;cursor:pointer;color:var(--mute)}
+.cv .og input:checked+span{color:var(--ice)}.cv .og input{margin-right:3px;accent-color:var(--ice)}
+.tol{color:var(--mute);font-size:11px;display:block}
+.rec{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+.rec>div{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:9px 11px;font-size:13.5px}
+.rec b{color:var(--text)}.rec .k{color:var(--dust);font-size:12px;display:block;margin-bottom:2px}
+.cmpg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0}
+details.box>summary,details.sub>summary{cursor:pointer;font:500 14.5px var(--h);color:var(--dust);list-style:none}
+details.box>summary::-webkit-details-marker{display:none}
+details.box>summary:before{content:"＋ ";color:var(--ice)}details.box[open]>summary:before{content:"− "}
 .csec{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px;margin:12px 0}
 .csh{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px;font-size:13.5px;font-weight:600;color:var(--dust)}
-.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
-.cg3{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}
-.fl{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--mute);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 10px;transition:border-color .15s}
+.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+.fl{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--mute);background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:8px 10px}
 .fl:focus-within{border-color:var(--ice)}
-.fl-top{display:flex;justify-content:space-between;align-items:flex-start;gap:6px;min-height:32px}
-.fi{width:100%}
-.fl .fi{border:none;border-top:1px solid var(--line);border-radius:0;padding:6px 0 0;margin-top:4px;background:transparent;font-weight:500}
-.fl .fi:focus-visible{outline:none}
-.scb{font-size:11.5px;font-weight:600;color:var(--ice);background:rgba(134,217,232,.14);padding:2px 7px;border-radius:6px;white-space:nowrap}
-.sim-pill{border:1px solid var(--ice);background:rgba(134,217,232,.08);border-radius:99px;padding:6px 14px;font-size:14px;color:var(--text)}
+.fl .fi,.fl select{border:none;border-top:1px solid var(--line);border-radius:0;padding:6px 0 0;margin-top:4px;background:transparent;font-weight:500;width:100%}
+.fl .fi:focus-visible,.fl select:focus-visible{outline:none}
+.fl.bad{border-color:var(--bad)}
+.sim-pill{border:1px solid var(--ice);background:rgba(134,217,232,.08);border-radius:99px;padding:6px 14px;font-size:14px}
 .sim-pill b{color:var(--ice);font-family:var(--h)}
-.mu{color:var(--mute);font-size:14px;margin:0 0 6px}
-.rc{border:1px solid var(--line);border-radius:8px;padding:4px 10px;font-size:13px;color:var(--mute)}.rc b{color:var(--text)}
-details{margin:12px 0}.src a{color:var(--ice);text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:4px 10px;font-size:13.5px}
+.og2{display:flex;flex-wrap:wrap;gap:6px}.og2 label{border:1px solid var(--line);border-radius:99px;padding:3px 10px;font-size:13px;cursor:pointer;color:var(--mute)}
+.og2 input{accent-color:var(--ice);margin-right:4px}
+#csv{display:block;width:100%;min-height:110px;resize:vertical;font:12px ui-monospace,SFMono-Regular,Consolas,monospace;line-height:1.5}
+.csv-status{font-size:12.5px;color:var(--mute);flex:1 1 180px}.csv-status.error{color:var(--bad)}.csv-status.success{color:var(--ok)}
+.file-btn{position:relative;overflow:hidden;cursor:pointer}.file-btn input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer}
+.ok{color:var(--ok)}.bad{color:var(--bad)}
+.formula{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:8px;margin:10px 0}
+.formula>div{background:var(--bg);border:1px solid var(--line);border-radius:9px;padding:8px 10px;font-size:13px}
+.formula code{color:var(--ice);font-size:12.5px;display:block;margin-top:3px;white-space:normal}
+.src a{color:var(--ice);text-decoration:none;border:1px solid var(--line);border-radius:8px;padding:4px 10px;font-size:13.5px}
+.src .row{gap:8px}
 footer{border-top:1px solid var(--line);padding:18px 0 32px;color:var(--mute);font-size:13px}
-@media (max-width:900px){.app{grid-template-columns:1fr;grid-template-areas:"g" "s" "r"}.side{position:static;max-height:none;overflow:visible}canvas{height:clamp(320px,58vh,520px)}.tip{width:260px}}
+.err{border:1px solid var(--bad);color:var(--bad);border-radius:10px;padding:10px 12px;font-size:14px}
+@media (max-width:900px){.app{grid-template-columns:1fr;grid-template-areas:"g" "s" "r"}.side{position:static;max-height:none;overflow:visible}canvas{height:clamp(300px,52vh,480px)}.tip{width:230px}.wr{grid-template-columns:1fr 1fr}.wr .cl{grid-column:1/3}}
+@media (max-width:700px){
+ #tg{order:3;flex:1 1 100%;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px}
+ #ps,#tags{flex:1 1 100%;min-width:0;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px}
+ #tg .chip,#ps .chip,#tags .chip{flex:0 0 auto;white-space:nowrap}
+ .flt small{min-width:0;flex:1 1 100%}
+ .bar{padding:8px 16px}
+}
+@media (max-width:520px){.cmpg{grid-template-columns:1fr}.photos{gap:6px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
-
-/* Methodology and CSV workspace */
-.method-panel,.csv-panel{border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:12px 14px;margin:12px 0}
-.method-panel summary,.csv-panel summary{cursor:pointer;list-style:none;font-weight:650;color:var(--ice);display:flex;align-items:center;gap:9px}
-.method-panel summary::-webkit-details-marker,.csv-panel summary::-webkit-details-marker{display:none}
-.method-panel summary:before,.csv-panel summary:before{content:"＋";display:grid;place-items:center;width:22px;height:22px;border:1px solid var(--line);border-radius:7px;font-size:14px}
-.method-panel[open] summary:before,.csv-panel[open] summary:before{content:"−"}
-.method-intro{margin:12px 0}
-.formula-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px}
-.formula-grid>div{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:9px 10px;border:1px solid var(--line);border-radius:9px;background:var(--bg);font-size:12.5px}
-.formula-grid b{font-weight:550;color:var(--text)}
-.formula-grid code{font-size:11.5px;color:var(--ice);white-space:nowrap}
-.method-note{margin:12px 0 0;padding:9px 11px;border-left:2px solid var(--ice);background:rgba(134,217,232,.06);color:var(--mute);font-size:12px}
-.csv-panel{margin-top:14px}
-.csv-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:10px 0}
-.file-btn{position:relative;overflow:hidden;cursor:pointer}
-.file-btn input{position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer}
-.csv-label{display:block;margin:12px 0 6px;color:var(--text);font-size:12.5px;font-weight:600}
-#csv{display:block;width:100%;min-height:116px;resize:vertical;line-height:1.55;font:12px ui-monospace,SFMono-Regular,Consolas,monospace}
-.csv-status{font-size:12px;color:var(--mute);flex:1 1 180px}
-.csv-status.error{color:#f0a18e}.csv-status.success{color:#8bd9b1}
-.csv-results{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}
-.csv-result-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px;font-size:13px}
-.csv-result-head span{color:var(--mute);font-size:12px}
-.csv-table-wrap{overflow:auto;border:1px solid var(--line);border-radius:9px}
-.csv-table{width:100%;border-collapse:collapse;font-size:12px;min-width:440px}
-.csv-table th,.csv-table td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line)}
-.csv-table th{color:var(--mute);font-weight:550;background:var(--bg)}
-.csv-table tr:last-child td{border-bottom:0}
-.csv-score{color:var(--ice);font-weight:700;font-variant-numeric:tabular-nums}
-.csv-ok{color:#8bd9b1}.csv-bad{color:#f0a18e}
-@media(max-width:600px){.formula-grid>div{align-items:flex-start;flex-direction:column;gap:4px}.csv-actions .btn{flex:1 1 auto}}
-
 </style>
 </head>
 <body>
 <div class="top"><div class="wrap bar">
  <span class="brand" id="brand"></span>
- <div class="seg" id="tg"></div>
+ <div class="seg" id="tg" role="group" aria-label="Цель"></div>
  <div class="seg" id="lg"><button class="chip" data-l="ru" aria-pressed="false">RU</button><button class="chip" data-l="en" aria-pressed="false">EN</button></div>
 </div></div>
 <div class="wrap">
 <p class="lead" data-i="lead"></p>
+<noscript><p class="err">Для работы нужен JavaScript.</p></noscript>
+<div class="box flt">
+ <div class="row"><small data-i="fTask"></small><div class="seg" id="ps"></div></div>
+ <div class="row"><small data-i="fTopic"></small><div class="seg" id="tags"></div><button class="chip" id="un" aria-pressed="false" data-i="fUnder"></button></div>
+ <div class="row"><input id="q" type="search" data-p="sph" data-a="sph"></div>
+</div>
 <div class="app">
  <div class="box gw g1">
   <canvas id="map" tabindex="0" data-a="mapa"></canvas>
   <div class="tools"><button class="chip" id="vg" data-i="vg" aria-pressed="true"></button><button class="chip" id="vf" data-i="vf" aria-pressed="false"></button><button class="ic" id="sp" data-a="spin" aria-pressed="true">⟳</button></div>
   <div class="zs"><button class="ic" id="zi" data-a="zin">+</button><button class="ic" id="zo" data-a="zout">−</button><button class="ic" id="rs" data-a="rst">⌂</button></div>
   <div class="tip" id="tip"></div>
-  <div class="hint"><span data-i="hint"></span> <span data-i="leg"></span></div>
+  <div class="hint" data-i="hint"></div>
  </div>
  <div class="side">
   <div class="box" id="det" aria-live="polite"></div>
-  <div class="box"><div class="row" style="justify-content:space-between;margin-bottom:8px"><h2 style="margin:0" data-i="params"></h2>
-   <div class="seg"><button class="chip" id="ms" data-i="msl" aria-pressed="true"></button><button class="chip" id="mn" data-i="mnum" aria-pressed="false"></button></div></div><div id="prm"></div></div>
-  <div class="box"><div class="row"><button class="btn" id="rep" data-i="rep"></button><span id="msg" style="font-size:13px;color:var(--mute)"></span></div></div>
+  <div class="box"><h2 data-i="params"></h2><div id="prm"></div></div>
+  <div class="box"><div class="row"><button class="btn" id="rep" data-i="rep"></button><span id="msg" class="mu" style="margin:0"></span></div></div>
  </div>
- <div class="box g2"><div class="row"><h2 style="margin:0" data-i="rank"></h2><input id="q" type="search" data-p="sph" data-a="sph"><button class="chip" id="lit" data-i="lit" aria-pressed="false"></button></div><div class="list" id="list"></div></div>
+ <div class="box g2"><h2 data-i="rank"></h2><div id="under"></div><div class="list" id="list"></div></div>
 </div>
-<div class="box src" id="calc" style="margin-bottom:22px">
-  <h2 data-i="ct"></h2>
-  <p class="mu" data-i="cp"></p>
+<div class="box" style="margin-top:16px"><h2 data-i="recT"></h2><p class="mu" data-i="recP"></p><div class="rec" id="rec"></div></div>
+<details class="box" id="cmpbox"><summary data-i="cmpT"></summary>
+ <p class="mu" style="margin-top:10px" data-i="cmpP"></p>
+ <div class="cmpg"><select id="ca" aria-label="A"></select><select id="cb" aria-label="B"></select></div>
+ <div id="cmpout"></div>
+</details>
+<div class="box"><h2 data-i="physT"></h2><p class="mu" data-i="physP"></p><div class="tblw"><table class="tbl" id="phys"></table></div><p class="mu" id="physN" style="margin-top:8px"></p></div>
 
-  <div class="csec">
-    <div class="csh"><span data-i="calcParams"></span></div>
-    <div class="cg3">
-      <label class="fl"><span data-i="cn"></span><input class="fi" id="cn" type="text" maxlength="60" data-p="cnph"></label>
-      <label class="fl"><span data-i="cla"></span><input class="fi" id="cla" type="number" step="any" min="-90" max="90" placeholder="-90 … 90"></label>
-      <label class="fl"><span data-i="clo"></span><input class="fi" id="clo" type="number" step="any" min="-180" max="180" placeholder="-180 … 180"></label>
-    </div>
+<div class="box src" id="calc">
+ <h2 data-i="ct"></h2>
+ <p class="mu" data-i="cp"></p>
+ <div class="csec">
+  <div class="csh"><span data-i="calcSite"></span></div>
+  <div class="cg">
+   <label class="fl"><span data-i="cn"></span><input class="fi" id="cn" type="text" maxlength="60" data-p="cnph"></label>
+   <label class="fl"><span data-i="cla"></span><input class="fi" id="cla" type="number" step="any" min="-90" max="90" placeholder="-90 … 90"></label>
+   <label class="fl"><span data-i="clo"></span><input class="fi" id="clo" type="number" step="any" min="-180" max="180" placeholder="-180 … 180"></label>
   </div>
-
-  <div class="csec">
-    <div class="csh">
-      <span data-i="calcAdditional"></span>
-      <div class="seg">
-        <button class="chip" id="cmoon" data-i="cmoon"></button>
-        <button class="chip" id="cmars" data-i="cmars"></button>
-      </div>
-    </div>
-    <div class="cg">
-      <label class="fl"><div class="fl-top"><span data-i="f1"></span><span class="scb" id="cb1">0.0 / 10</span></div><input class="fi cx" id="c1" type="number" step="any" min="0" max="100" placeholder="0 – 100"></label>
-      <label class="fl"><div class="fl-top"><span data-i="f2"></span><span class="scb" id="cb2">0.0 / 10</span></div><input class="fi cx" id="c2" type="number" step="any" min="0" max="90" placeholder="0 – 90"></label>
-      <label class="fl"><div class="fl-top"><span data-i="f3"></span><span class="scb" id="cb3">0.0 / 10</span></div><input class="fi cx" id="c3" type="number" step="any" min="0" max="600" placeholder="0 – 600"></label>
-      <label class="fl"><div class="fl-top"><span data-i="f4"></span><span class="scb" id="cb4">0.0 / 10</span></div><input class="fi cx" id="c4" type="number" step="any" min="0" max="100" placeholder="0 – 100"></label>
-      <label class="fl"><div class="fl-top"><span data-i="f5"></span><span class="scb" id="cb5">0.0 / 10</span></div><input class="fi cx" id="c5" type="number" step="any" min="0" max="100" placeholder="0 – 100"></label>
-      <label class="fl"><div class="fl-top"><span data-i="f6"></span><span class="scb" id="cb6">0.0 / 10</span></div><input class="fi cx" id="c6" type="number" step="any" min="0" max="1000" placeholder="0 – 1000"></label>
-      <label class="fl"><div class="fl-top"><span data-i="f7"></span><span class="scb" id="cb7">0.0 / 10</span></div><input class="fi cx" id="c7" type="number" step="any" min="0" max="365" placeholder="0 – 365"></label>
-    </div>
+  <div class="row" style="margin-top:10px"><button class="btn" id="cnasa" data-i="cnasa"></button><span class="mu" style="margin:0" id="cnmsg"></span></div>
+ </div>
+ <div class="csec">
+  <div class="csh"><span data-i="calcMeas"></span><button class="chip" id="cclr" data-i="cclr"></button></div>
+  <p class="mu" data-i="calcEmpty"></p>
+  <div class="cg" id="cfields"></div>
+ </div>
+ <div class="row" style="margin:12px 0">
+  <button class="btn btn-prim" id="cadd" data-i="cadd"></button>
+  <button class="btn" id="cuse" data-i="cuse"></button>
+  <span class="sim-pill" id="cres" aria-live="polite"></span>
+  <span id="cmsg" class="mu" style="margin:0"></span>
+ </div>
+ <details class="sub"><summary data-i="csvt"></summary>
+  <p class="mu" style="margin-top:8px" data-i="csvp"></p>
+  <div class="row" style="margin:8px 0">
+   <label class="btn file-btn" for="csvFile"><span data-i="csvUpload"></span><input id="csvFile" type="file" accept=".csv,text/csv"></label>
+   <button class="btn" id="csvTemplate" type="button" data-i="csvTemplate"></button>
   </div>
-
-  <div class="row" style="margin:12px 0">
-    <button class="btn btn-prim" id="cadd" data-i="cadd"></button>
-    <button class="btn" id="cuse" data-i="cuse"></button>
-    <span class="sim-pill" id="cres" aria-live="polite"></span>
-    <span id="cmsg" style="font-size:13px;color:var(--mute)"></span>
+  <textarea id="csv" rows="5" spellcheck="false" data-p="csvPh"></textarea>
+  <div class="row" style="margin-top:8px">
+   <button class="btn btn-prim" id="cimp" type="button" data-i="cimp"></button>
+   <button class="btn" id="ccopy" type="button" data-i="ccopy"></button>
+   <span id="csvStatus" class="csv-status" role="status" aria-live="polite"></span>
   </div>
-
-  <details class="method-panel">
-    <summary data-i="cft"></summary>
-    <p class="mu method-intro" data-i="cf"></p>
-    <div class="formula-grid">
-      <div><b data-i="fgeo"></b><code>x₁ ÷ 10</code></div><div><b data-i="frel"></b><code>x₂ × 0.7</code></div>
-      <div><b data-i="ftemp"></b><code>x₃ ÷ 28</code></div><div><b data-i="fwater"></b><code>6.705 × log₁₀(1 + x₄)</code></div>
-      <div><b data-i="fdust"></b><code>x₅ ÷ 10</code></div><div><b data-i="fcaves"></b><code>5 × log₁₀(1 + x₆)</code></div>
-      <div><b data-i="flife"></b><code>x₇ ÷ 36.5</code></div>
-    </div>
-    <p class="method-note" data-i="fclamp"></p>
-  </details>
-  <details class="csv-panel" id="csvPanel">
-    <summary data-i="csvt"></summary>
-    <p class="mu" data-i="csvp"></p>
-    <div class="csv-actions">
-      <label class="btn file-btn" for="csvFile"><span data-i="csvUpload"></span><input id="csvFile" type="file" accept=".csv,text/csv"></label>
-      <button class="btn" id="csvTemplate" type="button" data-i="csvTemplate"></button>
-    </div>
-    <label class="csv-label" for="csv" data-i="csvDataLabel"></label>
-    <textarea id="csv" rows="5" spellcheck="false" data-p="csvPlaceholder"></textarea>
-    <div class="row csv-actions">
-      <button class="btn btn-prim" id="cimp" type="button" data-i="cimp"></button>
-      <button class="btn" id="ccopy" type="button" data-i="ccopy"></button>
-      <span id="csvStatus" class="csv-status" role="status" aria-live="polite"></span>
-    </div>
-    <div id="csvResults" class="csv-results" hidden>
-      <div class="csv-result-head"><b data-i="csvResultsTitle"></b><span id="csvCount"></span></div>
-      <div class="csv-table-wrap"><table class="csv-table">
-        <thead><tr><th data-i="csvColName"></th><th data-i="csvColCoords"></th><th data-i="csvColScore"></th><th data-i="csvColStatus"></th></tr></thead>
-        <tbody id="csvResultRows"></tbody>
-      </table></div>
-    </div>
-  </details>
-
-  <h2 style="margin-top:16px" data-i="srct"></h2>
-  <p class="mu" data-i="srcp"></p>
-  <div class="row" id="src"></div>
+  <div id="csvErr" class="mu" style="margin-top:8px"></div>
+ </details>
 </div>
-<footer data-i="foot"></footer>
+
+<details class="box" id="meth"><summary data-i="methT"></summary><div id="methBody" style="margin-top:10px"></div></details>
+<div class="box src"><h2 data-i="srct"></h2><p class="mu" data-i="srcp"></p><div class="row" id="src"></div></div>
 </div>
+<footer><div class="wrap" data-i="foot"></div></footer>
+
+<script id="engine">
+/* Движок сходства: без DOM, проверяется отдельно. Формулы те же, что в locator_app/metrics.py. */
+var LocEngine=(function(){
+ var MONTHS=["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+ function isNum(x){return typeof x==="number"&&isFinite(x)}
+ function has(v){return v!==null&&v!==undefined&&!(Array.isArray(v)&&v.length===0)}
+ function uniq(a){var s={},o=[];a.forEach(function(x){if(!s[x]){s[x]=1;o.push(x)}});return o}
+ /* Совпадение одного параметра 0..1. null = сравнить нельзя (нет значения). Пропуск НИКОГДА не равен нулю. */
+ function mscore(m,a,b){
+  if(!has(a)||!has(b))return null;
+  if(m.type==="num"){if(!isNum(a)||!isNum(b))return null;var d=(a-b)/m.tau;return 1/(1+d*d)}
+  if(m.type==="bool")return(!!a===!!b)?1:0;
+  if(m.type==="set"){var A=uniq(a),B=uniq(b),n=0;B.forEach(function(x){if(A.indexOf(x)>=0)n++});return n/uniq(A.concat(B)).length}
+  return null}
+ /* match: средневзвешенное только по параметрам, где данные есть и у места, и у цели.
+    cov: доля веса, по которой у места есть данные (среди параметров, которые определены у цели). */
+ function compare(M,vals,target,W){
+  var num=0,den=0,wAll=0,used=0,total=0,parts={};
+  M.forEach(function(m){var k=m.key,w=W[k];if(!(w>0))return;var tv=target[k];if(!has(tv))return;
+   total++;wAll+=w;var s=mscore(m,vals[k],tv);if(s===null){parts[k]=null;return}
+   parts[k]=s;num+=w*s;den+=w;used++});
+  return{match:den?num/den:null,cov:wAll?den/wAll:0,parts:parts,used:used,total:total}}
+ function rankCmp(a,b){
+  var ao=a.c.cov>=.5?1:0,bo=b.c.cov>=.5?1:0;if(ao!==bo)return bo-ao;
+  var am=a.c.match===null?-1:a.c.match,bm=b.c.match===null?-1:b.c.match;if(bm!==am)return bm-am;
+  return b.c.cov-a.c.cov}
+ function clean(v){if(v===null||v===undefined)return null;v=+v;return(!isFinite(v)||v<=-900)?null:v}
+ function r1(x){return Math.round(x*10)/10}
+ /* Из ответа NASA POWER (climatology) получает наши параметры. Пропуски остаются пропусками. */
+ function derivePower(par){
+  var o={},t=par.T2M||{},mx=par.T2M_MAX||{},mn=par.T2M_MIN||{},pr=par.PRECTOTCORR||{},ws=par.WS2M||{},v;
+  v=clean(t.ANN);if(v!==null)o.temp_mean_c=r1(v);
+  var hi=MONTHS.map(function(m){return clean(mx[m])}),lo=MONTHS.map(function(m){return clean(mn[m])});
+  var hok=hi.filter(function(x){return x!==null}),lok=lo.filter(function(x){return x!==null});
+  if(hok.length>=10)o.temp_max_c=r1(Math.max.apply(null,hok));
+  if(lok.length>=10)o.temp_min_c=r1(Math.min.apply(null,lok));
+  var sp=[];for(var i=0;i<12;i++)if(hi[i]!==null&&lo[i]!==null)sp.push(hi[i]-lo[i]);
+  if(sp.length>=10)o.temp_diurnal_c=r1(sp.reduce(function(a,b){return a+b},0)/sp.length);
+  v=clean(pr.ANN);if(v!==null&&v>=0)o.precip_mm=r1(v*365);
+  v=clean(ws.ANN);if(v!==null&&v>=0)o.wind_ms=r1(v);
+  return o}
+ return{mscore:mscore,compare:compare,rankCmp:rankCmp,has:has,isNum:isNum,derivePower:derivePower}
+})();
+</script>
 <script>
-var L={ru:{cnph:"Например: Моя долина",empty:"База пуста. Добавьте места в админке Django.",calcParams:"Параметры участка",calcAdditional:"Дополнительные измерения",cft:"Методика расчёта",fgeo:"Геология",frel:"Рельеф",ftemp:"Температура",fwater:"Вода и лёд",fdust:"Пыль",fcaves:"Пещеры",flife:"Жидкая вода",fclamp:"Каждая итоговая оценка ограничивается диапазоном от 0 до 10. Формулы показывают расчётную модель, а не прямое измерение пригодности.",csvUpload:"Загрузить CSV",csvTemplate:"Скачать шаблон",csvDataLabel:"Данные участков",csvPlaceholder:"Название;широта;долгота;породы;уклон;размах;лёд;пыль;пещеры;дни",csvResultsTitle:"Результаты пакетного расчёта",csvColName:"Участок",csvColCoords:"Координаты",csvColScore:"Сходство",csvColStatus:"Статус",csvNoRows:"Нет корректных строк. Проверьте формат и значения.",csvImported:"Добавлено участков",csvSkipped:"Строк с ошибками",csvRowError:"Ошибка данных",csvValid:"Рассчитано",csvHeader:"Название;широта;долгота;породы;уклон;размах;лёд;пыль;пещеры;дни",csvExample:"Пример: Долина А; -85; 30; 80; 11; 330; 5.6; 80; 24; 0",csvCopied:"CSV скопирован",csvCopyFail:"Не удалось скопировать CSV",csvNeedData:"Сначала добавьте или импортируйте участки",brand:"NASA Локатор",lead:"Вращайте глобус, выбирайте цель и задавайте важность параметров. Сайт покажет земные аналоги лунной базы или марсианской площадки и честно скажет, где аналогия ломается.",moon:"Луна, южный полюс",mars:"Марс",custom:"Своя цель",params:"Параметры",tval:"Цель",imp:"Важность",msl:"Ползунки",mnum:"Цифры",rank:"Рейтинг мест",sph:"Поиск места",lit:"Только малоизученные",vg:"Глобус",vf:"Карта",spin:"Вращение",zin:"Приблизить",zout:"Отдалить",rst:"Сбросить вид",mapa:"Интерактивный глобус с земными аналогами",hint:"Тяните, чтобы вращать, колёсико меняет масштаб, нажмите на точку.",leg:"Крупнее и холоднее точка означает выше сходство.",simw:"сходство с целью",fit:"Подходит для:",brk:"Где аналогия ломается:",wk:"Сильнее всего расходится параметр",ltag:"малоизучено",rep:"Скопировать отчёт: топ-5",ok:"Скопировано",fail:"Не удалось скопировать",rt:"Земные аналоги",rsim:"сходство",rfit:"Подходит",rlim:"Ограничение",rfoot:"Оценки предварительные. Земля не воспроизводит гравитацию, вакуум и радиацию Луны и Марса.",srct:"Где взять значения для полей",srcp:"Оценки готовых мест экспертные и предварительные. Для точных значений берите измерения из открытых данных.",foot:"NASA не поддерживает негосударственные организации США и не отвечает за сторонние сайты. Условия использования данных смотрите на сайте каждого источника. Земля не воспроизводит пониженную гравитацию, лунный вакуум, разреженную атмосферу Марса и радиацию.",none:"Нет мест по этому запросу.",ct:"Калькулятор: оценка участка по измерениям",cp:"Введите измерения участка. Сайт сразу переведёт их в оценки от 0 до 10, сравнит с выбранной целью и добавит точку на глобус. Значения можно взять из источников ниже.",cf:"Формулы: геология = доля÷10; рельеф = уклон×0,7; температура = размах÷28; вода и лёд = 6,7·lg(1+доля); пыль = доля÷10; пещеры = 5·lg(1+число); жизнь = дни÷36,5. Результат ограничен диапазоном 0–10.",cn:"Название участка",cla:"Широта, °",clo:"Долгота, °",f1:"Вулканические и ударные породы, %",f2:"Средний уклон, °",f3:"Размах температур, °C",f4:"Лёд в грунте, % по массе",f5:"Пыль и мелкий реголит, %",f6:"Пещеры и ямы в радиусе 100 км, шт.",f7:"Дни с жидкой водой в грунте, в год",cadd:"Рассчитать и добавить на глобус",cuse:"Взять как цель",cmoon:"Заполнить как Луна",cmars:"Заполнить как Марс",csvt:"Пакетный расчёт из CSV",csvp:"Одна строка на участок: название;широта;долгота;породы;уклон;размах;лёд;пыль;пещеры;дни. Дробные числа пишите с точкой.",cimp:"Рассчитать все строки",ccopy:"Скопировать рейтинг CSV",bad:"Проверьте широту и долготу",added:"Добавлено",mine:"ваш расчёт",del:"Удалить участок",dims:["Геология","Рельеф","Температура","Вода и лёд","Пыль и ветер","Пещеры","Жизнь"]},
-en:{cnph:"E.g. My valley",empty:"The database is empty. Add sites in the Django admin.",calcParams:"Site parameters",calcAdditional:"Additional measurements",cft:"Scoring methodology",fgeo:"Geology",frel:"Relief",ftemp:"Temperature",fwater:"Water and ice",fdust:"Dust",fcaves:"Caves",flife:"Liquid water",fclamp:"Each final score is limited to the 0–10 range. These formulas describe an estimation model, not a direct measurement of site suitability.",csvUpload:"Upload CSV",csvTemplate:"Download template",csvDataLabel:"Site data",csvPlaceholder:"Name;latitude;longitude;rock;slope;range;ice;dust;caves;days",csvResultsTitle:"Batch calculation results",csvColName:"Site",csvColCoords:"Coordinates",csvColScore:"Similarity",csvColStatus:"Status",csvNoRows:"No valid rows found. Check the format and values.",csvImported:"Sites added",csvSkipped:"Rows with errors",csvRowError:"Invalid data",csvValid:"Calculated",csvHeader:"Name;latitude;longitude;rock;slope;range;ice;dust;caves;days",csvExample:"Example: Valley A; -85; 30; 80; 11; 330; 5.6; 80; 24; 0",csvCopied:"CSV copied",csvCopyFail:"Could not copy CSV",csvNeedData:"Add or import sites first",brand:"NASA Locator",lead:"Spin the globe, pick a target and set what matters. The site ranks Earth analogs for a lunar base or a Mars landing site and shows where each analogy breaks.",moon:"Moon, south pole",mars:"Mars",custom:"Custom target",params:"Parameters",tval:"Target",imp:"Weight",msl:"Sliders",mnum:"Numbers",rank:"Site ranking",sph:"Search sites",lit:"Lesser-studied only",vg:"Globe",vf:"Map",spin:"Auto-rotate",zin:"Zoom in",zout:"Zoom out",rst:"Reset view",mapa:"Interactive globe with Earth analog sites",hint:"Drag to rotate, scroll to zoom, click a dot.",leg:"Larger, cooler dots mean higher similarity.",simw:"similarity to target",fit:"Good for:",brk:"Where the analogy breaks:",wk:"The biggest gap is",ltag:"lesser-studied",rep:"Copy report: top 5",ok:"Copied",fail:"Copy failed",rt:"Earth analogs",rsim:"similarity",rfit:"Good for",rlim:"Limitation",rfoot:"Scores are preliminary. Earth cannot reproduce the gravity, vacuum or radiation of the Moon and Mars.",srct:"Where to find the field values",srcp:"Scores of the built-in sites are expert estimates. For exact values, use measurements from open data.",foot:"NASA does not endorse non-US-government organizations and is not responsible for third-party sites. Follow the data use terms of each source. Earth cannot reproduce reduced gravity, the lunar vacuum, the thin Martian atmosphere or radiation.",none:"No sites match.",ct:"Calculator: score a site from measurements",cp:"Enter site measurements. The site converts them to 0-10 scores right away, compares them with the selected target and adds a dot to the globe. Use the sources below to find the values.",cf:"Formulas: geology = share÷10; relief = slope×0.7; temperature = range÷28; water and ice = 6.7·lg(1+share); dust = share÷10; caves = 5·lg(1+count); life = days÷36.5. Results are limited to 0-10.",cn:"Site name",cla:"Latitude, °",clo:"Longitude, °",f1:"Volcanic and impact rock, %",f2:"Mean slope, °",f3:"Temperature range, °C",f4:"Ground ice, % by mass",f5:"Dust and fine regolith, %",f6:"Caves and pits within 100 km, count",f7:"Days per year with liquid water in soil",cadd:"Calculate and add to globe",cuse:"Use as target",cmoon:"Fill as Moon",cmars:"Fill as Mars",csvt:"Batch calculation from CSV",csvp:"One row per site: name;lat;lon;rock;slope;range;ice;dust;caves;days. Use a dot for decimals.",cimp:"Calculate all rows",ccopy:"Copy ranking as CSV",bad:"Check latitude and longitude",added:"Added",mine:"your calculation",del:"Delete site",dims:["Geology","Relief","Temperature","Water and ice","Dust and wind","Caves","Life"]}};
-var T={moon:{p:[8,8,10,6,8,7,0],w:[3,3,3,3,2,2,0]},mars:{p:[8,7,6,6,9,6,5],w:[3,3,2,3,3,2,3]}};
-var SRC=[["Earthdata Search","https://search.earthdata.nasa.gov"],["Worldview","https://worldview.earthdata.nasa.gov"],["NASA PDS","https://pds.nasa.gov"],["LRO","https://science.nasa.gov/mission/lro/"],["Copernicus","https://dataspace.copernicus.eu"],["JAXA G-Portal","https://gportal.jaxa.jp"],["LRO Diviner","","LRO Diviner lunar radiometer data"],["RADARSAT RCM","","RADARSAT Constellation Mission data"],["ESA Open Science Catalogue","","ESA Open Science Catalogue"]];
-var LAND=null,BORD=null,S=[],BASE=[],B=0,U=[],started=false;
-try{U=JSON.parse(localStorage.getItem("nl-user")||"[]")}catch(e){U=[]}
-var $=function(i){return document.getElementById(i)},lang="ru",tg="moon",C={p:[8,8,10,6,8,7,0]},w=T.moon.w.slice(),pm="slider",sel=0,lit=false,qs="",view="globe",c=[20,25],k=1,spin=true,dirty=true,hit=[],tw=null,drag=null,hv=-1,prj,SC=300;
-try{lang=localStorage.getItem("nl-lang")||(/^ru|^ky|^kk/.test(navigator.language||"")?"ru":"en")}catch(e){}
+var E=LocEngine;
+/* ---------- строки интерфейса: [русский, английский] ---------- */
+var I18N={
+brand:["NASA Локатор","NASA Locator"],
+lead:["Какие места на Земле похожи на цели на Луне и Марсе? Сравнение идёт по реальным измерениям NASA в понятных единицах: градусах, метрах, миллиметрах. Если данных нет, параметр не считается нулём: он выпадает из расчёта, а доля учтённых данных показана рядом с процентом.","Which places on Earth resemble targets on the Moon and Mars? The comparison uses real NASA measurements in plain units: degrees, metres, millimetres. A missing value is never treated as zero: the parameter drops out of the calculation and the share of data used is shown next to the percentage."],
+custom:["Своя цель","Custom target"],
+fTask:["Задача","Task"],fTopic:["Тема","Topic"],fUnder:["Только малоизученные","Under-studied only"],
+sph:["Поиск места","Search a place"],all:["Все","All"],
+mapa:["Карта мира: места-аналоги","World map: analog sites"],spin:["Вращение","Spin"],zin:["Приблизить","Zoom in"],zout:["Отдалить","Zoom out"],rst:["Сбросить вид","Reset view"],
+vg:["Глобус","Globe"],vf:["Карта","Flat"],
+hint:["Крутите глобус, наведите на точку. Цвет и размер точки показывают сходство. Пустой кружок: данных меньше половины, оценка ориентировочная.","Drag the globe and hover a dot. Colour and size show similarity. A hollow circle means under half of the data is available, so the estimate is tentative."],
+params:["Параметры сравнения","Comparison parameters"],pTarget:["Значение цели","Target value"],pWeight:["Важность 0–5","Weight 0–5"],pParam:["Параметр","Parameter"],
+tol:["допуск","tolerance"],tolHelp:["разница {d} даёт совпадение 50 %","a difference of {d} gives a 50 % match"],
+copyFrom:["Скопировать значения:","Copy values from:"],
+rank:["Рейтинг мест","Site ranking"],rankLow:["мало данных","low data"],
+underT:["Малоизученные места","Under-studied places"],underNone:["Нет малоизученных мест по этому фильтру.","No under-studied places match this filter."],
+none:["Ничего не найдено","Nothing found"],empty:["База пуста. Импортируйте места командой import_sites.","The database is empty. Import sites with the import_sites command."],
+loading:["Загрузка данных…","Loading data…"],apiErr:["Нет связи с базой данных. Запустите сервер Django и откройте страницу снова.","Cannot reach the database. Start the Django server and reload."],
+match:["Сходство","Match"],dataCov:["Данные","Data"],ofParams:["из","of"],paramsWord:["параметров","parameters"],
+lowcov:["Данных меньше половины: процент ориентировочный. Такие места в рейтинге ниже.","Under half of the data is available: the percentage is tentative. Such sites rank lower."],
+nomatch:["Сравнить нечего: у места нет данных по параметрам цели.","Nothing to compare: the site has no data for the target's parameters."],
+under:["малоизученное","under-studied"],yours:["Добавлено вами","Added by you"],
+useT:["Что здесь отрабатывают","What is practised here"],studyT:["Исследование","Research"],quirkT:["Неожиданный факт","Unexpected fact"],
+brkT:["Где аналогия ломается","Where the analogy breaks"],brkData:["По данным","By the data"],brkPhys:["Физика, которую Земля не воспроизводит","Physics Earth cannot reproduce"],
+brkNone:["Заметных расхождений по имеющимся данным нет.","No notable mismatches in the available data."],
+here:["здесь","here"],target:["у цели","target"],noData:["нет данных","no data"],noTargetVal:["У цели нет значения по:","The target has no value for:"],noSiteVal:["Нет данных у места по:","No site data for:"],
+scaleT:["Масштаб","Scale"],scaleTxt:["участок {a} км², цель {b} км²","site {a} km², target {b} km²"],
+refsT:["Источники","Sources"],photoSite:["Место","Site"],photoTarget:["Цель","Target"],
+cmpBtn:["Сравнить с…","Compare with…"],del:["Удалить моё место","Delete my site"],
+valPlus:["да","yes"],valMinus:["нет","no"],
+kM:["NASA","NASA"],kL:["публ.","pub."],kI:["вывод","inferred"],kE:["оценка","est."],kP:["физика","physics"],kU:["ваши","yours"],
+kMl:["Измерено NASA","Measured by NASA"],kLl:["Публикация","Publication"],kIl:["Вывод по географии и климату","Inferred from geography and climate"],kEl:["Оценка по диапазону из источника","Estimate from a range in the source"],kPl:["Физическое следствие","Physical consequence"],kUl:["Введено вами","Entered by you"],
+recT:["Рекорды совпадения и неожиданные находки","Match records and unexpected finds"],
+recP:["Считается автоматически по текущей цели и фильтрам. Для каждого параметра показано место, которое ближе всех к цели.","Computed automatically for the current target and filters. For each parameter, the closest site is shown."],
+recBest:["Ближе всего по параметру","Closest by parameter"],recTop:["Лучшее малоизученное место","Best under-studied site"],recTopRank:["{n}-е место в рейтинге из {m}","rank {n} of {m}"],recNone:["Недостаточно данных для рекордов.","Not enough data for records."],recVs:["против","vs"],recTargetHas:["у цели","target"],
+cmpT:["Сравнить два места","Compare two sites"],cmpP:["Выберите два места: таблица покажет значения рядом с целью.","Pick two sites: the table puts their values beside the target."],
+physT:["Что Земля не умеет воспроизвести","What Earth cannot reproduce"],physP:["Даже лучший земной аналог отличается тремя физическими условиями. Их нужно воспроизводить в лаборатории: полевые испытания их не дают.","Even the best Earth analog differs in three physical conditions. They need a lab to reproduce: field tests cannot."],
+physQ:["Величина","Quantity"],physE:["Земля","Earth"],physM:["Луна","Moon"],physR:["Марс","Mars"],
+timesLess:["в {n} раз меньше","{n}x lower"],timesMore:["в {n} раз больше","{n}x higher"],
+physGrav:["На Земле сила тяжести","On Earth gravity is"],physPres:["Давление на Земле","Earth's pressure is"],physRad:["Доза радиации на Земле","Earth's radiation dose is"],
+ct:["Мой участок: тот же расчёт в реальных единицах","My site: the same calculation in real units"],
+cp:["Введите измерения своего участка в обычных единицах. Пустое поле означает «нет данных»: оно не считается нулём и не участвует в расчёте. Данные сохраняются только в вашем браузере.","Enter your site's measurements in plain units. An empty field means 'no data': it is not treated as zero and drops out of the calculation. Data stays in your browser only."],
+calcSite:["Участок","Site"],cn:["Название","Name"],cla:["Широта","Latitude"],clo:["Долгота","Longitude"],cnph:["Например: Моя долина","E.g. My valley"],
+cnasa:["Заполнить из NASA POWER по координатам","Fill from NASA POWER by coordinates"],
+calcMeas:["Измерения","Measurements"],calcEmpty:["Оставьте поле пустым, если значения нет.","Leave a field empty if there is no value."],cclr:["Очистить","Clear"],
+cadd:["Добавить на карту","Add to map"],cuse:["Использовать как цель","Use as target"],
+bad:["Проверьте координаты и значения: есть выход за допустимые пределы.","Check coordinates and values: some are out of range."],added:["Участок добавлен на карту","Site added to the map"],
+cres:["Сходство с целью","Match to the target"],cresNo:["нет данных для сравнения","no data to compare"],
+cloading:["Запрос к NASA POWER…","Asking NASA POWER…"],cok:["NASA POWER: заполнены температура, осадки, ветер","NASA POWER: temperature, precipitation and wind filled"],
+cfail:["NASA POWER не ответил из браузера. Введите значения вручную или скачайте их скриптом tools/fetch_nasa_data.py.","NASA POWER did not answer from the browser. Enter values by hand or fetch them with tools/fetch_nasa_data.py."],
+crelief:["перепад высот тоже получен","relief fetched too"],creliefNo:["перепад высот получить не удалось","relief could not be fetched"],
+csvt:["Загрузить таблицу CSV","Upload a CSV table"],
+csvp:["Столбцы: name, lat, lon, relief_m, temp_mean_c, temp_diurnal_c, temp_min_c, temp_max_c, precip_mm, wind_ms, ice, caves, bio, origin. Пустая ячейка = нет данных. Да/нет: 1, 0, да, нет. Происхождение через |, например impact|volcanic.","Columns: name, lat, lon, relief_m, temp_mean_c, temp_diurnal_c, temp_min_c, temp_max_c, precip_mm, wind_ms, ice, caves, bio, origin. An empty cell = no data. Yes/no: 1, 0, yes, no. Origin separated by |, e.g. impact|volcanic."],
+csvUpload:["Выбрать файл","Choose file"],csvTemplate:["Скачать шаблон","Download template"],csvPh:["Вставьте строки CSV сюда","Paste CSV rows here"],
+cimp:["Добавить из таблицы","Import rows"],ccopy:["Скопировать рейтинг (CSV)","Copy ranking (CSV)"],
+csvImported:["Добавлено","Imported"],csvSkipped:["пропущено","skipped"],csvNoRows:["Нет корректных строк","No valid rows"],csvCopied:["Рейтинг скопирован","Ranking copied"],csvCopyFail:["Не удалось скопировать","Copy failed"],csvLine:["строка","line"],
+rep:["Скопировать отчёт","Copy report"],ok:["Скопировано","Copied"],fail:["Не удалось скопировать","Copy failed"],
+repT:["Отчёт","Report"],repFoot:["Данные: NASA POWER, ASTER GDEM, публикации. Сходство считается по реальным единицам; пропуски не считаются нулями.","Data: NASA POWER, ASTER GDEM, publications. Similarity uses real units; gaps are not counted as zeros."],
+methT:["Методика: как считается процент","Methodology: how the percentage is computed"],
+srct:["Источники данных и воспроизводимость","Data sources and reproducibility"],
+srcp:["Все числа получены из открытых источников NASA и публикаций. У каждого значения указан источник и способ получения. Скрипт, который скачивает данные NASA, лежит в репозитории: любой может повторить расчёт.","All numbers come from open NASA sources and publications. Every value lists its source and how it was obtained. The script that downloads the NASA data is in the repository: anyone can reproduce the calculation."],
+foot:["NASA Локатор · учебный проект хакатона. Данные NASA POWER и ASTER GDEM открыты. Фото: Wikimedia Commons, лицензии указаны под снимками, хранятся в Cloudinary.","NASA Locator · hackathon project. NASA POWER and ASTER GDEM data are open. Photos: Wikimedia Commons, licences shown under images, hosted on Cloudinary."]
+};
+function t(k){var v=I18N[k];return v?v[lang==="ru"?0:1]:k}
+/* ---------- состояние ---------- */
+var D=null,MET=[],MK={},TG={},BASE=[],U=[],RK=[],S_ALL=[];
+var lang="ru",tg="moon",W={},preset="balanced",tagF="",onlyU=false,qs="",sel="",CUS={},cmpA="",cmpB="";
+var LAND=null,BORD=null,started=false,view="globe",c=[20,25],k=1,spin=true,dirty=true,hit=[],tw=null,drag=null,hv="",prj,SC=300;
+var $=function(i){return document.getElementById(i)};
+try{U=JSON.parse(localStorage.getItem("nl2-user")||"[]");if(!Array.isArray(U))U=[]}catch(e){U=[]}
+try{lang=localStorage.getItem("nl-lang")||(/^ru|^ky|^kk|^uk|^be/.test(navigator.language||"")?"ru":"en")}catch(e){}
 if(window.matchMedia&&matchMedia("(prefers-reduced-motion:reduce)").matches)spin=false;
-function t(x){var v=L[lang][x];return v===undefined?x:v}
-function P(){return tg==="custom"?C.p:T[tg].p}
-function tn(){return t(tg)}
-function nm(s){return s[lang==="ru"?0:1]||s[0]||""}
+function esc(v){return String(v==null?"":v).replace(/[&<>"']/g,function(ch){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]})}
+function i0(){return lang==="ru"?0:1}
+function nm(s){return s.name[i0()]||s.name[0]||""}
+function mn(m){return lang==="ru"?m.ru:m.en}
+function mh(m){return lang==="ru"?m.hint_ru:m.hint_en}
+function mu(m){return lang==="ru"?m.unit:m.unit_en}
 function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v)}
-function sim(s){var a=0,b=0,p=P();for(var i=0;i<7;i++){a+=w[i]*Math.abs(p[i]-s[4][i]);b+=w[i]}return b?Math.max(0,Math.round(100*(1-1.25*a/(10*b)))):0}
-function vis(){var f=qs.toLowerCase();return S.map(function(s,i){return{s:s,i:i,m:sim(s)}}).filter(function(o){return(!lit||o.s[5])&&(!f||(o.s[0]+" "+o.s[1]).toLowerCase().indexOf(f)>=0)}).sort(function(a,b){return b.m-a.m})}
+function pct(x){return Math.round(x*100)}
+function loc(){return lang==="ru"?"ru-RU":"en-US"}
+function num(v,max){return (+v).toLocaleString(loc(),{maximumFractionDigits:max==null?1:max})}
+function fmt(m,v){
+ if(!E.has(v))return"";
+ if(m.type==="bool")return v?t("valPlus"):t("valMinus");
+ if(m.type==="set")return v.map(function(o){return D.origins[o]?D.origins[o][i0()]:o}).join(", ");
+ var a=Math.abs(v)>=100?Math.round(v):Math.round(v*10)/10;
+ return num(a)+" "+mu(m)}
+function sci(v){
+ if(v>=0.01&&v<1e5)return num(v,v<10?2:0);
+ var e=Math.floor(Math.log10(v)),mant=v/Math.pow(10,e),sup={"0":"⁰","1":"¹","2":"²","3":"³","4":"⁴","5":"⁵","6":"⁶","7":"⁷","8":"⁸","9":"⁹","-":"⁻"};
+ return num(mant,1)+"×10"+String(e).split("").map(function(ch){return sup[ch]}).join("")}
+function cloudImg(im,w){
+ if(!im||!im.id||!D||!D.config.cloud)return"";
+ return"https://res.cloudinary.com/"+encodeURIComponent(D.config.cloud)+"/image/upload/f_auto,q_auto,c_fill,g_auto,w_"+w+",h_"+Math.round(w*2/3)+"/"+im.id}
+function kindShort(kd){return{measured:"kM",literature:"kL",inferred:"kI",estimate:"kE",physical:"kP",user:"kU"}[kd]||"kL"}
+function badge(f){
+ if(!f)return"";var kd=f.kind||"literature",lab=t(kindShort(kd)+"l"),tt=(f.src?f.src+" · ":"")+lab+(f.date?" · "+f.date:"");
+ var cls="kd k-"+esc(kd);
+ return f.url?'<a class="'+cls+'" href="'+esc(f.url)+'" target="_blank" rel="noopener" title="'+esc(tt)+'">'+t(kindShort(kd))+'</a>':'<span class="'+cls+'" title="'+esc(tt)+'">'+t(kindShort(kd))+'</span>'}
+function flat(vals){var o={};for(var key in vals)o[key]=vals[key].v;return o}
+/* ---------- данные ---------- */
+function TV(){return tg==="custom"?CUS:(TG[tg]?TG[tg].v:{})}
+function TF(key){
+ if(tg==="custom")return E.has(CUS[key])?{v:CUS[key],kind:"user",src:"",url:""}:null;
+ return TG[tg]&&TG[tg].values[key]||null}
+function tname(){return tg==="custom"?t("custom"):(TG[tg]?TG[tg].name[i0()]:"")}
+function mkUser(u,i){
+ var vals={};for(var key in u.v)vals[key]={v:u.v[key],kind:"user",src:"",url:""};
+ return{slug:"user-"+i,name:[u.name,u.name],region:[t("yours"),t("yours")],lat:u.lat,lon:u.lon,area_km2:null,analog_for:"both",tags:[],understudied:false,surface_data:true,values:vals,v:u.v,use:["",""],study:["",""],quirk:["",""],refs:[],image:null,user:true,ui:i}}
+function rebuild(){S_ALL=BASE.concat(U.map(mkUser));recalc()}
+function recalc(){
+ var T=TV();
+ RK=S_ALL.map(function(s){return{s:s,c:E.compare(MET,s.v,T,W)}}).sort(E.rankCmp)}
+function vis(){
+ var f=qs.toLowerCase();
+ return RK.filter(function(o){var s=o.s;
+  if(onlyU&&!s.understudied)return false;
+  if(tagF&&s.tags.indexOf(tagF)<0)return false;
+  if(f&&(s.name.join(" ")+" "+s.region.join(" ")).toLowerCase().indexOf(f)<0)return false;
+  return true})}
+function find(slug){for(var i=0;i<RK.length;i++)if(RK[i].s.slug===slug)return RK[i];return null}
+function presetW(key){
+ var p=D.presets.filter(function(x){return x.key===key})[0]||D.presets[0];W={};
+ MET.forEach(function(m){W[m.key]=p.w[m.key]!=null?p.w[m.key]:3});preset=p.key}
+/* ---------- карта ---------- */
 function loadGeo(){
-  fetch("https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json")
-    .then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json()})
-    .then(function(w){LAND=topojson.feature(w,w.objects.land);BORD=topojson.mesh(w,w.objects.countries,function(a,b){return a!==b});dirty=true})
-    .catch(function(e){console.error("Карта мира не загрузилась:",e)});
-}
-function draw(){var cv=$("map"),W=cv.clientWidth,H=cv.clientHeight,d=window.devicePixelRatio||1;
-if(!W||!H)return;
-if(cv.width!==Math.round(W*d)||cv.height!==Math.round(H*d)){cv.width=Math.round(W*d);cv.height=Math.round(H*d)}
-var x=cv.getContext("2d");x.setTransform(d,0,0,d,0,0);x.clearRect(0,0,W,H);
-var g=view==="globe",sc=g?Math.min(W,H)/2*.9*k:W/6.2832*k,p=g?d3.geoOrthographic().clipAngle(90).rotate([-c[0],-c[1]]):d3.geoEquirectangular().rotate([-c[0],0]).center([0,c[1]]);
-p.scale(sc).translate([W/2,H/2]);prj=p;SC=sc;var pa=d3.geoPath(p,x);
-x.beginPath();pa({type:"Sphere"});x.fillStyle=css("--ocean");x.fill();
-x.beginPath();pa(d3.geoGraticule10());x.strokeStyle=css("--line");x.lineWidth=.6;x.stroke();
-if(LAND){x.beginPath();pa(LAND);x.fillStyle=css("--land");x.fill()}
-if(BORD){x.beginPath();pa(BORD);x.strokeStyle=css("--bd");x.lineWidth=.6;x.stroke()}
-if(g){var r=sc,q=x.createRadialGradient(W/2-r*.3,H/2-r*.3,r*.3,W/2,H/2,r);q.addColorStop(0,"rgba(0,0,0,0)");q.addColorStop(1,"rgba(0,0,0,.32)");x.beginPath();pa({type:"Sphere"});x.fillStyle=q;x.fill();x.strokeStyle=css("--ice");x.globalAlpha=.5;x.lineWidth=1.5;x.stroke();x.globalAlpha=1}
-hit=[];vis().forEach(function(o){var s=o.s;if(g&&d3.geoDistance([c[0],c[1]],[s[3],s[2]])>1.5708)return;var q=p([s[3],s[2]]);if(!q)return;var r=4+o.m/11;hit.push([q[0],q[1],o.i]);
-x.beginPath();x.arc(q[0],q[1],r,0,7);x.fillStyle="hsla("+(40+150*o.m/100)+",75%,60%,.9)";x.fill();x.lineWidth=1;x.strokeStyle="rgba(0,0,0,.5)";x.stroke();
-if(o.i===sel||o.i===hv){x.lineWidth=2.5;x.strokeStyle=css("--text");x.beginPath();x.arc(q[0],q[1],r+5,0,7);x.stroke()}
-if(o.i===sel){x.font="600 13px Onest,sans-serif";x.textAlign="left";var n=nm(s),tw2=x.measureText(n).width;x.fillStyle=css("--panel");x.fillRect(q[0]+r+8,q[1]-11,tw2+10,22);x.fillStyle=css("--text");x.fillText(n,q[0]+r+13,q[1]+4)}})}
-function loop(now){if(tw){var e=Math.min(1,(now-tw.t0)/800),f=e<.5?2*e*e:1-Math.pow(-2*e+2,2)/2;c[0]=tw.f[0]+tw.dl*f;c[1]=tw.f[1]+(tw.to[1]-tw.f[1])*f;k=tw.k0+(tw.k1-tw.k0)*f;if(e>=1)tw=null;dirty=true}
-else if(spin&&!drag&&view==="globe"){c[0]+=.14;dirty=true}
-if(dirty){dirty=false;draw()}requestAnimationFrame(loop)}
-function fly(i){var s=S[i];tw={t0:performance.now(),f:c.slice(),to:[s[3],s[2]],dl:((s[3]-c[0]+540)%360)-180,k0:k,k1:Math.max(k,view==="globe"?1.5:2.2)};tw.to[1]=Math.max(-70,Math.min(70,s[2]))}
-function pick(i,f){sel=i;if(f){spin=false;$("sp").setAttribute("aria-pressed","false");fly(i)}all()}
+ if(!window.d3||!window.topojson)return;
+ fetch("https://cdn.jsdelivr.net/npm/world-atlas@2.0.2/countries-110m.json")
+  .then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json()})
+  .then(function(w){LAND=topojson.feature(w,w.objects.land);BORD=topojson.mesh(w,w.objects.countries,function(a,b){return a!==b});dirty=true})
+  .catch(function(e){console.error("Карта мира не загрузилась:",e)})}
+function hue(m){return"hsla("+(40+150*(m==null?0:m))+",75%,60%,.92)"}
+function draw(){
+ var cv=$("map"),Wd=cv.clientWidth,H=cv.clientHeight,d=window.devicePixelRatio||1;if(!Wd||!H)return;
+ if(cv.width!==Math.round(Wd*d)||cv.height!==Math.round(H*d)){cv.width=Math.round(Wd*d);cv.height=Math.round(H*d)}
+ var x=cv.getContext("2d");x.setTransform(d,0,0,d,0,0);x.clearRect(0,0,Wd,H);
+ if(!window.d3){x.fillStyle=css("--mute");x.font="14px Onest,sans-serif";x.textAlign="center";x.fillText("d3 не загрузился: карта недоступна, список и таблицы работают",Wd/2,H/2);hit=[];return}
+ var g=view==="globe",sc=g?Math.min(Wd,H)/2*.9*k:Wd/6.2832*k,p=g?d3.geoOrthographic().clipAngle(90).rotate([-c[0],-c[1]]):d3.geoEquirectangular().rotate([-c[0],0]).center([0,c[1]]);
+ p.scale(sc).translate([Wd/2,H/2]);prj=p;SC=sc;var pa=d3.geoPath(p,x);
+ x.beginPath();pa({type:"Sphere"});x.fillStyle=css("--ocean");x.fill();
+ x.beginPath();pa(d3.geoGraticule10());x.strokeStyle=css("--line");x.lineWidth=.6;x.stroke();
+ if(LAND){x.beginPath();pa(LAND);x.fillStyle=css("--land");x.fill()}
+ if(BORD){x.beginPath();pa(BORD);x.strokeStyle=css("--bd");x.lineWidth=.6;x.stroke()}
+ if(g){var r=sc,q=x.createRadialGradient(Wd/2-r*.3,H/2-r*.3,r*.3,Wd/2,H/2,r);q.addColorStop(0,"rgba(0,0,0,0)");q.addColorStop(1,"rgba(0,0,0,.32)");x.beginPath();pa({type:"Sphere"});x.fillStyle=q;x.fill();x.strokeStyle=css("--ice");x.globalAlpha=.5;x.lineWidth=1.5;x.stroke();x.globalAlpha=1}
+ hit=[];
+ vis().forEach(function(o){
+  var s=o.s;if(g&&d3.geoDistance([c[0],c[1]],[s.lon,s.lat])>1.5708)return;
+  var q=p([s.lon,s.lat]);if(!q)return;
+  var m=o.c.match,r=4+(m==null?0:m)*9,low=o.c.cov<.5;hit.push([q[0],q[1],s.slug]);
+  x.beginPath();x.arc(q[0],q[1],r,0,7);
+  if(low){x.lineWidth=2;x.strokeStyle=hue(m);x.stroke()}else{x.fillStyle=hue(m);x.fill();x.lineWidth=1;x.strokeStyle="rgba(0,0,0,.5)";x.stroke()}
+  if(s.understudied){x.beginPath();x.arc(q[0],q[1],r+3,0,7);x.setLineDash([2,3]);x.lineWidth=1;x.strokeStyle=css("--dust");x.stroke();x.setLineDash([])}
+  if(s.slug===sel||s.slug===hv){x.lineWidth=2.5;x.strokeStyle=css("--text");x.beginPath();x.arc(q[0],q[1],r+6,0,7);x.stroke()}
+  if(s.slug===sel){x.font="600 13px Onest,sans-serif";x.textAlign="left";var n=nm(s),w2=x.measureText(n).width;x.fillStyle=css("--panel");x.fillRect(q[0]+r+9,q[1]-11,w2+10,22);x.fillStyle=css("--text");x.fillText(n,q[0]+r+14,q[1]+4)}})}
+function loop(now){
+ if(tw){var e=Math.min(1,(now-tw.t0)/800),f=e<.5?2*e*e:1-Math.pow(-2*e+2,2)/2;c[0]=tw.f[0]+tw.dl*f;c[1]=tw.f[1]+(tw.to[1]-tw.f[1])*f;k=tw.k0+(tw.k1-tw.k0)*f;if(e>=1)tw=null;dirty=true}
+ else if(spin&&!drag&&view==="globe"&&window.d3){c[0]+=.14;dirty=true}
+ if(dirty){dirty=false;try{draw()}catch(err){console.error(err)}}
+ requestAnimationFrame(loop)}
+function fly(slug){var o=find(slug);if(!o)return;var s=o.s;tw={t0:performance.now(),f:c.slice(),to:[s.lon,s.lat],dl:((s.lon-c[0]+540)%360)-180,k0:k,k1:Math.max(k,view==="globe"?1.5:2.2)};tw.to[1]=Math.max(-70,Math.min(70,s.lat))}
+function pick(slug,f){sel=slug;if(f){spin=false;$("sp").setAttribute("aria-pressed","false");fly(slug)}hashSet();all()}
 function near(e,m){var r=$("map").getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top,b=null,bd=m;hit.forEach(function(h){var d=Math.hypot(h[0]-x,h[1]-y);if(d<bd){bd=d;b=h[2]}});return{i:b,x:x,y:y}}
-function getSpaceTarget(s){
-  var en=lang==="en";
-  if(tg==="mars")return{planet:en?"🔴 Mars":"🔴 Марс",name:s[en?16:15]||(en?"Jezero Crater":"Кратер Езеро"),desc:s[en?18:17]||(en?"Ancient river delta":"Древняя дельта реки"),img:s[21]||""};
-  return{planet:en?"🌕 Moon":"🌕 Луна",name:s[en?12:11]||(en?"Shackleton Crater":"Кратер Шеклтон"),desc:s[en?14:13]||(en?"Permanent shadow with ice deposits":"Вечная тень и залежи льда"),img:s[20]||""};
-}
-function getSimilarEarthSite(idx){
-  if(S.length<2)return null;
-  var a=S[idx][4],best=-1,min=999;
-  S.forEach(function(o,i){if(i===idx)return;var d=0;for(var j=0;j<7;j++)d+=Math.abs(a[j]-o[4][j]);if(d<min){min=d;best=i}});
-  if(best<0)return null;
-  return{name:nm(S[best]),score:Math.max(0,Math.round(100*(1-min/70)))};
-}
-function imgTag(u){return u?'<img src="'+esc(u)+'" class="tip-img" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display=\'none\'">':''}
 var cv=$("map");
 cv.onpointerdown=function(e){cv.setPointerCapture(e.pointerId);drag={x:e.clientX,y:e.clientY,x0:e.clientX,y0:e.clientY};tw=null};
 cv.onpointermove=function(e){
-  if(drag){var f=57.3/SC;c[0]-=(e.clientX-drag.x)*f;c[1]=Math.max(-85,Math.min(85,c[1]+(e.clientY-drag.y)*f));drag.x=e.clientX;drag.y=e.clientY;dirty=true;$("tip").style.display="none";return}
-  var n=near(e,14),tp=$("tip");
-  if(n.i!==hv){hv=n.i===null?-1:n.i;dirty=true}
-  cv.style.cursor=n.i===null?"":"pointer";
-  if(n.i===null){tp.style.display="none";return}
-  var s=S[n.i],st=getSpaceTarget(s),twin=getSimilarEarthSite(n.i),ru=lang==="ru";
-  var twinTxt=twin?'<div style="margin-top:6px;padding-top:6px;border-top:1px solid var(--line);color:var(--mute)">🔄 '+(ru?"Похожий на Земле: ":"Similar on Earth: ")+'<b style="color:var(--text)">'+esc(twin.name)+'</b> ('+twin.score+'%)</div>':'';
-  tp.innerHTML=
-    '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px"><span style="font-weight:700;color:var(--text);font-size:14px">'+esc(nm(s))+'</span><span style="font-weight:700;color:var(--ice);font-size:14px">'+sim(s)+'%</span></div>'+
-    '<div class="tip-section" style="border-left:3px solid var(--dust)"><div class="tip-label" style="color:var(--dust)">'+st.planet+' • '+(ru?"Цель миссии":"Mission target")+'</div><div style="font-weight:600;color:var(--text)">'+esc(st.name)+'</div><div style="font-size:11.5px;color:var(--mute)">'+esc(st.desc)+'</div>'+imgTag(st.img)+'</div>'+
-    '<div class="tip-section" style="border-left:3px solid var(--ice)"><div class="tip-label" style="color:var(--ice)">🌍 '+(ru?"Земной аналог":"Earth analog")+'</div><div style="font-size:11.5px;color:var(--mute)">'+esc(s[ru?6:7])+'</div>'+imgTag(s[19])+'</div>'+twinTxt;
-  tp.style.display="block";
-  var tw0=tp.offsetWidth||320,th=tp.offsetHeight||300,x=n.x+16;
-  if(x+tw0>cv.clientWidth)x=n.x-tw0-16;
-  var y=n.y-40;if(y+th>cv.clientHeight)y=cv.clientHeight-th-5;if(y<5)y=5;
-  tp.style.left=Math.max(5,x)+"px";tp.style.top=y+"px";
-};
+ if(drag){var f=57.3/SC;c[0]-=(e.clientX-drag.x)*f;c[1]=Math.max(-85,Math.min(85,c[1]+(e.clientY-drag.y)*f));drag.x=e.clientX;drag.y=e.clientY;dirty=true;$("tip").style.display="none";return}
+ var n=near(e,14),tp=$("tip");
+ if(n.i!==(hv||null)){hv=n.i||"";dirty=true}
+ cv.style.cursor=n.i===null?"":"pointer";
+ if(n.i===null){tp.style.display="none";return}
+ var o=find(n.i);if(!o){tp.style.display="none";return}
+ var s=o.s,cc=o.c,im=cloudImg(s.image,400);
+ tp.innerHTML='<div class="row" style="justify-content:space-between;flex-wrap:nowrap"><b>'+esc(nm(s))+'</b><b style="color:var(--ice)">'+(cc.match==null?"—":pct(cc.match)+"%")+'</b></div>'+
+  '<div style="color:var(--mute)">'+esc(s.region[i0()])+'</div><div style="color:var(--mute)">'+t("dataCov")+': '+cc.used+' '+t("ofParams")+' '+cc.total+'</div>'+
+  (im?'<img src="'+esc(im)+'" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display=\'none\'">':'');
+ tp.style.display="block";
+ var tw0=tp.offsetWidth||260,th=tp.offsetHeight||160,x=n.x+16;if(x+tw0>cv.clientWidth)x=n.x-tw0-16;
+ var y=n.y-40;if(y+th>cv.clientHeight)y=cv.clientHeight-th-5;if(y<5)y=5;tp.style.left=Math.max(5,x)+"px";tp.style.top=y+"px"};
 cv.onpointerup=function(e){if(drag&&Math.hypot(e.clientX-drag.x0,e.clientY-drag.y0)<5){var n=near(e,16);if(n.i!==null)pick(n.i,true)}drag=null};
-cv.onpointerleave=function(){$("tip").style.display="none";hv=-1;dirty=true};
+cv.onpointerleave=function(){$("tip").style.display="none";hv="";dirty=true};
 cv.addEventListener("wheel",function(e){e.preventDefault();zoom(Math.exp(-e.deltaY*.0015))},{passive:false});
 cv.onkeydown=function(e){var s=8/k,m={ArrowLeft:[-s,0],ArrowRight:[s,0],ArrowUp:[0,s],ArrowDown:[0,-s]}[e.key];if(m){c[0]+=m[0];c[1]=Math.max(-85,Math.min(85,c[1]+m[1]));dirty=true;e.preventDefault()}else if(e.key==="+"||e.key==="=")zoom(1.25);else if(e.key==="-")zoom(.8)};
 function zoom(f){k=Math.max(view==="globe"?.7:1,Math.min(10,k*f));dirty=true}
@@ -304,164 +452,329 @@ $("zi").onclick=function(){zoom(1.3)};$("zo").onclick=function(){zoom(.77)};$("r
 $("sp").onclick=function(){spin=!spin;this.setAttribute("aria-pressed",spin)};
 function setView(v){view=v;$("vg").setAttribute("aria-pressed",v==="globe");$("vf").setAttribute("aria-pressed",v==="flat");k=1;dirty=true}
 $("vg").onclick=function(){setView("globe")};$("vf").onclick=function(){setView("flat")};
-function radar(s){var cx=150,cy=118,R=88,pt=function(v,j){var a=-Math.PI/2+j*2*Math.PI/7;return[cx+R*v/10*Math.cos(a),cy+R*v/10*Math.sin(a)]},
-pl=function(arr){return arr.map(function(v,j){return pt(v,j).map(function(n){return n.toFixed(1)}).join(",")}).join(" ")},o="";
-[3.3,6.6,10].forEach(function(r){o+='<polygon points="'+pl([r,r,r,r,r,r,r])+'" fill="none" stroke="'+css("--line")+'"/>'});
-t("dims").forEach(function(n,j){var q=pt(12,j);o+='<text x="'+q[0].toFixed(0)+'" y="'+(q[1]+4).toFixed(0)+'" text-anchor="middle">'+n+'</text>'});
-o+='<polygon points="'+pl(P())+'" fill="none" stroke="'+css("--ice")+'" stroke-width="2" stroke-dasharray="5 3"/><polygon points="'+pl(s[4])+'" fill="'+css("--dust")+'" fill-opacity=".3" stroke="'+css("--dust")+'" stroke-width="2"/>';
-return'<svg viewBox="0 0 300 236" width="100%" role="img" aria-label="'+t("dims").join(", ")+'">'+o+'</svg>'}
-function det(){var s=S[sel];if(!s){$("det").innerHTML='<div style="color:var(--mute)">'+t("empty")+'</div>';return}
-var m=sim(s),p=P(),dims=t("dims"),df=dims.map(function(n,j){return{n:n,d:Math.abs(p[j]-s[4][j]),j:j}}).filter(function(o){return w[o.j]>0}).sort(function(a,b){return b.d-a.d})[0],i=lang==="ru"?0:1;
-$("det").innerHTML='<h2>'+esc(nm(s))+(s[5]?'<span class="tag">'+t("ltag")+'</span>':'')+(s[10]?'<span class="tag">'+t("mine")+'</span>':'')+'</h2><div class="sim">'+m+'%</div><div style="color:var(--mute);font-size:13px">'+t("simw")+': '+tn()+'</div>'+radar(s)+
-'<div class="leg"><span style="color:var(--ice)">┄ '+t("tval")+'</span><span style="color:var(--dust)">━ '+esc(nm(s).split(",")[0])+'</span><span>'+Math.abs(s[2]).toFixed(1)+(s[2]<0?"°S ":"°N ")+Math.abs(s[3]).toFixed(1)+(s[3]<0?"°W":"°E")+'</span></div><p style="margin:10px 0 0"><b>'+t("fit")+'</b> '+esc(s[6+i])+'</p>'+
-'<div class="warn"><b>'+t("brk")+'</b> '+esc(s[8+i])+(df&&df.d>=3?' '+t("wk")+': '+df.n.toLowerCase()+'.':'')+'</div>'+(s[10]?'<p style="margin:10px 0 0"><button class="chip" id="dl">'+t("del")+'</button></p>':'')}
-function lst(){var v=vis();$("list").innerHTML=v.map(function(o){return'<button class="it" data-i="'+o.i+'" aria-pressed="'+(o.i===sel)+'"><span>'+esc(nm(o.s))+'</span><b>'+o.m+'%</b><small>'+esc(o.s[6+(lang==="ru"?0:1)])+'</small><div class="bb"><i style="width:'+o.m+'%"></i></div></button>'}).join("")||'<div style="color:var(--mute)">'+t("none")+'</div>'}
-function all(){var v=vis();if(v.length&&!v.some(function(o){return o.i===sel}))sel=v[0].i;lst();det();dirty=true}
-function tgb(){$("tg").innerHTML=["moon","mars","custom"].map(function(x){return'<button class="chip" data-t="'+x+'" aria-pressed="'+(x===tg)+'">'+t(x)+'</button>'}).join("")}
-function cell(kk,i,v,m){var l=t("dims")[i]+": "+(kk==="t"?t("tval"):t("imp"));return pm==="slider"?'<label class="cl"><input type="range" min="0" max="'+m+'" value="'+v+'" data-k="'+kk+'" data-i="'+i+'" aria-label="'+l+'"><output>'+v+'</output></label>':'<input class="nm" type="number" inputmode="numeric" min="0" max="'+m+'" step="1" value="'+v+'" data-k="'+kk+'" data-i="'+i+'" aria-label="'+l+'">'}
-function prm(){var h='<div class="pr hd"><span></span><span>'+t("tval")+'</span><span>'+t("imp")+' (0–5)</span></div>',p=P();t("dims").forEach(function(n,i){h+='<div class="pr"><span>'+n+'</span>'+cell("t",i,p[i],10)+cell("w",i,w[i],5)+'</div>'});$("prm").innerHTML=h}
-$("prm").oninput=function(e){var kk=e.target.getAttribute("data-k");if(!kk)return;var i=+e.target.getAttribute("data-i"),v=Math.max(0,Math.min(kk==="t"?10:5,Math.round(+e.target.value)||0));
-if(kk==="t"){if(tg!=="custom"){C.p=P().slice();tg="custom";tgb()}C.p[i]=v}else w[i]=v;var o=e.target.nextElementSibling;if(o&&o.tagName==="OUTPUT")o.textContent=v;all()};
-function setPm(m){pm=m;$("ms").setAttribute("aria-pressed",m==="slider");$("mn").setAttribute("aria-pressed",m==="num");prm()}
-$("ms").onclick=function(){setPm("slider")};$("mn").onclick=function(){setPm("num")};
-$("tg").onclick=function(e){var x=e.target.getAttribute("data-t");if(!x)return;if(x==="custom"){if(tg!=="custom")C.p=P().slice()}else w=T[x].w.slice();tg=x;tgb();prm();all();cprev()};
-$("list").onclick=function(e){var b=e.target.closest(".it");if(b)pick(+b.getAttribute("data-i"),true)};
-$("lit").onclick=function(){lit=!lit;this.setAttribute("aria-pressed",lit);all()};
-$("q").oninput=function(){qs=this.value.trim();all()};
-$("lg").onclick=function(e){var l=e.target.getAttribute("data-l");if(l)setLang(l)};
-$("rep").onclick=function(){var i=lang==="ru"?0:1,tx=t("rt")+": "+tn()+"\n\n"+vis().slice(0,5).map(function(o,j){return(j+1)+". "+nm(o.s)+": "+t("rsim")+" "+o.m+"%. "+t("rfit")+": "+o.s[6+i]+". "+t("rlim")+": "+o.s[8+i]}).join("\n")+"\n\n"+t("rfoot"),m=$("msg");
-try{navigator.clipboard.writeText(tx).then(function(){m.textContent=t("ok")},function(){m.textContent=t("fail")})}catch(e){m.textContent=t("fail")}};
-function setLang(l){lang=l;try{localStorage.setItem("nl-lang",l)}catch(e){}document.documentElement.lang=l;document.title=t("brand");$("brand").textContent=t("brand");
-document.querySelectorAll("[data-i]").forEach(function(n){n.textContent=t(n.getAttribute("data-i"))});
-document.querySelectorAll("[data-p]").forEach(function(n){n.placeholder=t(n.getAttribute("data-p"))});
-document.querySelectorAll("[data-a]").forEach(function(n){var v=t(n.getAttribute("data-a"));n.setAttribute("aria-label",v);if(n.id!=="map")n.title=v});
-document.querySelectorAll("#lg .chip").forEach(function(b){b.setAttribute("aria-pressed",b.getAttribute("data-l")===l)});$("msg").textContent="";tgb();prm();all();cprev()}
-function cl(v){return Math.max(0,Math.min(10,isFinite(v)?v:0))}
-function calc(r){var a=[r[0]/10,r[1]*.7,r[2]/28,6.705*Math.log10(1+Math.max(0,r[3])),r[4]/10,5*Math.log10(1+Math.max(0,r[5])),r[6]/36.5];return a.map(function(v){return Math.round(cl(v)*10)/10})}
-function mk(u){return[u[0],u[0],u[1],u[2],calc(u[3]),0,"Добавлено вами","Added by you","Оценка рассчитана по вашим измерениям.","Scores calculated from your measurements.",1]}
-function rebuild(){S=BASE.concat(U.map(mk));B=BASE.length}
-function sv(){try{localStorage.setItem("nl-user",JSON.stringify(U))}catch(e){}}
-function raw(){var r=[];for(var i=1;i<=7;i++)r.push(parseFloat($("c"+i).value)||0);return r}
-function cprev(){var s=calc(raw());
-s.forEach(function(v,i){var b=$("cb"+(i+1));if(b)b.textContent=v.toFixed(1)+" / 10"});
-$("cres").innerHTML=t("simw")+': <b>'+sim([0,0,0,0,s])+'%</b>'}
-function fill(a,planet){
-    a.forEach(function(v,i){$("c"+(i+1)).value=v});
-    cprev();
-    $("cmsg").textContent=planet==="moon"?(lang==="ru"?"Профиль Луны загружен":"Moon profile loaded"):(lang==="ru"?"Профиль Марса загружен":"Mars profile loaded");
-    $("cmoon").setAttribute("aria-pressed",planet==="moon");
-    $("cmars").setAttribute("aria-pressed",planet==="mars");
-}
-$("calc").oninput=function(e){if(/cx/.test(e.target.className)){cprev();$("cmoon").setAttribute("aria-pressed","false");$("cmars").setAttribute("aria-pressed","false")}};
-$("cmoon").onclick=function(){fill([80,11,330,5.6,80,24,0],"moon")};
-$("cmars").onclick=function(){fill([80,10,180,6,90,15,180],"mars")};
-$("cuse").onclick=function(){C.p=calc(raw());tg="custom";tgb();prm();all();cprev()};
-$("cadd").onclick=function(){var la=parseFloat($("cla").value),lo=parseFloat($("clo").value),m=$("cmsg");if(!(la>=-90&&la<=90&&lo>=-180&&lo<=180)){m.textContent=t("bad");return}
-U.push([$("cn").value.trim()||(lang==="ru"?"Мой участок ":"My site ")+(U.length+1),la,lo,raw()]);sv();rebuild();m.textContent=t("added");qs="";$("q").value="";pick(S.length-1,true);try{$("map").scrollIntoView({behavior:"smooth",block:"center"})}catch(x){}};
-function csvLine(line,delimiter){
-    var out=[],value="",quoted=false;
-    for(var i=0;i<line.length;i++){
-        var ch=line[i];
-        if(ch==='"'&&quoted&&line[i+1]==='"'){value+='"';i++}
-        else if(ch==='"'){quoted=!quoted}
-        else if(ch===delimiter&&!quoted){out.push(value.trim());value=""}
-        else{value+=ch}
-    }
-    out.push(value.trim());return out;
-}
-function csvEscape(value){
-    var x=String(value==null?"":value);
-    return /[",;\n]/.test(x)?'"'+x.replace(/"/g,'""')+'"':x;
-}
-function esc(value){
-    return String(value==null?"":value).replace(/[&<>"']/g,function(ch){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]});
-}
-function setCsvStatus(message,kind){
-    var el=$("csvStatus");el.textContent=message;el.className="csv-status"+(kind?" "+kind:"");
-}
-function parseCsvText(text){
-    var lines=text.replace(/^\uFEFF/,"").split(/\r?\n/).filter(function(line){return line.trim()!==""});
-    if(!lines.length)return{valid:[],errors:[]};
-    var delimiter=lines[0].indexOf(";")>=0?";":",",valid=[],errors=[];
-    lines.forEach(function(line,index){
-        var fields=csvLine(line,delimiter);
-        if(index===0&&/^(name|название|site|участок)/i.test(fields[0]))return;
-        if(fields.length!==10){errors.push({name:fields[0],reason:t("csvRowError")});return}
-        var nums=fields.slice(1).map(function(v){return v===""?NaN:Number(v)});
-        var limits=[[-90,90],[-180,180],[0,100],[0,90],[0,600],[0,100],[0,100],[0,1000],[0,365]];
-        var invalid=nums.some(function(v,i){return !Number.isFinite(v)||v<limits[i][0]||v>limits[i][1]});
-        if(invalid){errors.push({name:fields[0],reason:t("csvRowError")});return}
-        valid.push([fields[0]||((lang==="ru"?"Участок ":"Site ")+(valid.length+1)),nums[0],nums[1],nums.slice(2)]);
-    });
-    return{valid:valid,errors:errors};
-}
-function renderCsvResults(items,errors){
-    var html="";
-    items.forEach(function(item){
-        var score=sim(mk(item));
-        html+='<tr><td>'+esc(item[0])+'</td><td>'+item[1].toFixed(2)+', '+item[2].toFixed(2)+'</td><td class="csv-score">'+score+'%</td><td class="csv-ok">'+t("csvValid")+'</td></tr>';
-    });
-    errors.forEach(function(err){
-        html+='<tr><td>'+esc(err.name||"—")+'</td><td>—</td><td>—</td><td class="csv-bad">'+esc(err.reason)+'</td></tr>';
-    });
-    $("csvResultRows").innerHTML=html;
-    $("csvResults").hidden=!html;
-    $("csvCount").textContent=items.length+" / "+(items.length+errors.length);
-}
-$("cimp").onclick=function(){
-    var parsed=parseCsvText($("csv").value);
-    if(!parsed.valid.length){setCsvStatus(t("csvNoRows"),"error");renderCsvResults([],parsed.errors);return}
-    parsed.valid.forEach(function(row){U.push(row)});
-    sv();rebuild();all();renderCsvResults(parsed.valid,parsed.errors);
-    var message=t("csvImported")+": "+parsed.valid.length;
-    if(parsed.errors.length)message+=" · "+t("csvSkipped")+": "+parsed.errors.length;
-    setCsvStatus(message,parsed.errors.length?"error":"success");
-    $("cmsg").textContent=t("added")+": "+parsed.valid.length;
-};
-$("csvFile").onchange=function(){
-    var file=this.files&&this.files[0];if(!file)return;
-    var reader=new FileReader();
-    reader.onload=function(){$("csv").value=String(reader.result||"");setCsvStatus(file.name,"success")};
-    reader.onerror=function(){setCsvStatus(t("csvNoRows"),"error")};
-    reader.readAsText(file,"UTF-8");
-};
-$("csvTemplate").onclick=function(){
-    var content=t("csvHeader")+"\n"+t("csvExample")+"\n";
-    var blob=new Blob(["\uFEFF",content],{type:"text/csv;charset=utf-8"});
-    var url=URL.createObjectURL(blob),a=document.createElement("a");
-    a.href=url;a.download="nasa-locator-template.csv";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
-};
-$("ccopy").onclick=function(){
-    var rows=vis().map(function(o){return[nm(o.s),o.s[2],o.s[3]].concat(o.s[4],[o.m])});
-    if(!rows.length){setCsvStatus(t("csvNeedData"),"error");return}
-    var tx=[["name","lat","lon","geology","relief","temperature","ice","dust","caves","life","similarity"].join(",")].concat(rows.map(function(row){return row.map(csvEscape).join(",")}));
-    var text=tx.join("\n"),m=$("cmsg");
-    function done(ok){setCsvStatus(ok?t("csvCopied"):t("csvCopyFail"),ok?"success":"error");m.textContent=ok?t("ok"):t("fail")}
-    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){done(true)},function(){done(false)})}
-    else{var area=document.createElement("textarea");area.value=text;document.body.appendChild(area);area.select();try{done(document.execCommand("copy"))}catch(e){done(false)}area.remove()}
-};
-$("det").onclick=function(e){if(e.target.id==="dl"){var i=sel-B;if(i>=0){U.splice(i,1);sv();rebuild();sel=0;all()}}};
-$("src").innerHTML=SRC.map(function(s){return'<a target="_blank" rel="noopener" href="'+(s[1]||"https://duckduckgo.com/?q="+encodeURIComponent(s[2]))+'">'+s[0]+'</a>'}).join("");
 window.onresize=function(){dirty=true};
+/* ---------- рендер: карточка места ---------- */
+function mismatch(m,a,b){
+ var A=fmt(m,a),B=fmt(m,b);
+ return'<b>'+esc(mn(m))+'</b>: '+t("here")+' '+esc(A)+', '+t("target")+' '+esc(B)}
+function photoBlock(s){
+ var tgt=TG[tg],a=cloudImg(s.image,480),b=tgt?cloudImg(tgt.image,480):"",h="";
+ function fig(src,lab,im){return'<figure><img src="'+esc(src)+'" alt="'+esc(lab)+'" loading="lazy" decoding="async" referrerpolicy="no-referrer" onerror="this.parentNode.hidden=true"><figcaption><b>'+esc(lab)+'</b>'+(im&&im.credit?' · '+esc(im.credit):'')+'</figcaption></figure>'}
+ if(a)h+=fig(a,t("photoSite")+": "+nm(s),s.image);
+ if(b)h+=fig(b,t("photoTarget")+": "+tgt.name[i0()],tgt.image);
+ return h?'<div class="photos">'+h+'</div>':''}
+function paramTable(s,cc){
+ var rows="",T=TV(),missT=[];
+ MET.forEach(function(m){
+  var key=m.key,tv=T[key];
+  if(!E.has(tv)){missT.push(mn(m));return}
+  var sv=s.v[key],sc=cc.parts[key],off=!(W[key]>0),has=E.has(sv);
+  var cellS=has?esc(fmt(m,sv))+badge(s.values[key]):'<span class="nd">'+t("noData")+'</span>';
+  var bar=sc==null?'<span class="nd">—</span>':'<div class="m"><div class="bb"><i style="width:'+pct(sc)+'%"></i></div><span>'+pct(sc)+'%</span></div>';
+  rows+='<tr class="'+(off?'dim':'')+'"><td>'+esc(mn(m))+'</td><td>'+cellS+'</td><td class="n">'+esc(fmt(m,tv))+badge(TF(key))+'</td><td>'+(off?'<span class="nd">×0</span>':bar)+'</td></tr>'});
+ var h='<div class="tblw"><table class="tbl"><thead><tr><th>'+t("pParam")+'</th><th>'+t("here")+'</th><th>'+t("target")+'</th><th>'+t("match")+'</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
+ if(missT.length)h+='<p class="mu" style="margin-top:6px;font-size:12.5px">'+t("noTargetVal")+' '+esc(missT.join(", "))+'.</p>';
+ return h}
+function breaks(s,cc){
+ var T=TV(),items=[],miss=[];
+ MET.forEach(function(m){
+  var key=m.key;if(!(W[key]>0)||!E.has(T[key]))return;
+  if(!E.has(s.v[key])){miss.push(mn(m));return}
+  var sc=cc.parts[key];if(sc!==null&&sc<.5)items.push({sc:sc,h:mismatch(m,s.v[key],T[key])})});
+ items.sort(function(a,b){return a.sc-b.sc});
+ var h='<div class="warn"><b>'+t("brkT")+'</b>';
+ h+='<div style="margin-top:4px">'+t("brkData")+':</div>';
+ h+=items.length?'<ul>'+items.slice(0,4).map(function(o){return'<li>'+o.h+'</li>'}).join("")+'</ul>':'<div>'+t("brkNone")+'</div>';
+ if(miss.length)h+='<div style="margin-top:6px">'+t("noSiteVal")+' '+esc(miss.join(", "))+'.</div>';
+ h+=physList();
+ return h+'</div>'}
+function physRows(){return D.physics||[]}
+function physList(){
+ var P=physRows();if(!P.length)return"";
+ var tp=tg!=="custom"&&TG[tg]?TG[tg].planet:null,planets=tp?[tp]:["moon","mars"],h='<div style="margin-top:8px">'+t("brkPhys")+':</div><ul>';
+ P.forEach(function(r){
+  planets.forEach(function(pl){
+   var e=r.earth.v,o=r[pl].v,pn=pl==="moon"?t("physM"):t("physR"),ratio,txt;
+   if(r.key==="radiation"){ratio=o/e;txt=pn+': '+sci(o)+' '+(lang==="ru"?r.unit:r.unit_en)+' ('+t("timesMore").replace("{n}",num(ratio,ratio<10?1:0))+' '+(lang==="ru"?"чем на Земле":"than on Earth")+')'}
+   else{ratio=e/o;txt=pn+': '+sci(o)+' '+(lang==="ru"?r.unit:r.unit_en)+' ('+(lang==="ru"?"на Земле ":"Earth is ")+t("timesMore").replace("{n}",ratio<10?num(ratio,1):sci(ratio))+')'}
+   h+='<li><b>'+esc(lang==="ru"?r.ru:r.en)+'</b>: '+esc(txt)+'</li>'})});
+ return h+'</ul>'}
+function det(){
+ var o=find(sel),box=$("det");
+ if(!o){box.innerHTML='<div class="mu">'+(D?t("empty"):t("loading"))+'</div>';return}
+ var s=o.s,cc=o.c,low=cc.cov<.5,tgt=TG[tg],i=i0();
+ var h='<h2>'+esc(nm(s))+'</h2><div>'+(s.understudied?'<span class="tag">'+t("under")+'</span>':'')+(s.user?'<span class="tag">'+t("yours")+'</span>':'')+(s.tags||[]).map(function(x){var tt=D.tags.filter(function(a){return a[0]===x})[0];return tt?'<span class="tag" style="border-color:var(--line);color:var(--mute)">'+esc(tt[1+i])+'</span>':''}).join("")+'</div>';
+ h+='<div class="mu" style="margin:2px 0 6px">'+esc(s.region[i])+' · '+Math.abs(s.lat).toFixed(2)+(s.lat<0?"°S ":"°N ")+Math.abs(s.lon).toFixed(2)+(s.lon<0?"°W":"°E")+'</div>';
+ h+='<div class="sim'+(low?' low':'')+'">'+(cc.match==null?"—":pct(cc.match)+"%")+'</div><div class="mu" style="margin:0">'+t("match")+': '+esc(tname())+'</div>';
+ h+='<div class="meter"><span>'+t("dataCov")+': '+cc.used+' '+t("ofParams")+' '+cc.total+'</span><div class="bb"><i style="width:'+pct(cc.cov)+'%"></i></div><span>'+pct(cc.cov)+'%</span></div>';
+ if(cc.match==null)h+='<div class="lowcov">'+t("nomatch")+'</div>';else if(low)h+='<div class="lowcov">'+t("lowcov")+'</div>';
+ h+=photoBlock(s);
+ h+=paramTable(s,cc);
+ if(s.area_km2&&tgt&&tgt.area_km2)h+='<p class="mu" style="margin-top:8px"><b>'+t("scaleT")+':</b> '+t("scaleTxt").replace("{a}",num(s.area_km2,0)).replace("{b}",num(tgt.area_km2,0))+'</p>';
+ if(s.use[i])h+='<h3>'+t("useT")+'</h3><p style="margin:0">'+esc(s.use[i])+'</p>';
+ if(s.study[i])h+='<h3>'+t("studyT")+'</h3><p style="margin:0">'+esc(s.study[i])+'</p>';
+ if(s.quirk[i])h+='<h3>'+t("quirkT")+'</h3><p style="margin:0">'+esc(s.quirk[i])+'</p>';
+ h+=breaks(s,cc);
+ if(s.refs&&s.refs.length)h+='<h3>'+t("refsT")+'</h3><div class="refs">'+s.refs.map(function(r){return'<a href="'+esc(r.u)+'" target="_blank" rel="noopener">'+esc(r.t)+'</a>'}).join("")+'</div>';
+ h+='<div class="row" style="margin-top:10px"><button class="chip" id="tocmp">'+t("cmpBtn")+'</button>'+(s.user?'<button class="chip" id="dl">'+t("del")+'</button>':'')+'</div>';
+ box.innerHTML=h}
+/* ---------- рендер: список, фильтры, цели, параметры ---------- */
+function lst(){
+ var v=vis();
+ $("list").innerHTML=v.map(function(o){var s=o.s,cc=o.c,low=cc.cov<.5;
+  return'<button class="it" data-s="'+esc(s.slug)+'" aria-pressed="'+(s.slug===sel)+'"><span>'+esc(nm(s))+(s.understudied?' <span class="tag" style="margin:0 0 0 4px">'+t("under")+'</span>':'')+'</span><b class="'+(low?'low':'')+'">'+(cc.match==null?"—":pct(cc.match)+"%")+'</b><small>'+esc(s.region[i0()])+' · '+t("dataCov")+' '+cc.used+'/'+cc.total+(low?' · '+t("rankLow"):'')+'</small><div class="bb"><i style="width:'+(cc.match==null?0:pct(cc.match))+'%"></i></div></button>'}).join("")||'<div class="mu">'+t("none")+'</div>';
+ var us=RK.filter(function(o){return o.s.understudied&&!o.s.user});
+ $("under").innerHTML='<div class="mu" style="margin-bottom:6px">'+t("underT")+':</div><div class="seg">'+us.map(function(o){return'<button class="chip" data-s="'+esc(o.s.slug)+'">'+esc(nm(o.s))+' '+(o.c.match==null?"—":pct(o.c.match)+"%")+'</button>'}).join("")+'</div>'}
+function tgb(){
+ var h=D.targets.map(function(x){return'<button class="chip" data-t="'+esc(x.key)+'" aria-pressed="'+(x.key===tg)+'">'+esc(x.name[i0()])+'</button>'}).join("");
+ h+='<button class="chip" data-t="custom" aria-pressed="'+(tg==="custom")+'">'+t("custom")+'</button>';
+ $("tg").innerHTML=h}
+function flt(){
+ $("ps").innerHTML=D.presets.map(function(p){return'<button class="chip" data-p="'+p.key+'" aria-pressed="'+(p.key===preset)+'">'+esc(lang==="ru"?p.ru:p.en)+'</button>'}).join("");
+ $("tags").innerHTML='<button class="chip" data-g="" aria-pressed="'+(tagF==="")+'">'+t("all")+'</button>'+D.tags.map(function(x){return'<button class="chip" data-g="'+x[0]+'" aria-pressed="'+(tagF===x[0])+'">'+esc(x[1+i0()])+'</button>'}).join("");
+ $("un").setAttribute("aria-pressed",onlyU)}
+function ctl(m){
+ var key=m.key,v=CUS[key],id="cv_"+key;
+ if(m.type==="num")return'<input type="number" id="'+id+'" data-cv="'+key+'" step="any" value="'+(v==null?"":v)+'" placeholder="'+(m.min)+'…'+(m.max)+'" aria-label="'+esc(mn(m))+'">';
+ if(m.type==="bool")return'<select id="'+id+'" data-cv="'+key+'" aria-label="'+esc(mn(m))+'"><option value="">'+t("noData")+'</option><option value="1"'+(v===true?' selected':'')+'>'+t("valPlus")+'</option><option value="0"'+(v===false?' selected':'')+'>'+t("valMinus")+'</option></select>';
+ return'<div class="og" data-cvs="'+key+'">'+Object.keys(D.origins).map(function(o){return'<label><input type="checkbox" value="'+o+'"'+((v||[]).indexOf(o)>=0?' checked':'')+'><span>'+esc(D.origins[o][i0()])+'</span></label>'}).join("")+'</div>'}
+function prm(){
+ var h='<div class="wr hd"><span>'+t("pParam")+'</span><span>'+t("pTarget")+'</span><span>'+t("pWeight")+'</span></div>';
+ MET.forEach(function(m){
+  var key=m.key,w=W[key],f=TF(key),tolTxt="";
+  if(m.type==="num")tolTxt='<span class="tol">'+t("tol")+': '+t("tolHelp").replace("{d}",num(m.tau,0)+" "+mu(m))+'</span>';
+  var cell=tg==="custom"?'<div class="cv">'+ctl(m)+'</div>':(f?esc(fmt(m,f.v))+badge(f):'<span class="nd">'+t("noData")+'</span>');
+  h+='<div class="wr'+(w>0?'':' off')+'"><div class="wn"><b>'+esc(mn(m))+'</b><small>'+esc(mh(m))+'</small>'+tolTxt+'</div><div>'+cell+'</div><label class="cl"><input type="range" min="0" max="5" step="1" value="'+w+'" data-w="'+key+'" aria-label="'+esc(mn(m))+'"><output>'+w+'</output></label></div>'});
+ if(tg==="custom")h+='<div class="row" style="margin-top:10px"><span class="mu" style="margin:0">'+t("copyFrom")+'</span>'+D.targets.map(function(x){return'<button class="chip" data-copy="'+esc(x.key)+'">'+esc(x.name[i0()])+'</button>'}).join("")+'</div>';
+ $("prm").innerHTML=h}
+/* ---------- рекорды ---------- */
+function records(){
+ var T=TV(),out=[],v=vis();
+ MET.forEach(function(m){
+  if(m.type!=="num"||!(W[m.key]>0)||!E.has(T[m.key]))return;
+  var best=null;v.forEach(function(o){var a=o.s.v[m.key];if(!E.has(a))return;var d=Math.abs(a-T[m.key]);if(!best||d<best.d)best={d:d,o:o,a:a}});
+  if(best)out.push('<div><span class="k">'+t("recBest")+': '+esc(mn(m))+'</span><b>'+esc(nm(best.o.s))+'</b>: '+esc(fmt(m,best.a))+' '+t("recVs")+' '+esc(fmt(m,T[m.key]))+' ('+t("recTargetHas")+'), '+t("match").toLowerCase()+' '+pct(E.mscore(m,best.a,T[m.key]))+'%</div>')});
+ var ok=RK.filter(function(o){return o.s.understudied&&o.c.cov>=.5&&o.c.match!=null});
+ if(ok.length){var b=ok[0],n=RK.indexOf(b)+1;out.unshift('<div><span class="k">'+t("recTop")+'</span><b>'+esc(nm(b.s))+'</b>: '+pct(b.c.match)+'% · '+t("recTopRank").replace("{n}",n).replace("{m}",RK.length)+(b.s.quirk[i0()]?'<br><span style="color:var(--mute)">'+esc(b.s.quirk[i0()])+'</span>':'')+'</div>')}
+ $("rec").innerHTML=out.join("")||'<div>'+t("recNone")+'</div>'}
+/* ---------- сравнение двух мест ---------- */
+function cmpOpts(){
+ var o=RK.map(function(x){return'<option value="'+esc(x.s.slug)+'">'+esc(nm(x.s))+'</option>'}).join("");
+ $("ca").innerHTML=o;$("cb").innerHTML=o;
+ if(!find(cmpA))cmpA=sel||(RK[0]&&RK[0].s.slug)||"";
+ if(!find(cmpB)||cmpB===cmpA)cmpB=(RK.filter(function(x){return x.s.slug!==cmpA})[0]||{s:{slug:""}}).s.slug;
+ $("ca").value=cmpA;$("cb").value=cmpB}
+function cmpTable(){
+ var a=find(cmpA),b=find(cmpB);if(!a||!b){$("cmpout").innerHTML="";return}
+ var T=TV(),rows="";
+ function cell(o,m){var v=o.s.v[m.key];return E.has(v)?esc(fmt(m,v))+badge(o.s.values[m.key]):'<span class="nd">'+t("noData")+'</span>'}
+ MET.forEach(function(m){if(!E.has(T[m.key]))return;
+  var sa=a.c.parts[m.key],sb=b.c.parts[m.key];
+  rows+='<tr><td>'+esc(mn(m))+'</td><td class="n">'+esc(fmt(m,T[m.key]))+'</td><td>'+cell(a,m)+(sa==null?'':' <span class="n">('+pct(sa)+'%)</span>')+'</td><td>'+cell(b,m)+(sb==null?'':' <span class="n">('+pct(sb)+'%)</span>')+'</td></tr>'});
+ function tot(o){return o.c.match==null?"—":pct(o.c.match)+"% · "+t("dataCov")+" "+o.c.used+"/"+o.c.total}
+ $("cmpout").innerHTML='<div class="tblw"><table class="tbl"><thead><tr><th>'+t("pParam")+'</th><th>'+t("target")+'</th><th>'+esc(nm(a.s))+'</th><th>'+esc(nm(b.s))+'</th></tr></thead><tbody>'+rows+'<tr><td><b>'+t("match")+'</b></td><td></td><td><b>'+tot(a)+'</b></td><td><b>'+tot(b)+'</b></td></tr></tbody></table></div>'}
+/* ---------- физика и методика ---------- */
+function phys(){
+ var P=physRows(),h='<thead><tr><th>'+t("physQ")+'</th><th>'+t("physE")+'</th><th>'+t("physM")+'</th><th>'+t("physR")+'</th></tr></thead><tbody>';
+ P.forEach(function(r){var un=lang==="ru"?r.unit:r.unit_en;
+  h+='<tr><td>'+esc(lang==="ru"?r.ru:r.en)+', '+esc(un)+'</td>'+["earth","moon","mars"].map(function(pl){return'<td>'+sci(r[pl].v)+badge(r[pl])+'</td>'}).join("")+'</tr>'});
+ $("phys").innerHTML=h+'</tbody>';
+ $("physN").innerHTML=P.map(function(r){return esc(r.note[i0()])}).join(" ")}
+function meth(){
+ var ru=lang==="ru",tolRows=MET.map(function(m){
+  var d=m.type==="num"?(num(m.tau,0)+" "+mu(m)):(m.type==="bool"?(ru?"совпало или нет: 100 % или 0 %":"match or not: 100 % or 0 %"):(ru?"доля общих признаков":"share of shared features"));
+  return'<tr><td>'+esc(mn(m))+'</td><td>'+esc(d)+'</td><td class="n">'+esc(mh(m))+'</td></tr>'}).join("");
+ var h=ru?
+ '<p class="mu">Вместо баллов от 0 до 10 здесь реальные единицы. Процент показывает, насколько близки два числа, и считается по одной формуле для всех числовых параметров.</p>'+
+ '<div class="formula"><div><b>1. Совпадение числа</b><code>s = 1 / (1 + (разница / допуск)²)</code>Разница равна допуску: 50 %. Разница втрое больше допуска: 10 %. Разница ноль: 100 %. Допуск у каждого параметра свой (таблица ниже).</div>'+
+ '<div><b>2. Да/нет и происхождение</b><code>да/нет: 1 или 0; происхождение: доля общих признаков</code>Например, у места «ударное, вулканическое», у цели «ударное, вулканическое, осадочное»: общих 2 из 3 = 67 %.</div>'+
+ '<div><b>3. Итог</b><code>сходство = Σ(вес × s) / Σ(вес)</code>Суммирование идёт только по параметрам, у которых есть значение и у места, и у цели. Вес 0–5 вы задаёте сами.</div>'+
+ '<div><b>4. Пропуск не равен нулю</b><code>нет данных → параметр исключён</code>Если у места нет значения, оно не штрафуется нулём. Доля учтённого веса показана как «Данные». Если данных меньше половины, место помечено и стоит в рейтинге ниже.</div></div>'+
+ '<h3>Допуски по параметрам</h3><div class="tblw"><table class="tbl"><thead><tr><th>Параметр</th><th>Допуск (50 %)</th><th>Откуда значение</th></tr></thead><tbody>'+tolRows+'</tbody></table></div>'+
+ '<h3>Масштаб и пределы</h3><p class="mu">Метеоданные NASA POWER даны для ячейки сетки около 50 км: в узких долинах и на вершинах они сглажены. Перепад высот считается на площади 20×20 км (сетка 9×9 точек), а цели описывают кратеры и ямы: у Шеклтона берётся глубина кратера, у лунной ямы глубина ямы. Подземные места (шахты) не получают метеоданных намеренно: климат поверхности не описывает глубину. Фото и числа отличаются по происхождению: значок рядом с числом показывает, измерено оно NASA, взято из публикации, выведено или оценено.</p>'+
+ '<p class="mu">Три физических условия не воспроизводятся на Земле вообще: сила тяжести, давление (вакуум и тонкая атмосфера) и радиация. Они вынесены в отдельный блок и в каждую карточку «Где аналогия ломается».</p>'
+ :
+ '<p class="mu">Instead of 0-10 scores this uses real units. The percentage shows how close two numbers are, using one formula for every numeric parameter.</p>'+
+ '<div class="formula"><div><b>1. Number match</b><code>s = 1 / (1 + (difference / tolerance)²)</code>Difference equals the tolerance: 50 %. Three times the tolerance: 10 %. Zero difference: 100 %. Each parameter has its own tolerance (table below).</div>'+
+ '<div><b>2. Yes/no and origin</b><code>yes/no: 1 or 0; origin: share of shared features</code>E.g. a site "impact, volcanic" vs a target "impact, volcanic, sedimentary": 2 of 3 shared = 67 %.</div>'+
+ '<div><b>3. Total</b><code>match = sum(weight x s) / sum(weight)</code>Only parameters with a value for both the site and the target are summed. You set weights 0-5.</div>'+
+ '<div><b>4. A gap is not zero</b><code>no data -> parameter excluded</code>A missing site value is not penalised as zero. The share of weight used is shown as "Data". Under half, the site is flagged and ranks lower.</div></div>'+
+ '<h3>Tolerances</h3><div class="tblw"><table class="tbl"><thead><tr><th>Parameter</th><th>Tolerance (50 %)</th><th>Where the value comes from</th></tr></thead><tbody>'+tolRows+'</tbody></table></div>'+
+ '<h3>Scale and limits</h3><p class="mu">NASA POWER meteorology is for a grid cell of about 50 km: narrow valleys and summits are smoothed. Relief is computed over 20x20 km (9x9 grid) while targets describe craters and pits: Shackleton uses crater depth, the lunar pit uses pit depth. Underground sites (mines) deliberately get no meteorology: surface climate does not describe depth. The badge next to a number shows whether it was measured by NASA, taken from a publication, inferred or estimated.</p>'+
+ '<p class="mu">Three physical conditions cannot be reproduced on Earth at all: gravity, pressure (vacuum and thin air) and radiation. They have their own block and appear in every "Where the analogy breaks" card.</p>';
+ $("methBody").innerHTML=h}
+function srcs(){
+ var L=[["NASA POWER","https://power.larc.nasa.gov/"],["ASTER GDEM","https://asterweb.jpl.nasa.gov/gdem.asp"],["Earthdata Search","https://search.earthdata.nasa.gov"],["Worldview","https://worldview.earthdata.nasa.gov"],["LRO","https://science.nasa.gov/mission/lro/"],["Perseverance / MEDA","https://science.nasa.gov/mission/mars-2020-perseverance/"],["NASA PDS","https://pds.nasa.gov"],["OpenTopoData","https://www.opentopodata.org/"],["Wikimedia Commons","https://commons.wikimedia.org/"],["JSON API","/api/locator/"],["GitHub","https://github.com/David-99-it/earth-analogs-202"]];
+ $("src").innerHTML=L.map(function(s){return'<a target="_blank" rel="noopener" href="'+s[1]+'">'+s[0]+'</a>'}).join("")}
+/* ---------- калькулятор ---------- */
+var CSVC=[];
+function buildCalc(){
+ var h="";
+ MET.forEach(function(m){var key=m.key;
+  if(m.type==="num")h+='<label class="fl" data-f="'+key+'"><span>'+esc(mn(m))+', '+esc(mu(m))+'</span><input class="fi cx" id="cf_'+key+'" type="number" step="any" min="'+m.min+'" max="'+m.max+'" placeholder="'+m.min+' … '+m.max+'"></label>';
+  else if(m.type==="bool")h+='<label class="fl" data-f="'+key+'"><span>'+esc(mn(m))+'</span><select class="cx" id="cf_'+key+'"><option value="">'+t("noData")+'</option><option value="1">'+t("valPlus")+'</option><option value="0">'+t("valMinus")+'</option></select></label>';
+  else h+='<div class="fl" style="grid-column:1/-1" data-f="'+key+'"><span>'+esc(mn(m))+'</span><div class="og2">'+Object.keys(D.origins).map(function(o){return'<label><input class="cx" type="checkbox" id="co_'+o+'" value="'+o+'">'+esc(D.origins[o][i0()])+'</label>'}).join("")+'</div></div>'});
+ var keep=calcVals();$("cfields").innerHTML=h;setCalc(keep);
+ CSVC=["name","lat","lon"].concat(MET.filter(function(m){return m.type==="num"}).map(function(m){return m.key}),MET.filter(function(m){return m.type==="bool"}).map(function(m){return m.key}),["origin"])}
+function calcVals(){
+ var v={};if(!$("cfields")||!MET.length)return v;
+ MET.forEach(function(m){var key=m.key,el;
+  if(m.type==="num"){el=$("cf_"+key);if(el&&el.value!==""&&isFinite(+el.value))v[key]=+el.value}
+  else if(m.type==="bool"){el=$("cf_"+key);if(el&&el.value!=="")v[key]=el.value==="1"}
+  else{var a=[];Object.keys(D?D.origins:{}).forEach(function(o){var cb=$("co_"+o);if(cb&&cb.checked)a.push(o)});if(a.length)v[key]=a}});
+ return v}
+function setCalc(v){
+ MET.forEach(function(m){var key=m.key,el;
+  if(m.type==="num"){el=$("cf_"+key);if(el)el.value=E.has(v[key])?v[key]:""}
+  else if(m.type==="bool"){el=$("cf_"+key);if(el)el.value=v[key]===true?"1":(v[key]===false?"0":"")}
+  else Object.keys(D.origins).forEach(function(o){var cb=$("co_"+o);if(cb)cb.checked=(v[key]||[]).indexOf(o)>=0})})}
+function calcErrors(){
+ var bad=false;
+ MET.forEach(function(m){if(m.type!=="num")return;var el=$("cf_"+m.key),w=el&&el.closest(".fl");if(!el)return;
+  var ok=el.value===""||(isFinite(+el.value)&&+el.value>=m.min&&+el.value<=m.max);if(w)w.classList.toggle("bad",!ok);if(!ok)bad=true});
+ return bad}
+function cprev(){
+ if(!D)return;var bad=calcErrors(),v=calcVals(),cc=E.compare(MET,v,TV(),W);
+ if(bad){$("cres").innerHTML='<span class="bad">'+esc(t("bad"))+'</span>';return}
+ $("cres").innerHTML=cc.match==null?esc(t("cresNo")):esc(t("cres"))+': <b>'+pct(cc.match)+'%</b> · '+t("dataCov")+' '+cc.used+' '+t("ofParams")+' '+cc.total}
+function userSave(){try{localStorage.setItem("nl2-user",JSON.stringify(U))}catch(e){}}
+function rawCoords(){var la=parseFloat($("cla").value),lo=parseFloat($("clo").value);return(la>=-90&&la<=90&&lo>=-180&&lo<=180)?[la,lo]:null}
+function relGrid(lat,lon){
+ var pts=[],cos=Math.max(Math.cos(lat*Math.PI/180),.02);
+ for(var i=0;i<9;i++)for(var j=0;j<9;j++){var la=Math.max(-89.999,Math.min(89.999,lat+(-10+i*2.5)/110.574)),lo=lon+(-10+j*2.5)/(111.32*cos);lo=((lo+180)%360+360)%360-180;pts.push(la.toFixed(5)+","+lo.toFixed(5))}
+ return pts.join("|")}
+function autofill(){
+ var cd=rawCoords(),msg=$("cnmsg");if(!cd){msg.textContent=t("bad");return}
+ msg.textContent=t("cloading");
+ var url="https://power.larc.nasa.gov/api/temporal/climatology/point?parameters=T2M,T2M_MAX,T2M_MIN,PRECTOTCORR,WS2M&community=AG&longitude="+cd[1]+"&latitude="+cd[0]+"&format=JSON";
+ fetch(url).then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(function(d){
+  var o=E.derivePower((d.properties||{}).parameter||{}),n=0;
+  Object.keys(o).forEach(function(key){var el=$("cf_"+key);if(el){el.value=o[key];n++}});
+  if(!n)throw new Error("empty");
+  msg.textContent=t("cok");cprev();
+  return fetch("https://api.opentopodata.org/v1/aster30m?locations="+encodeURIComponent(relGrid(cd[0],cd[1]))).then(function(r){return r.json()}).then(function(z){
+   var el=(z.results||[]).map(function(x){return x.elevation}).filter(function(x){return typeof x==="number"});
+   if(el.length>=57){$("cf_relief_m").value=Math.round(Math.max.apply(null,el)-Math.min.apply(null,el));msg.textContent=t("cok")+"; "+t("crelief");cprev()}else msg.textContent=t("cok")+"; "+t("creliefNo")
+  }).catch(function(){msg.textContent=t("cok")+"; "+t("creliefNo")})
+ }).catch(function(){msg.textContent=t("cfail")})}
+function csvLine(line,dl){var out=[],v="",q=false;for(var i=0;i<line.length;i++){var ch=line[i];if(ch==='"'&&q&&line[i+1]==='"'){v+='"';i++}else if(ch==='"')q=!q;else if(ch===dl&&!q){out.push(v.trim());v=""}else v+=ch}out.push(v.trim());return out}
+function csvEsc(v){var x=String(v==null?"":v);return/[",;\n]/.test(x)?'"'+x.replace(/"/g,'""')+'"':x}
+function setCsv(msg,kind){var el=$("csvStatus");el.textContent=msg;el.className="csv-status"+(kind?" "+kind:"")}
+function parseCsv(text){
+ var lines=text.replace(/^﻿/,"").split(/\r?\n/).filter(function(l){return l.trim()!==""}),valid=[],errors=[];
+ if(!lines.length)return{valid:valid,errors:errors};
+ var dl=lines[0].indexOf(";")>=0?";":",",cols=CSVC,start=0,first=csvLine(lines[0],dl).map(function(x){return x.toLowerCase()});
+ if(first.indexOf("lat")>=0&&first.indexOf("lon")>=0){cols=first;start=1}
+ for(var li=start;li<lines.length;li++){
+  var f=csvLine(lines[li],dl),row={},err="";
+  cols.forEach(function(cn,ci){row[cn]=f[ci]===undefined?"":f[ci]});
+  var la=parseFloat(String(row.lat).replace(",",".")),lo=parseFloat(String(row.lon).replace(",","."));
+  if(!(la>=-90&&la<=90&&lo>=-180&&lo<=180))err=t("cla")+"/"+t("clo");
+  var v={};
+  MET.forEach(function(m){var key=m.key,raw=row[key];if(err||raw===undefined||raw==="")return;
+   if(m.type==="num"){var x=Number(String(raw).replace(",","."));if(!isFinite(x)||x<m.min||x>m.max)err=key+": "+raw;else v[key]=x}
+   else if(m.type==="bool"){if(/^(1|да|yes|true|y|д)$/i.test(raw))v[key]=true;else if(/^(0|нет|no|false|n|н)$/i.test(raw))v[key]=false;else err=key+": "+raw}
+   else{var a=String(raw).split(/[|\/ ]+/).filter(Boolean),bad=a.filter(function(o){return!D.origins[o]});if(bad.length)err=key+": "+bad.join(",");else if(a.length)v[key]=a}});
+  if(err)errors.push(t("csvLine")+" "+(li+1)+" ("+(row.name||"—")+"): "+err);
+  else valid.push({name:row.name||(lang==="ru"?"Участок ":"Site ")+(U.length+valid.length+1),lat:la,lon:lo,v:v})}
+ return{valid:valid,errors:errors}}
+function csvVal(m,v){return v==null?"":(m.type==="bool"?(v?1:0):(m.type==="set"?v.join("|"):v))}
+function csvTemplate(){
+ var ex1=["Мой участок",35.1,-110.2,300,8.5,22,-12,31,250,3.2,0,1,0,"volcanic|sedimentary"],ex2=["Участок без измерений",10,20,"","","","","","","","","","",""];
+ return CSVC.join(",")+"\n"+ex1.map(csvEsc).join(",")+"\n"+ex2.map(csvEsc).join(",")+"\n"}
+/* ---------- отчёт, подпись, общая перерисовка ---------- */
+function hashSet(){try{history.replaceState(null,"","#"+tg+"/"+encodeURIComponent(sel))}catch(e){}}
+function hashGet(){
+ var h=decodeURIComponent((location.hash||"").slice(1)).split("/");
+ if(h[0]&&(TG[h[0]]||h[0]==="custom"))tg=h[0];
+ if(h[1])sel=h.slice(1).join("/")}
+function chrome(){
+ document.documentElement.lang=lang;document.title=t("brand");$("brand").textContent=t("brand");
+ document.querySelectorAll("[data-i]").forEach(function(n){n.textContent=t(n.getAttribute("data-i"))});
+ document.querySelectorAll("[data-p]").forEach(function(n){n.placeholder=t(n.getAttribute("data-p"))});
+ document.querySelectorAll("[data-a]").forEach(function(n){var v=t(n.getAttribute("data-a"));n.setAttribute("aria-label",v);if(n.id!=="map")n.title=v});
+ document.querySelectorAll("#lg .chip").forEach(function(b){b.setAttribute("aria-pressed",b.getAttribute("data-l")===lang)})}
+function all(){
+ recalc();var v=vis();if(v.length&&!v.some(function(o){return o.s.slug===sel}))sel=v[0].s.slug;
+ lst();det();records();cmpOpts();cmpTable();cprev();dirty=true}
+function full(){chrome();tgb();flt();prm();phys();meth();srcs();if(D)buildCalc();all()}
+function setLang(l){lang=l;try{localStorage.setItem("nl-lang",l)}catch(e){}$("msg").textContent="";full()}
+/* ---------- события ---------- */
+$("lg").onclick=function(e){var l=e.target.getAttribute("data-l");if(l)setLang(l)};
+$("tg").onclick=function(e){var x=e.target.getAttribute("data-t");if(!x||!D)return;
+ if(x==="custom"&&tg!=="custom"){CUS=JSON.parse(JSON.stringify(TG[tg]?TG[tg].v:{}))}
+ tg=x;hashSet();tgb();prm();all()};
+$("ps").onclick=function(e){var p=e.target.getAttribute("data-p");if(!p)return;presetW(p);flt();prm();all()};
+$("tags").onclick=function(e){var g=e.target.getAttribute("data-g");if(g===null)return;tagF=g;flt();all()};
+$("un").onclick=function(){onlyU=!onlyU;flt();all()};
+$("q").oninput=function(){qs=this.value.trim();all()};
+$("list").onclick=function(e){var b=e.target.closest(".it");if(b)pick(b.getAttribute("data-s"),true)};
+$("under").onclick=function(e){var b=e.target.closest("[data-s]");if(b)pick(b.getAttribute("data-s"),true)};
+$("prm").oninput=function(e){
+ var w=e.target.getAttribute("data-w"),cvk=e.target.getAttribute("data-cv");
+ if(w){W[w]=+e.target.value;preset="";var o=e.target.nextElementSibling;if(o)o.textContent=W[w];e.target.closest(".wr").classList.toggle("off",!(W[w]>0));flt();all();return}
+ if(cvk){var m=MK[cvk],val=e.target.value;
+  if(m.type==="num"){var x=Number(val);if(val===""||!isFinite(x)||x<m.min||x>m.max){if(val==="")delete CUS[cvk];e.target.style.borderColor=val===""?"":"var(--bad)";if(val!=="")return}else{CUS[cvk]=x;e.target.style.borderColor=""}}
+  else if(m.type==="bool"){if(val==="")delete CUS[cvk];else CUS[cvk]=val==="1"}
+  all()}};
+$("prm").onchange=function(e){
+ var box=e.target.closest("[data-cvs]");if(!box)return;var key=box.getAttribute("data-cvs"),a=[];
+ box.querySelectorAll("input:checked").forEach(function(i){a.push(i.value)});if(a.length)CUS[key]=a;else delete CUS[key];all()};
+$("prm").onclick=function(e){var x=e.target.getAttribute("data-copy");if(!x)return;CUS=JSON.parse(JSON.stringify(TG[x].v));prm();all()};
+$("det").onclick=function(e){
+ if(e.target.id==="dl"){var o=find(sel);if(o&&o.s.user){U.splice(o.s.ui,1);userSave();rebuild();sel="";all()}}
+ if(e.target.id==="tocmp"){cmpA=sel;var d=$("cmpbox");d.open=true;cmpOpts();cmpTable();try{d.scrollIntoView({behavior:"smooth",block:"center"})}catch(x){}}};
+$("ca").onchange=function(){cmpA=this.value;if(cmpB===cmpA)cmpB="";cmpOpts();cmpTable()};
+$("cb").onchange=function(){cmpB=this.value;cmpTable()};
+$("rep").onclick=function(){
+ var i=i0(),v=vis().slice(0,5),tx=t("repT")+": "+tname()+"\n\n"+v.map(function(o,j){var s=o.s;
+  return(j+1)+". "+nm(s)+": "+t("match").toLowerCase()+" "+(o.c.match==null?"—":pct(o.c.match)+"%")+", "+t("dataCov").toLowerCase()+" "+o.c.used+"/"+o.c.total+(s.use[i]?". "+s.use[i]:"")}).join("\n")+"\n\n"+t("repFoot"),m=$("msg");
+ try{navigator.clipboard.writeText(tx).then(function(){m.textContent=t("ok")},function(){m.textContent=t("fail")})}catch(e){m.textContent=t("fail")}};
+$("calc").oninput=function(e){if(/\bcx\b/.test(e.target.className||""))cprev()};
+$("calc").onchange=function(e){if(/\bcx\b/.test(e.target.className||""))cprev()};
+$("cnasa").onclick=autofill;
+$("cclr").onclick=function(){setCalc({});cprev();$("cnmsg").textContent=""};
+$("cuse").onclick=function(){
+ if(calcErrors()){$("cmsg").textContent=t("bad");return}
+ CUS=calcVals();tg="custom";hashSet();tgb();prm();all()};
+$("cadd").onclick=function(){
+ var cd=rawCoords(),m=$("cmsg");if(!cd||calcErrors()){m.textContent=t("bad");return}
+ U.push({name:$("cn").value.trim()||(lang==="ru"?"Мой участок ":"My site ")+(U.length+1),lat:cd[0],lon:cd[1],v:calcVals()});
+ userSave();rebuild();m.textContent=t("added");qs="";$("q").value="";pick("user-"+(U.length-1),true);try{$("map").scrollIntoView({behavior:"smooth",block:"center"})}catch(x){}};
+$("cimp").onclick=function(){
+ var p=parseCsv($("csv").value);$("csvErr").innerHTML=p.errors.map(function(x){return'<div class="bad">'+esc(x)+'</div>'}).join("");
+ if(!p.valid.length){setCsv(t("csvNoRows"),"error");return}
+ p.valid.forEach(function(r){U.push(r)});userSave();rebuild();all();
+ setCsv(t("csvImported")+": "+p.valid.length+(p.errors.length?" · "+t("csvSkipped")+": "+p.errors.length:""),p.errors.length?"error":"success")};
+$("csvFile").onchange=function(){var file=this.files&&this.files[0];if(!file)return;var rd=new FileReader();
+ rd.onload=function(){$("csv").value=String(rd.result||"");setCsv(file.name,"success")};rd.onerror=function(){setCsv(t("csvNoRows"),"error")};rd.readAsText(file,"UTF-8")};
+$("csvTemplate").onclick=function(){
+ var blob=new Blob(["﻿",csvTemplate()],{type:"text/csv;charset=utf-8"}),url=URL.createObjectURL(blob),a=document.createElement("a");
+ a.href=url;a.download="nasa-locator-template.csv";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url)};
+$("ccopy").onclick=function(){
+ var rows=vis().map(function(o){var s=o.s;return[nm(s),s.lat,s.lon].concat(MET.filter(function(m){return m.type==="num"}).map(function(m){return csvVal(m,s.v[m.key])}),MET.filter(function(m){return m.type==="bool"}).map(function(m){return csvVal(m,s.v[m.key])}),[csvVal({type:"set"},s.v.origin),o.c.match==null?"":pct(o.c.match),pct(o.c.cov)])});
+ if(!rows.length){setCsv(t("none"),"error");return}
+ var text=[CSVC.concat(["similarity_pct","data_coverage_pct"]).join(",")].concat(rows.map(function(r){return r.map(csvEsc).join(",")})).join("\n");
+ function done(ok){setCsv(ok?t("csvCopied"):t("csvCopyFail"),ok?"success":"error")}
+ if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(text).then(function(){done(true)},function(){done(false)});
+ else{var ta=document.createElement("textarea");ta.value=text;document.body.appendChild(ta);ta.select();try{done(document.execCommand("copy"))}catch(e){done(false)}ta.remove()}};
+/* ---------- запуск ---------- */
 function startLoop(){if(!started){started=true;requestAnimationFrame(loop)}}
-function loadDjangoData(){
-  fetch("/api/analogs/",{headers:{"Accept":"application/json"}})
-    .then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json()})
-    .then(function(data){
-      BASE=Array.isArray(data)?data.filter(function(r){return Array.isArray(r)&&r.length>=10&&Array.isArray(r[4])&&r[4].length===7}):[];
-      rebuild();
-      var v=vis();if(v.length)sel=v[0].i;
-      setLang(lang);
-    })
-    .catch(function(err){
-      console.error("Ошибка API:",err);
-      $("det").innerHTML="<div class='warn'><b>Ошибка:</b> нет связи с базой данных. Запустите сервер Django.</div>";
-    })
-    .finally(startLoop);
-}
-setLang(lang);
+function boot(data){
+ D=data;MET=D.metrics;MK={};MET.forEach(function(m){MK[m.key]=m});
+ TG={};D.targets.forEach(function(x){x.v=flat(x.values);TG[x.key]=x});
+ BASE=D.sites.map(function(s){s.v=flat(s.values);return s});
+ presetW("balanced");hashGet();if(!TG[tg]&&tg!=="custom")tg=D.targets[0]?D.targets[0].key:"custom";
+ if(tg==="custom")CUS=JSON.parse(JSON.stringify(D.targets[0]?D.targets[0].v:{}));
+ rebuild();var v=vis();if(!sel||!find(sel)){if(v.length)sel=v[0].s.slug}
+ full()}
+$("det").innerHTML='<div class="mu">'+t("loading")+'</div>';chrome();
+fetch("/api/locator/",{headers:{"Accept":"application/json"}})
+ .then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json()})
+ .then(boot)
+ .catch(function(err){console.error("Ошибка API:",err);$("det").innerHTML='<div class="err">'+esc(t("apiErr"))+'</div>'})
+ .finally(startLoop);
 loadGeo();
-loadDjangoData();
 </script>
 </body>
 </html>{% endverbatim %}

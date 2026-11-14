@@ -1,0 +1,1736 @@
+{
+ "atacama-yungay": {
+  "temp_mean_c": {
+   "v": 17.1,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 32.9,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -0.6,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 26.8,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 7.3,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 2.3,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 609,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "haughton-devon": {
+  "temp_mean_c": {
+   "v": -14.4,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 16.8,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -48.5,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 31.5,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 310.2,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 3.1,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 310,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "mcmurdo-dry-valleys": {
+  "temp_mean_c": {
+   "v": -21.9,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": -0.2,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -47.1,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 28.9,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 65.7,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 3.9,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 1739,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "dasht-e-lut": {
+  "temp_mean_c": {
+   "v": 25.4,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 49.6,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -5.0,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 33.9,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 62.1,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 3.5,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 319,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "badwater-basin": {
+  "temp_mean_c": {
+   "v": 19.2,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 46.7,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -5.7,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 34.1,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 138.7,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 2.2,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 1822,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "craters-of-the-moon": {
+  "temp_mean_c": {
+   "v": 5.7,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 36.9,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -32.6,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 38.1,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 416.1,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 2.2,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 729,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "lava-beds": {
+  "temp_mean_c": {
+   "v": 8.8,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 39.4,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -23.9,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 37.4,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 675.2,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 1.7,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 1067,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "salar-de-uyuni": {
+  "temp_mean_c": {
+   "v": 7.5,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 25.1,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -14.5,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 28.1,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 332.2,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 2.0,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 44,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "meteor-crater": {
+  "temp_mean_c": {
+   "v": 11.4,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 37.8,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -22.4,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 36.7,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 416.1,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 2.4,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 311,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "flagstaff-cinder-lake": {
+  "temp_mean_c": {
+   "v": 13.8,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 41.0,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -16.0,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 36.5,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 339.5,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 2.5,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 1022,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "hawaii-kilauea-mauna-loa": {
+  "temp_mean_c": {
+   "v": 21.3,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 29.1,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": 15.3,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 9.7,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 2299.5,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 4.0,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 1699,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "iceland-askja": {
+  "temp_mean_c": {
+   "v": -2.8,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 10.3,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -23.8,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 21.4,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 861.4,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 4.8,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 857,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "valles-caldera": {
+  "temp_mean_c": {
+   "v": 8.4,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 36.8,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -22.9,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 36.0,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 383.2,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 1.4,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 913,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "newberry": {
+  "temp_mean_c": {
+   "v": 7.0,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 39.0,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -26.4,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 37.5,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 496.4,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 1.2,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 748,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "pinacate": {
+  "temp_mean_c": {
+   "v": 22.5,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 48.5,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -3.7,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 33.0,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 138.7,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 2.6,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 948,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "katmai": {
+  "temp_mean_c": {
+   "v": -0.2,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 27.1,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -38.7,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 32.4,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 1328.6,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 3.1,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 1712,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "zuni-salt-lake": {
+  "temp_mean_c": {
+   "v": 11.2,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 37.5,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -19.1,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 35.2,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 321.2,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 2.9,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 345,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "rio-tinto": {
+  "temp_mean_c": {
+   "v": 17.9,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 45.0,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -4.5,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 30.2,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 452.6,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 2.6,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 350,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "dallol": {
+  "temp_mean_c": {
+   "v": 26.0,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 40.3,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": 11.3,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 20.7,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 448.9,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 2.6,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 232,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "axel-heiberg": {
+  "temp_mean_c": {
+   "v": -18.3,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 11.4,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -50.5,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 31.1,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 299.3,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 1.9,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 1450,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "turpan": {
+  "temp_mean_c": {
+   "v": 15.3,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 47.0,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -18.4,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 33.5,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 40.1,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 1.6,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 142,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "bockfjorden": {
+  "temp_mean_c": {
+   "v": -7.7,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 11.5,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -39.8,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 26.5,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 620.5,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 3.4,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 768,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "concordia-dome-c": {
+  "temp_mean_c": {
+   "v": -51.2,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": -14.5,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -79.0,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 39.8,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 29.2,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 3.2,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 452,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "el-tatio": {
+  "temp_mean_c": {
+   "v": 6.6,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 26.8,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -9.2,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 29.7,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 40.1,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 3.1,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 1840,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "lonar": {
+  "temp_mean_c": {
+   "v": 26.0,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 45.5,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": 6.1,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 24.3,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 843.1,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 2.5,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 120,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "pavilion-lake": {
+  "temp_mean_c": {
+   "v": 2.9,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 32.5,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -36.0,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 37.4,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 503.7,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 0.3,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 1694,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "qaidam-basin": {
+  "temp_mean_c": {
+   "v": 2.9,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 30.9,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -24.6,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 32.2,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 51.1,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 2.8,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 648,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "makhtesh-ramon": {
+  "temp_mean_c": {
+   "v": 20.6,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 45.9,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -2.4,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 31.9,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 135.1,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 2.6,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 438,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "lanzarote-corona": {
+  "temp_mean_c": {
+   "v": 19.9,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 27.4,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": 13.4,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 7.6,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 109.5,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 5.6,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 532,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "ries-crater": {
+  "temp_mean_c": {
+   "v": 8.7,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 36.3,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -19.1,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 31.7,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 748.2,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 2.6,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 229,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "mdrs-utah": {
+  "temp_mean_c": {
+   "v": 11.8,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 41.1,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -20.0,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 36.2,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 240.9,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 2.5,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 208,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "erebus-ice-caves": {
+  "temp_mean_c": {
+   "v": -19.4,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 0.4,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -42.2,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 26.9,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 160.6,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 3.7,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 3499,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "don-juan-pond": {
+  "temp_mean_c": {
+   "v": -29.9,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": -5.4,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -56.0,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 31.8,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 91.2,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 6.2,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 1762,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ },
+ "badain-jaran": {
+  "temp_mean_c": {
+   "v": 9.0,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_max_c": {
+   "v": 41.3,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_min_c": {
+   "v": -23.2,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "temp_diurnal_c": {
+   "v": 35.2,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "precip_mm": {
+   "v": 98.6,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "wind_ms": {
+   "v": 3.3,
+   "kind": "measured",
+   "src": "NASA POWER, климатология (метеорология MERRA-2, ячейка сетки ~50 км)",
+   "url": "https://power.larc.nasa.gov/",
+   "date": "2026-11-14"
+  },
+  "relief_m": {
+   "v": 370,
+   "kind": "measured",
+   "src": "ASTER GDEM v3 (NASA/METI) через OpenTopoData: сетка 9×9 на площади 20×20 км",
+   "url": "https://www.opentopodata.org/",
+   "date": "2026-11-14"
+  }
+ }
+}

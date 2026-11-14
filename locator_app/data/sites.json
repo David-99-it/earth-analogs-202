@@ -1,0 +1,2107 @@
+[
+ {
+  "slug": "atacama-yungay",
+  "name": [
+   "Атакама, район Юнгай",
+   "Atacama Desert, Yungay"
+  ],
+  "region": [
+   "Чили, Антофагаста",
+   "Chile, Antofagasta"
+  ],
+  "lat": -24.08,
+  "lon": -69.99,
+  "area_km2": null,
+  "analog_for": "mars",
+  "tags": [
+   "life",
+   "dust",
+   "rover"
+  ],
+  "understudied": false,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "sedimentary",
+     "evaporite"
+    ],
+    "kind": "literature",
+    "src": "Wikipedia: Atacama Desert",
+    "url": "https://en.wikipedia.org/wiki/Atacama_Desert"
+   },
+   "ice": {
+    "v": false,
+    "kind": "inferred",
+    "src": "Гиперзасушливая низменная пустыня: постоянного льда нет",
+    "url": ""
+   },
+   "bio": {
+    "v": true,
+    "kind": "literature",
+    "src": "Navarro-González et al., Science 302 (2003): марсианские почвы Атакамы",
+    "url": "https://doi.org/10.1126/science.1089143"
+   }
+  },
+  "use": [
+   "Одно из самых сухих мест Земли. Здесь отрабатывают поиск жизни в почве на пределе влажности и работу приборов в пыли, как на Марсе.",
+   "One of the driest places on Earth. Used to practise searching for life in soil at the dry limit and running instruments in dust, as on Mars."
+  ],
+  "study": [
+   "Почвы Юнгай описаны как «марсианские»: почти нет органики и микробной жизни.",
+   "Yungay soils were described as Mars-like: almost no organics or microbial life."
+  ],
+  "quirk": [
+   "",
+   ""
+  ],
+  "image_query": "Atacama Desert landscape",
+  "refs": [
+   {
+    "t": "Navarro-González et al., Science 302 (2003): марсианские почвы Атакамы",
+    "u": "https://doi.org/10.1126/science.1089143"
+   },
+   {
+    "t": "Wikipedia: Atacama Desert",
+    "u": "https://en.wikipedia.org/wiki/Atacama_Desert"
+   }
+  ]
+ },
+ {
+  "slug": "haughton-devon",
+  "name": [
+   "Кратер Хотон, о. Девон",
+   "Haughton crater, Devon Island"
+  ],
+  "region": [
+   "Канада, Нунавут",
+   "Canada, Nunavut"
+  ],
+  "lat": 75.37,
+  "lon": -89.67,
+  "area_km2": 415,
+  "analog_for": "mars",
+  "tags": [
+   "rover",
+   "ice",
+   "thermal"
+  ],
+  "understudied": false,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "impact"
+    ],
+    "kind": "literature",
+    "src": "Wikipedia: Haughton impact structure",
+    "url": "https://en.wikipedia.org/wiki/Haughton_impact_structure"
+   },
+   "ice": {
+    "v": true,
+    "kind": "literature",
+    "src": "Wikipedia: Haughton impact structure",
+    "url": "https://en.wikipedia.org/wiki/Haughton_impact_structure"
+   }
+  },
+  "use": [
+   "Холодная полярная пустыня с ударным кратером. Здесь проходит Haughton–Mars Project: на этом месте отрабатывают полевую технику и порядок работы экипажей для Марса.",
+   "A cold polar desert with an impact crater. Home of the Haughton-Mars Project, where field equipment and crew procedures for Mars are rehearsed."
+  ],
+  "study": [
+   "",
+   ""
+  ],
+  "quirk": [
+   "",
+   ""
+  ],
+  "image_query": "Haughton impact structure Devon Island",
+  "refs": [
+   {
+    "t": "Wikipedia: Haughton impact structure",
+    "u": "https://en.wikipedia.org/wiki/Haughton_impact_structure"
+   }
+  ]
+ },
+ {
+  "slug": "mcmurdo-dry-valleys",
+  "name": [
+   "Сухие долины Мак-Мёрдо",
+   "McMurdo Dry Valleys"
+  ],
+  "region": [
+   "Антарктида, Земля Виктории",
+   "Antarctica, Victoria Land"
+  ],
+  "lat": -77.6,
+  "lon": 163.0,
+  "area_km2": 4800,
+  "analog_for": "mars",
+  "tags": [
+   "ice",
+   "life",
+   "thermal",
+   "dust"
+  ],
+  "understudied": false,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "glacial",
+     "aeolian"
+    ],
+    "kind": "literature",
+    "src": "Wikipedia: McMurdo Dry Valleys",
+    "url": "https://en.wikipedia.org/wiki/McMurdo_Dry_Valleys"
+   },
+   "ice": {
+    "v": true,
+    "kind": "literature",
+    "src": "Wikipedia: McMurdo Dry Valleys",
+    "url": "https://en.wikipedia.org/wiki/McMurdo_Dry_Valleys"
+   },
+   "bio": {
+    "v": true,
+    "kind": "literature",
+    "src": "Wikipedia: McMurdo Dry Valleys",
+    "url": "https://en.wikipedia.org/wiki/McMurdo_Dry_Valleys"
+   }
+  },
+  "use": [
+   "Холодная гиперзасушливая пустыня с мерзлотой. Ближайший земной аналог приполярных районов Марса: лёд под сухой почвой, жизнь внутри камней.",
+   "A cold hyper-arid desert with permafrost. The closest Earth analog of Mars's high latitudes: ice under dry soil, life inside rocks."
+  ],
+  "study": [
+   "",
+   ""
+  ],
+  "quirk": [
+   "",
+   ""
+  ],
+  "image_query": "McMurdo Dry Valleys",
+  "refs": [
+   {
+    "t": "Wikipedia: McMurdo Dry Valleys",
+    "u": "https://en.wikipedia.org/wiki/McMurdo_Dry_Valleys"
+   }
+  ]
+ },
+ {
+  "slug": "dasht-e-lut",
+  "name": [
+   "Пустыня Деште-Лут",
+   "Dasht-e Lut desert"
+  ],
+  "region": [
+   "Иран",
+   "Iran"
+  ],
+  "lat": 30.15,
+  "lon": 59.48,
+  "area_km2": null,
+  "analog_for": "mars",
+  "tags": [
+   "thermal",
+   "dust",
+   "rover"
+  ],
+  "understudied": true,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "aeolian"
+    ],
+    "kind": "literature",
+    "src": "Wikipedia: Dasht-e Lut",
+    "url": "https://en.wikipedia.org/wiki/Dasht-e_Lut"
+   },
+   "ice": {
+    "v": false,
+    "kind": "inferred",
+    "src": "Жаркая пустыня: постоянного льда нет",
+    "url": ""
+   }
+  },
+  "use": [
+   "Экстремальная жара и ветровые формы рельефа (ярданги): проверка техники на перегрев и абразивную пыль.",
+   "Extreme heat and wind-carved landforms (yardangs): tests of hardware against overheating and abrasive dust."
+  ],
+  "study": [
+   "Добавлено по вашей таблице как малоизученное. Как планетарный аналог упоминается в обзорах редко, поэтому в базе пока мало данных по нему.",
+   "Added from your table as under-studied. It is rarely cited as a planetary analog, so data on it is thin."
+  ],
+  "quirk": [
+   "По данным спутника NASA MODIS, здесь зафиксированы одни из самых высоких температур поверхности Земли, около 70 °C. Это температура грунта, а не воздуха.",
+   "NASA's MODIS satellite recorded some of the highest land-surface temperatures on Earth here, about 70 C. That is ground temperature, not air."
+  ],
+  "image_query": "Dasht-e Lut kaluts desert",
+  "refs": [
+   {
+    "t": "Wikipedia: Dasht-e Lut",
+    "u": "https://en.wikipedia.org/wiki/Dasht-e_Lut"
+   }
+  ]
+ },
+ {
+  "slug": "badwater-basin",
+  "name": [
+   "Долина Смерти, впадина Бэдуотер",
+   "Death Valley, Badwater Basin"
+  ],
+  "region": [
+   "США, Калифорния",
+   "USA, California"
+  ],
+  "lat": 36.23,
+  "lon": -116.77,
+  "area_km2": null,
+  "analog_for": "mars",
+  "tags": [
+   "thermal",
+   "dust"
+  ],
+  "understudied": true,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "evaporite",
+     "sedimentary"
+    ],
+    "kind": "literature",
+    "src": "Wikipedia: Badwater Basin",
+    "url": "https://en.wikipedia.org/wiki/Badwater_Basin"
+   },
+   "ice": {
+    "v": false,
+    "kind": "inferred",
+    "src": "Жаркая низменная пустыня: постоянного льда нет",
+    "url": ""
+   }
+  },
+  "use": [
+   "Солончаки и аллювиальные конусы при жаре выше 50 °C. Такие высохшие озёра часто рассматривают как аналог древних озёр Марса.",
+   "Salt flats and alluvial fans in 50 C+ heat. Such dried lakes are often considered analogs of ancient Martian lakes."
+  ],
+  "study": [
+   "Добавлено по вашей таблице как малоизученное. Метеоданные NASA ниже получены для ячейки сетки 50 км и сглаживают впадину.",
+   "Added from your table as under-studied. The NASA meteorology below comes from a ~50 km grid cell and smooths the basin."
+  ],
+  "quirk": [
+   "",
+   ""
+  ],
+  "image_query": "Badwater Basin Death Valley salt flat",
+  "refs": [
+   {
+    "t": "Wikipedia: Badwater Basin",
+    "u": "https://en.wikipedia.org/wiki/Badwater_Basin"
+   }
+  ]
+ },
+ {
+  "slug": "craters-of-the-moon",
+  "name": [
+   "Кратеры Луны, Айдахо",
+   "Craters of the Moon, Idaho"
+  ],
+  "region": [
+   "США, Айдахо",
+   "USA, Idaho"
+  ],
+  "lat": 43.42,
+  "lon": -113.52,
+  "area_km2": null,
+  "analog_for": "both",
+  "tags": [
+   "rover",
+   "shelter"
+  ],
+  "understudied": false,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "volcanic"
+    ],
+    "kind": "literature",
+    "src": "NPS: Craters of the Moon",
+    "url": "https://www.nps.gov/crmo/index.htm"
+   },
+   "ice": {
+    "v": true,
+    "kind": "literature",
+    "src": "NPS: Craters of the Moon",
+    "url": "https://www.nps.gov/crmo/index.htm"
+   },
+   "caves": {
+    "v": true,
+    "kind": "literature",
+    "src": "NPS: Craters of the Moon",
+    "url": "https://www.nps.gov/crmo/index.htm"
+   }
+  },
+  "use": [
+   "Лавовые поля и лавовые трубки. По данным NPS, в 1969 году здесь проходили геологическую подготовку астронавты Apollo 14.",
+   "Lava fields and lava tubes. According to the NPS, Apollo 14 astronauts trained in geology here in 1969."
+  ],
+  "study": [
+   "",
+   ""
+  ],
+  "quirk": [
+   "",
+   ""
+  ],
+  "image_query": "Craters of the Moon National Monument lava",
+  "refs": [
+   {
+    "t": "NPS: Craters of the Moon",
+    "u": "https://www.nps.gov/crmo/index.htm"
+   }
+  ]
+ },
+ {
+  "slug": "lava-beds",
+  "name": [
+   "Лава-Бедс",
+   "Lava Beds National Monument"
+  ],
+  "region": [
+   "США, Калифорния",
+   "USA, California"
+  ],
+  "lat": 41.71,
+  "lon": -121.51,
+  "area_km2": 186,
+  "analog_for": "moon",
+  "tags": [
+   "shelter",
+   "ice",
+   "rover"
+  ],
+  "understudied": false,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "volcanic"
+    ],
+    "kind": "literature",
+    "src": "NPS: Lava Beds National Monument",
+    "url": "https://www.nps.gov/labe/index.htm"
+   },
+   "ice": {
+    "v": true,
+    "kind": "literature",
+    "src": "NPS: Lava Beds National Monument",
+    "url": "https://www.nps.gov/labe/index.htm"
+   },
+   "caves": {
+    "v": true,
+    "kind": "literature",
+    "src": "NPS: Lava Beds National Monument",
+    "url": "https://www.nps.gov/labe/index.htm"
+   }
+  },
+  "use": [
+   "Сотни лавовых трубок. Ближайший земной аналог укрытий в лунных лавовых трубках; в некоторых пещерах лежит лёд круглый год.",
+   "Hundreds of lava tubes. The closest Earth analog of shelters in lunar lava tubes; some caves hold ice all year."
+  ],
+  "study": [
+   "",
+   ""
+  ],
+  "quirk": [
+   "",
+   ""
+  ],
+  "image_query": "Lava Beds National Monument cave",
+  "refs": [
+   {
+    "t": "NPS: Lava Beds National Monument",
+    "u": "https://www.nps.gov/labe/index.htm"
+   }
+  ]
+ },
+ {
+  "slug": "salar-de-uyuni",
+  "name": [
+   "Солончак Уюни",
+   "Salar de Uyuni"
+  ],
+  "region": [
+   "Боливия, Потоси",
+   "Bolivia, Potosi"
+  ],
+  "lat": -20.13,
+  "lon": -67.49,
+  "area_km2": 10582,
+  "analog_for": "mars",
+  "tags": [
+   "dust",
+   "rover"
+  ],
+  "understudied": true,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "evaporite"
+    ],
+    "kind": "literature",
+    "src": "Wikipedia: Salar de Uyuni",
+    "url": "https://en.wikipedia.org/wiki/Salar_de_Uyuni"
+   },
+   "ice": {
+    "v": false,
+    "kind": "inferred",
+    "src": "Высокогорная соляная равнина, постоянного льда нет",
+    "url": ""
+   }
+  },
+  "use": [
+   "Огромная плоская соляная равнина: модель высохших озёр и соляных отложений Марса.",
+   "A vast flat salt plain: a model of dried lakes and salt deposits on Mars."
+  ],
+  "study": [
+   "Добавлено по вашей таблице как малоизученное. По описаниям, из-за своей ровности служит эталоном для калибровки спутниковых высотомеров.",
+   "Added from your table as under-studied. By reports, its flatness makes it a reference for calibrating satellite altimeters."
+  ],
+  "quirk": [
+   "Одна из самых ровных поверхностей планеты: сравните её перепад высот на 20×20 км с другими местами в таблице параметров.",
+   "One of the flattest surfaces on the planet: compare its relief over 20x20 km with other sites in the parameter table."
+  ],
+  "image_query": "Salar de Uyuni salt flat",
+  "refs": [
+   {
+    "t": "Wikipedia: Salar de Uyuni",
+    "u": "https://en.wikipedia.org/wiki/Salar_de_Uyuni"
+   }
+  ]
+ },
+ {
+  "slug": "meteor-crater",
+  "name": [
+   "Метеоритный кратер, Аризона",
+   "Meteor Crater, Arizona"
+  ],
+  "region": [
+   "США, Аризона",
+   "USA, Arizona"
+  ],
+  "lat": 35.03,
+  "lon": -111.02,
+  "area_km2": null,
+  "analog_for": "moon",
+  "tags": [
+   "rover"
+  ],
+  "understudied": false,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "impact"
+    ],
+    "kind": "literature",
+    "src": "Wikipedia: Meteor Crater",
+    "url": "https://en.wikipedia.org/wiki/Meteor_Crater"
+   },
+   "ice": {
+    "v": false,
+    "kind": "inferred",
+    "src": "Тёплая полупустыня: мерзлоты нет",
+    "url": ""
+   }
+  },
+  "use": [
+   "Хорошо сохранившийся ударный кратер диаметром около 1,2 км и возрастом около 50 тысяч лет: модель небольших лунных кратеров.",
+   "A well-preserved impact crater about 1.2 km wide and ~50,000 years old: a model of small lunar craters."
+  ],
+  "study": [
+   "",
+   ""
+  ],
+  "quirk": [
+   "",
+   ""
+  ],
+  "image_query": "Meteor Crater Arizona",
+  "refs": [
+   {
+    "t": "Wikipedia: Meteor Crater",
+    "u": "https://en.wikipedia.org/wiki/Meteor_Crater"
+   }
+  ]
+ },
+ {
+  "slug": "flagstaff-cinder-lake",
+  "name": [
+   "Флагстафф: Синдер-Лейк и Сансет-Кратер",
+   "Flagstaff: Cinder Lake and Sunset Crater"
+  ],
+  "region": [
+   "США, Аризона",
+   "USA, Arizona"
+  ],
+  "lat": 35.38,
+  "lon": -111.5,
+  "area_km2": null,
+  "analog_for": "moon",
+  "tags": [
+   "rover"
+  ],
+  "understudied": false,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "volcanic"
+    ],
+    "kind": "literature",
+    "src": "NPS: Sunset Crater Volcano",
+    "url": "https://www.nps.gov/sucr/index.htm"
+   },
+   "ice": {
+    "v": false,
+    "kind": "inferred",
+    "src": "Многолетней мерзлоты нет",
+    "url": ""
+   }
+  },
+  "use": [
+   "Шлаковые конусы и лавовые потоки рядом с полем Синдер-Лейк, где в конце 1960-х взрывами создавали «лунную» местность для тренировок астронавтов Apollo.",
+   "Cinder cones and lava flows next to the Cinder Lake field, where explosions made a 'lunar' landscape for Apollo astronaut training in the late 1960s."
+  ],
+  "study": [
+   "Объединяет две строки вашей таблицы (Синдер-Лейк и поток Бонито у Сансет-Кратера): у них совпадали координаты.",
+   "Merges two rows of your table (Cinder Lake and the Bonito flow at Sunset Crater): they had identical coordinates."
+  ],
+  "quirk": [
+   "",
+   ""
+  ],
+  "image_query": "Sunset Crater Volcano Flagstaff lava",
+  "refs": [
+   {
+    "t": "NPS: Sunset Crater Volcano",
+    "u": "https://www.nps.gov/sucr/index.htm"
+   }
+  ]
+ },
+ {
+  "slug": "hawaii-kilauea-mauna-loa",
+  "name": [
+   "Гавайи: Килауэа и Мауна-Лоа",
+   "Hawaii: Kilauea and Mauna Loa"
+  ],
+  "region": [
+   "США, Гавайи",
+   "USA, Hawaii"
+  ],
+  "lat": 19.4,
+  "lon": -155.3,
+  "area_km2": null,
+  "analog_for": "both",
+  "tags": [
+   "rover",
+   "shelter"
+  ],
+  "understudied": false,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "volcanic"
+    ],
+    "kind": "literature",
+    "src": "Wikipedia: Kazumura Cave",
+    "url": "https://en.wikipedia.org/wiki/Kazumura_Cave"
+   },
+   "caves": {
+    "v": true,
+    "kind": "literature",
+    "src": "Wikipedia: Kazumura Cave",
+    "url": "https://en.wikipedia.org/wiki/Kazumura_Cave"
+   }
+  },
+  "use": [
+   "Базальтовые поля и лавовые трубки. На склоне Мауна-Лоа работает аналоговая станция HI-SEAS, а палагонитовый грунт с Мауна-Кеа стал основой марсианского симулянта JSC Mars-1.",
+   "Basalt fields and lava tubes. The HI-SEAS analog habitat sits on Mauna Loa, and palagonitic soil from Mauna Kea became the basis of the JSC Mars-1 simulant."
+  ],
+  "study": [
+   "",
+   ""
+  ],
+  "quirk": [
+   "",
+   ""
+  ],
+  "image_query": "Mauna Loa lava Hawaii",
+  "refs": [
+   {
+    "t": "Wikipedia: Kazumura Cave",
+    "u": "https://en.wikipedia.org/wiki/Kazumura_Cave"
+   },
+   {
+    "t": "Wikipedia: Hawaii Space Exploration Analog and Simulation",
+    "u": "https://en.wikipedia.org/wiki/Hawaii_Space_Exploration_Analog_and_Simulation"
+   }
+  ]
+ },
+ {
+  "slug": "iceland-askja",
+  "name": [
+   "Исландия: Аскья",
+   "Iceland: Askja"
+  ],
+  "region": [
+   "Исландия, нагорье",
+   "Iceland, highlands"
+  ],
+  "lat": 65.03,
+  "lon": -16.75,
+  "area_km2": null,
+  "analog_for": "both",
+  "tags": [
+   "rover",
+   "ice",
+   "shelter"
+  ],
+  "understudied": false,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "volcanic",
+     "glacial"
+    ],
+    "kind": "literature",
+    "src": "Wikipedia: Askja",
+    "url": "https://en.wikipedia.org/wiki/Askja"
+   },
+   "ice": {
+    "v": true,
+    "kind": "literature",
+    "src": "Wikipedia: Askja",
+    "url": "https://en.wikipedia.org/wiki/Askja"
+   },
+   "caves": {
+    "v": true,
+    "kind": "inferred",
+    "src": "Лавовые трубки обычны в исландских базальтовых полях",
+    "url": ""
+   }
+  },
+  "use": [
+   "Вулканы подо льдом и базальтовые пустоши. По публикациям, в 1960-х здесь готовились астронавты Apollo. Для Марса интересно взаимодействие лавы и льда.",
+   "Volcanoes under ice and basalt wastelands. By publications, Apollo astronauts trained here in the 1960s. For Mars, lava-ice interaction matters."
+  ],
+  "study": [
+   "",
+   ""
+  ],
+  "quirk": [
+   "",
+   ""
+  ],
+  "image_query": "Askja caldera Iceland",
+  "refs": [
+   {
+    "t": "Wikipedia: Askja",
+    "u": "https://en.wikipedia.org/wiki/Askja"
+   }
+  ]
+ },
+ {
+  "slug": "valles-caldera",
+  "name": [
+   "Кальдера Вальес",
+   "Valles Caldera"
+  ],
+  "region": [
+   "США, Нью-Мексико",
+   "USA, New Mexico"
+  ],
+  "lat": 35.9,
+  "lon": -106.5,
+  "area_km2": null,
+  "analog_for": "moon",
+  "tags": [
+   "rover"
+  ],
+  "understudied": false,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "volcanic"
+    ],
+    "kind": "literature",
+    "src": "NPS: Valles Caldera",
+    "url": "https://www.nps.gov/vall/index.htm"
+   }
+  },
+  "use": [
+   "Крупная кальдера с лавовыми куполами: модель вулканических форм для геологических маршрутов.",
+   "A large caldera with lava domes: a model of volcanic landforms for geology traverses."
+  ],
+  "study": [
+   "",
+   ""
+  ],
+  "quirk": [
+   "",
+   ""
+  ],
+  "image_query": "Valles Caldera New Mexico",
+  "refs": [
+   {
+    "t": "NPS: Valles Caldera",
+    "u": "https://www.nps.gov/vall/index.htm"
+   }
+  ]
+ },
+ {
+  "slug": "newberry",
+  "name": [
+   "Вулкан Ньюберри",
+   "Newberry Volcano"
+  ],
+  "region": [
+   "США, Орегон",
+   "USA, Oregon"
+  ],
+  "lat": 43.7,
+  "lon": -121.2,
+  "area_km2": null,
+  "analog_for": "moon",
+  "tags": [
+   "rover",
+   "shelter"
+  ],
+  "understudied": false,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "volcanic"
+    ],
+    "kind": "literature",
+    "src": "Wikipedia: Newberry Volcano",
+    "url": "https://en.wikipedia.org/wiki/Newberry_Volcano"
+   },
+   "caves": {
+    "v": true,
+    "kind": "literature",
+    "src": "Wikipedia: Newberry Volcano",
+    "url": "https://en.wikipedia.org/wiki/Newberry_Volcano"
+   }
+  },
+  "use": [
+   "Щитовой вулкан с лавовыми потоками и лавовыми трубками (например, пещера Lava River Cave).",
+   "A shield volcano with lava flows and lava tubes (for example Lava River Cave)."
+  ],
+  "study": [
+   "",
+   ""
+  ],
+  "quirk": [
+   "",
+   ""
+  ],
+  "image_query": "Newberry Volcano Oregon",
+  "refs": [
+   {
+    "t": "Wikipedia: Newberry Volcano",
+    "u": "https://en.wikipedia.org/wiki/Newberry_Volcano"
+   }
+  ]
+ },
+ {
+  "slug": "pinacate",
+  "name": [
+   "Вулканическое поле Пинакате",
+   "Pinacate volcanic field"
+  ],
+  "region": [
+   "Мексика, Сонора",
+   "Mexico, Sonora"
+  ],
+  "lat": 31.8,
+  "lon": -113.5,
+  "area_km2": null,
+  "analog_for": "moon",
+  "tags": [
+   "rover",
+   "dust",
+   "thermal"
+  ],
+  "understudied": false,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "volcanic",
+     "aeolian"
+    ],
+    "kind": "literature",
+    "src": "Wikipedia: Pinacate Peaks",
+    "url": "https://en.wikipedia.org/wiki/Pinacate_Peaks"
+   },
+   "ice": {
+    "v": false,
+    "kind": "inferred",
+    "src": "Жаркая пустыня: постоянного льда нет",
+    "url": ""
+   }
+  },
+  "use": [
+   "Маары, шлаковые конусы и лавовые поля посреди песчаной пустыни: модель вулканических форм в пыльной жаркой среде.",
+   "Maars, cinder cones and lava fields in a sandy desert: a model of volcanic landforms in a hot, dusty setting."
+  ],
+  "study": [
+   "",
+   ""
+  ],
+  "quirk": [
+   "",
+   ""
+  ],
+  "image_query": "Pinacate volcanic field",
+  "refs": [
+   {
+    "t": "Wikipedia: Pinacate Peaks",
+    "u": "https://en.wikipedia.org/wiki/Pinacate_Peaks"
+   }
+  ]
+ },
+ {
+  "slug": "katmai",
+  "name": [
+   "Катмай, Долина десяти тысяч дымов",
+   "Katmai, Valley of Ten Thousand Smokes"
+  ],
+  "region": [
+   "США, Аляска",
+   "USA, Alaska"
+  ],
+  "lat": 58.3,
+  "lon": -155.2,
+  "area_km2": null,
+  "analog_for": "moon",
+  "tags": [
+   "rover",
+   "ice"
+  ],
+  "understudied": false,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "volcanic",
+     "glacial"
+    ],
+    "kind": "literature",
+    "src": "NPS: Katmai National Park",
+    "url": "https://www.nps.gov/katm/index.htm"
+   },
+   "ice": {
+    "v": true,
+    "kind": "literature",
+    "src": "NPS: Katmai National Park",
+    "url": "https://www.nps.gov/katm/index.htm"
+   }
+  },
+  "use": [
+   "Поля вулканического пепла и пирокластических потоков после извержения 1912 года: модель свежих вулканических отложений.",
+   "Fields of ash and pyroclastic flows from the 1912 eruption: a model of fresh volcanic deposits."
+  ],
+  "study": [
+   "",
+   ""
+  ],
+  "quirk": [
+   "",
+   ""
+  ],
+  "image_query": "Valley of Ten Thousand Smokes Katmai",
+  "refs": [
+   {
+    "t": "NPS: Katmai National Park",
+    "u": "https://www.nps.gov/katm/index.htm"
+   }
+  ]
+ },
+ {
+  "slug": "zuni-salt-lake",
+  "name": [
+   "Озеро Зуни (маар)",
+   "Zuni Salt Lake maar"
+  ],
+  "region": [
+   "США, Нью-Мексико",
+   "USA, New Mexico"
+  ],
+  "lat": 34.4,
+  "lon": -108.8,
+  "area_km2": null,
+  "analog_for": "moon",
+  "tags": [
+   "rover"
+  ],
+  "understudied": false,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "volcanic",
+     "evaporite"
+    ],
+    "kind": "literature",
+    "src": "Wikipedia: Zuni-Bandera volcanic field",
+    "url": "https://en.wikipedia.org/wiki/Zuni-Bandera_volcanic_field"
+   }
+  },
+  "use": [
+   "Маар с солёным озером в вулканическом поле Зуни–Бандера: модель взрывных вулканических кратеров.",
+   "A maar with a salt lake in the Zuni-Bandera volcanic field: a model of explosive volcanic craters."
+  ],
+  "study": [
+   "",
+   ""
+  ],
+  "quirk": [
+   "",
+   ""
+  ],
+  "image_query": "Zuni Salt Lake New Mexico",
+  "refs": [
+   {
+    "t": "Wikipedia: Zuni-Bandera volcanic field",
+    "u": "https://en.wikipedia.org/wiki/Zuni-Bandera_volcanic_field"
+   }
+  ]
+ },
+ {
+  "slug": "rio-tinto",
+  "name": [
+   "Река Рио-Тинто",
+   "Rio Tinto river"
+  ],
+  "region": [
+   "Испания, Уэльва",
+   "Spain, Huelva"
+  ],
+  "lat": 37.7,
+  "lon": -6.6,
+  "area_km2": 1700,
+  "analog_for": "mars",
+  "tags": [
+   "life"
+  ],
+  "understudied": false,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "hydrothermal"
+    ],
+    "kind": "literature",
+    "src": "Wikipedia: Rio Tinto (river)",
+    "url": "https://en.wikipedia.org/wiki/Rio_Tinto_(river)"
+   },
+   "ice": {
+    "v": false,
+    "kind": "inferred",
+    "src": "Средиземноморский климат: постоянного льда нет",
+    "url": ""
+   },
+   "bio": {
+    "v": true,
+    "kind": "literature",
+    "src": "Wikipedia: Rio Tinto (river)",
+    "url": "https://en.wikipedia.org/wiki/Rio_Tinto_(river)"
+   }
+  },
+  "use": [
+   "Кислая красная река с железом и серой, где живут микробы. Гематит и ярозит напоминают минералы, найденные на Марсе. Здесь работал проект NASA MARTE.",
+   "An acidic red river rich in iron and sulfur, home to microbes. Hematite and jarosite echo minerals found on Mars. NASA's MARTE project worked here."
+  ],
+  "study": [
+   "",
+   ""
+  ],
+  "quirk": [
+   "",
+   ""
+  ],
+  "image_query": "Rio Tinto river Spain",
+  "refs": [
+   {
+    "t": "Wikipedia: Rio Tinto (river)",
+    "u": "https://en.wikipedia.org/wiki/Rio_Tinto_(river)"
+   }
+  ]
+ },
+ {
+  "slug": "dallol",
+  "name": [
+   "Даллол, впадина Данакиль",
+   "Dallol, Danakil Depression"
+  ],
+  "region": [
+   "Эфиопия, Афар",
+   "Ethiopia, Afar"
+  ],
+  "lat": 14.24,
+  "lon": 40.3,
+  "area_km2": null,
+  "analog_for": "mars",
+  "tags": [
+   "life",
+   "thermal"
+  ],
+  "understudied": false,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "hydrothermal",
+     "evaporite",
+     "volcanic"
+    ],
+    "kind": "literature",
+    "src": "Wikipedia: Dallol (Ethiopia)",
+    "url": "https://en.wikipedia.org/wiki/Dallol_(Ethiopia)"
+   },
+   "ice": {
+    "v": false,
+    "kind": "inferred",
+    "src": "Одно из самых жарких мест Земли: льда нет",
+    "url": ""
+   },
+   "bio": {
+    "v": true,
+    "kind": "literature",
+    "src": "Wikipedia: Dallol (Ethiopia)",
+    "url": "https://en.wikipedia.org/wiki/Dallol_(Ethiopia)"
+   }
+  },
+  "use": [
+   "Горячие кислые рассолы и соляные трубы на границе возможной жизни: здесь ищут, где жизнь перестаёт быть возможной.",
+   "Hot acidic brines and salt chimneys at the edge of possible life: researchers look for where life stops being possible."
+  ],
+  "study": [
+   "Микробы найдены в окрестных солёных озёрах, а в самых кислых и горячих водоёмах признаков жизни не нашли (Belilla et al., 2019, Nature Ecology & Evolution).",
+   "Microbes were found in nearby salt lakes, but not in the most acidic, hottest pools (Belilla et al., 2019, Nature Ecology & Evolution)."
+  ],
+  "quirk": [
+   "",
+   ""
+  ],
+  "image_query": "Dallol Danakil Depression",
+  "refs": [
+   {
+    "t": "Wikipedia: Dallol (Ethiopia)",
+    "u": "https://en.wikipedia.org/wiki/Dallol_(Ethiopia)"
+   }
+  ]
+ },
+ {
+  "slug": "axel-heiberg",
+  "name": [
+   "Остров Аксель-Хейберг",
+   "Axel Heiberg Island"
+  ],
+  "region": [
+   "Канада, Нунавут",
+   "Canada, Nunavut"
+  ],
+  "lat": 79.43,
+  "lon": -90.77,
+  "area_km2": null,
+  "analog_for": "mars",
+  "tags": [
+   "ice",
+   "life",
+   "thermal"
+  ],
+  "understudied": false,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "evaporite"
+    ],
+    "kind": "literature",
+    "src": "Wikipedia: Axel Heiberg Island",
+    "url": "https://en.wikipedia.org/wiki/Axel_Heiberg_Island"
+   },
+   "ice": {
+    "v": true,
+    "kind": "literature",
+    "src": "Wikipedia: Axel Heiberg Island",
+    "url": "https://en.wikipedia.org/wiki/Axel_Heiberg_Island"
+   },
+   "bio": {
+    "v": true,
+    "kind": "literature",
+    "src": "Wikipedia: Axel Heiberg Island",
+    "url": "https://en.wikipedia.org/wiki/Axel_Heiberg_Island"
+   }
+  },
+  "use": [
+   "Холодные солёные источники (Gypsum Hill, Lost Hammer) бьют сквозь вечную мерзлоту. Это модель возможных источников на Марсе.",
+   "Cold salty springs (Gypsum Hill, Lost Hammer) flow through permafrost. A model of possible springs on Mars."
+  ],
+  "study": [
+   "",
+   ""
+  ],
+  "quirk": [
+   "",
+   ""
+  ],
+  "image_query": "Axel Heiberg Island",
+  "refs": [
+   {
+    "t": "Wikipedia: Axel Heiberg Island",
+    "u": "https://en.wikipedia.org/wiki/Axel_Heiberg_Island"
+   }
+  ]
+ },
+ {
+  "slug": "turpan",
+  "name": [
+   "Турфанская впадина",
+   "Turpan Depression"
+  ],
+  "region": [
+   "Китай, Синьцзян",
+   "China, Xinjiang"
+  ],
+  "lat": 42.7,
+  "lon": 89.3,
+  "area_km2": null,
+  "analog_for": "mars",
+  "tags": [
+   "thermal",
+   "dust"
+  ],
+  "understudied": true,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "sedimentary",
+     "evaporite"
+    ],
+    "kind": "literature",
+    "src": "Wikipedia: Turpan Depression",
+    "url": "https://en.wikipedia.org/wiki/Turpan_Depression"
+   }
+  },
+  "use": [
+   "Жаркая засушливая впадина с солёным озером, одна из самых низких точек Земли (около −154 м).",
+   "A hot arid depression with a salt lake, one of the lowest points on Earth (about -154 m)."
+  ],
+  "study": [
+   "Добавлено по вашей таблице как малоизученное. Данных о нём как об аналоге мало, поэтому значения льда, пещер и жизни оставлены пустыми.",
+   "Added from your table as under-studied. Little is known of it as an analog, so ice, caves and life values are left empty."
+  ],
+  "quirk": [
+   "",
+   ""
+  ],
+  "image_query": "Turpan Depression Flaming Mountains",
+  "refs": [
+   {
+    "t": "Wikipedia: Turpan Depression",
+    "u": "https://en.wikipedia.org/wiki/Turpan_Depression"
+   }
+  ]
+ },
+ {
+  "slug": "bockfjorden",
+  "name": [
+   "Бокфьорден, вулкан Сверреф'еллет",
+   "Bockfjorden, Sverrefjellet volcano"
+  ],
+  "region": [
+   "Норвегия, Шпицберген",
+   "Norway, Svalbard"
+  ],
+  "lat": 79.6,
+  "lon": 13.5,
+  "area_km2": null,
+  "analog_for": "mars",
+  "tags": [
+   "life",
+   "ice"
+  ],
+  "understudied": false,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "volcanic",
+     "hydrothermal"
+    ],
+    "kind": "literature",
+    "src": "Wikipedia: Sverrefjellet",
+    "url": "https://en.wikipedia.org/wiki/Sverrefjellet"
+   },
+   "ice": {
+    "v": true,
+    "kind": "inferred",
+    "src": "Арктика на 79,6° с. ш.: мерзлота есть",
+    "url": ""
+   }
+  },
+  "use": [
+   "Холодный вулкан, где в ксенолитах нашли карбонатные шарики. Их сравнивают с карбонатами марсианского метеорита ALH84001 (Treiman et al., 2002).",
+   "A cold volcano where carbonate globules were found in xenoliths. They are compared with carbonates in the Martian meteorite ALH84001 (Treiman et al., 2002)."
+  ],
+  "study": [
+   "",
+   ""
+  ],
+  "quirk": [
+   "",
+   ""
+  ],
+  "image_query": "Bockfjorden Svalbard Sverrefjellet",
+  "refs": [
+   {
+    "t": "Wikipedia: Sverrefjellet",
+    "u": "https://en.wikipedia.org/wiki/Sverrefjellet"
+   }
+  ]
+ },
+ {
+  "slug": "concordia-dome-c",
+  "name": [
+   "Купол C, станция Конкордия",
+   "Dome C, Concordia Station"
+  ],
+  "region": [
+   "Антарктида",
+   "Antarctica"
+  ],
+  "lat": -75.1,
+  "lon": 123.35,
+  "area_km2": null,
+  "analog_for": "mars",
+  "tags": [
+   "ice",
+   "thermal"
+  ],
+  "understudied": false,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "glacial"
+    ],
+    "kind": "literature",
+    "src": "Wikipedia: Dome C",
+    "url": "https://en.wikipedia.org/wiki/Dome_C"
+   },
+   "ice": {
+    "v": true,
+    "kind": "literature",
+    "src": "Wikipedia: Dome C",
+    "url": "https://en.wikipedia.org/wiki/Dome_C"
+   }
+  },
+  "use": [
+   "Станция, построенная в 2004 году. ЕКА использует её как аналог миссии на Марс: зимой 9 месяцев полной изоляции для небольшого экипажа.",
+   "A station completed in 2004. ESA uses it as a Mars-mission analog: 9 months of winter isolation for a small crew."
+  ],
+  "study": [
+   "По словам ЕКА, станция «воспроизводит отдельные аспекты миссии на Марс». Ищите в таблице, насколько холод Купола C совпадает с марсианским.",
+   "In ESA's words the station 'replicates certain aspects of a Mars mission'. Check in the table how closely Dome C's cold matches Mars."
+  ],
+  "quirk": [
+   "",
+   ""
+  ],
+  "image_query": "Concordia Station Dome C Antarctica",
+  "refs": [
+   {
+    "t": "ESA: Mission to Mars via Antarctica",
+    "u": "https://www.esa.int/Science_Exploration/Human_and_Robotic_Exploration/Research/Mission_to_Mars_via_Antarctica"
+   },
+   {
+    "t": "Wikipedia: Dome C",
+    "u": "https://en.wikipedia.org/wiki/Dome_C"
+   }
+  ]
+ },
+ {
+  "slug": "el-tatio",
+  "name": [
+   "Гейзеры Эль-Татио",
+   "El Tatio geysers"
+  ],
+  "region": [
+   "Чили, Антофагаста",
+   "Chile, Antofagasta"
+  ],
+  "lat": -22.33,
+  "lon": -68.01,
+  "area_km2": null,
+  "analog_for": "mars",
+  "tags": [
+   "life",
+   "thermal"
+  ],
+  "understudied": false,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "hydrothermal",
+     "volcanic"
+    ],
+    "kind": "literature",
+    "src": "Ruff & Farmer, Nature Communications 7 (2016)",
+    "url": "https://doi.org/10.1038/ncomms13554"
+   },
+   "bio": {
+    "v": true,
+    "kind": "literature",
+    "src": "Ruff & Farmer 2016, полный текст (PMC)",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5473637"
+   }
+  },
+  "use": [
+   "Гейзерное поле на высоте около 4300 м: гидротермальный кремнезём с микробными матами. Форму этих отложений сравнивают с кремнезёмом, найденным марсоходом Spirit в кратере Гусева.",
+   "A geyser field at about 4,300 m: hydrothermal silica with microbial mats. Their shapes are compared with the silica found by the Spirit rover in Gusev crater."
+  ],
+  "study": [
+   "Форма отложений похожа на найденные Spirit в 2007 году у Home Plate и подходит под определение потенциальной биосигнатуры, но авторы отмечают: абиотическое происхождение не исключено.",
+   "The shapes resemble those Spirit found at Home Plate in 2007 and fit a potential biosignature, but the authors note an abiotic origin is not ruled out."
+  ],
+  "quirk": [
+   "Тот же кремнезём на Марсе мог образоваться и без жизни: сходство форм не доказательство, а повод искать дальше.",
+   "The same silica on Mars could also form without life: similar shapes are a lead, not proof."
+  ],
+  "image_query": "El Tatio geyser field Chile",
+  "refs": [
+   {
+    "t": "Ruff & Farmer, Nature Communications 7 (2016)",
+    "u": "https://doi.org/10.1038/ncomms13554"
+   },
+   {
+    "t": "Ruff & Farmer 2016, полный текст (PMC)",
+    "u": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5473637"
+   }
+  ]
+ },
+ {
+  "slug": "lonar",
+  "name": [
+   "Кратер Лонар",
+   "Lonar crater"
+  ],
+  "region": [
+   "Индия, Махараштра",
+   "India, Maharashtra"
+  ],
+  "lat": 19.98,
+  "lon": 76.51,
+  "area_km2": null,
+  "analog_for": "both",
+  "tags": [
+   "life",
+   "rover"
+  ],
+  "understudied": true,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "impact",
+     "volcanic"
+    ],
+    "kind": "literature",
+    "src": "Wikipedia: Lonar Lake",
+    "url": "https://en.wikipedia.org/wiki/Lonar_Lake"
+   },
+   "ice": {
+    "v": false,
+    "kind": "inferred",
+    "src": "Тропический климат: постоянного льда нет",
+    "url": ""
+   },
+   "bio": {
+    "v": true,
+    "kind": "literature",
+    "src": "Wikipedia: Lonar Lake",
+    "url": "https://en.wikipedia.org/wiki/Lonar_Lake"
+   }
+  },
+  "use": [
+   "Кратер около 1,8 км и глубиной около 150 м, целиком в базальтах Деккана. Считается одним из немногих ударных кратеров в базальте, как лунные моря и поверхность Марса. Озеро содовое и щелочное (pH 9–10,5).",
+   "A crater about 1.8 km wide and 150 m deep, entirely in Deccan basalt. One of very few impact craters in basalt, like lunar maria and the Martian surface. The lake is a soda lake (pH 9-10.5)."
+  ],
+  "study": [
+   "Слои выбросов похожи на марсианские, а минералы почвы похожи на лунные образцы Apollo (IIT Bombay, 2019). В озере описаны новые бактерии и гриб. Возраст кратера спорен: 52±6 тыс. лет по термолюминесценции против 570±47 тыс. по аргон-аргоновому методу.",
+   "Ejecta layers resemble Martian ones and soil minerals resemble Apollo lunar samples (IIT Bombay, 2019). New bacteria and a fungus were described from the lake. The age is disputed: 52±6 ka by thermoluminescence vs 570±47 ka by argon-argon."
+  ],
+  "quirk": [
+   "В июне 2020 года озеро стало розовым из-за галоархей и каротиноидов при низком уровне воды.",
+   "In June 2020 the lake turned pink because of haloarchaea and carotenoids at low water level."
+  ],
+  "image_query": "Lonar crater lake",
+  "refs": [
+   {
+    "t": "Wikipedia: Lonar Lake",
+    "u": "https://en.wikipedia.org/wiki/Lonar_Lake"
+   }
+  ]
+ },
+ {
+  "slug": "boulby-mine",
+  "name": [
+   "Шахта Булби",
+   "Boulby mine"
+  ],
+  "region": [
+   "Великобритания, Йоркшир",
+   "United Kingdom, Yorkshire"
+  ],
+  "lat": 54.55,
+  "lon": -0.82,
+  "area_km2": null,
+  "analog_for": "mars",
+  "tags": [
+   "life",
+   "shelter"
+  ],
+  "understudied": true,
+  "surface_data": false,
+  "facts": {
+   "origin": {
+    "v": [
+     "evaporite"
+    ],
+    "kind": "inferred",
+    "src": "Калийные и каменные соли пермского периода, в которых заложена шахта",
+    "url": ""
+   }
+  },
+  "use": [
+   "Действующая шахта в соляных пластах более чем в километре под землёй с подземной лабораторией. Программа MINAR с 2013 года испытывает здесь приборы для планет и ведёт поиск жизни в глубоких недрах. Здесь же проходила подготовка астронавтов ЕКА.",
+   "A working mine in salt beds more than a kilometre underground with an underground laboratory. The MINAR programme has tested planetary instruments and searched for deep-subsurface life since 2013. ESA astronauts have trained here."
+  ],
+  "study": [
+   "Организаторы подчёркивают: они никогда не утверждали, что Булби лучший аналог Марса, это лишь одна из полезных сред. Климат на поверхности не описывает условия под землёй, поэтому метеоданные для этого места намеренно не берутся. Покрытие низкое по этой причине, а не из-за ошибки.",
+   "The team stresses it never claimed Boulby is the best comparison to Mars, only one useful environment. Surface climate does not describe conditions underground, so no meteorological data is taken for this site. Coverage is low for that reason, not by mistake."
+  ],
+  "quirk": [
+   "",
+   ""
+  ],
+  "image_query": "Boulby Mine",
+  "refs": [
+   {
+    "t": "UK Centre for Astrobiology: MINAR (Boulby)",
+    "u": "https://www.astrobiology.ac.uk/research/astrobiology-analog-research/minar"
+   }
+  ]
+ },
+ {
+  "slug": "kidd-creek-mine",
+  "name": [
+   "Шахта Кидд-Крик",
+   "Kidd Creek mine"
+  ],
+  "region": [
+   "Канада, Онтарио",
+   "Canada, Ontario"
+  ],
+  "lat": 48.69,
+  "lon": -81.37,
+  "area_km2": null,
+  "analog_for": "mars",
+  "tags": [
+   "life",
+   "shelter"
+  ],
+  "understudied": true,
+  "surface_data": false,
+  "facts": {
+   "origin": {
+    "v": [
+     "volcanic",
+     "hydrothermal"
+    ],
+    "kind": "inferred",
+    "src": "Архейское вулканогенное сульфидное месторождение",
+    "url": ""
+   }
+  },
+  "use": [
+   "Глубокая шахта (около 2,4 км), где вода изолирована от поверхности до 2,64 млрд лет. Модель подземной воды и возможной жизни на Марсе.",
+   "A deep mine (about 2.4 km) where water has been isolated from the surface for up to 2.64 billion years. A model of subsurface water and possible life on Mars."
+  ],
+  "study": [
+   "Микробов напрямую не нашли, есть лишь косвенные признаки. В воде много водорода, а сульфата в 100–1000 раз меньше ожидаемого: возможно, его потребляют микробы. Автор исследования считает, что условия подходят и для марсианских микробов. Метеоданные не берутся: поверхность не описывает глубину.",
+   "No microbes were detected directly, only indirect evidence. The water is rich in hydrogen and sulfate is 100-1,000 times lower than expected, perhaps eaten by microbes. The lead author says conditions could support microbes on Mars too. No meteorological data is taken: the surface does not describe the depth."
+  ],
+  "quirk": [
+   "",
+   ""
+  ],
+  "image_query": "Kidd Creek Mine Timmins",
+  "refs": [
+   {
+    "t": "ScienceAlert: ancient water at Kidd Creek",
+    "u": "https://www.sciencealert.com/this-strange-ancient-water-in-canada-could-host-alien-life"
+   }
+  ]
+ },
+ {
+  "slug": "pavilion-lake",
+  "name": [
+   "Озеро Павильон",
+   "Pavilion Lake"
+  ],
+  "region": [
+   "Канада, Британская Колумбия",
+   "Canada, British Columbia"
+  ],
+  "lat": 50.86,
+  "lon": -121.73,
+  "area_km2": null,
+  "analog_for": "both",
+  "tags": [
+   "life"
+  ],
+  "understudied": false,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "sedimentary"
+    ],
+    "kind": "literature",
+    "src": "University of Delaware: Pavilion Lake microbialites",
+    "url": "https://www1.udel.edu/udaily/2015/aug/microbes-082514.html"
+   },
+   "bio": {
+    "v": true,
+    "kind": "literature",
+    "src": "University of Delaware: Pavilion Lake microbialites",
+    "url": "https://www1.udel.edu/udaily/2015/aug/microbes-082514.html"
+   }
+  },
+  "use": [
+   "Глубокое холодное высокогорное озеро с микробиалитами: известковыми постройками, которые создают микробные колонии. Проект финансируют NASA и Канадское космическое агентство; здесь испытывают технику и порядок работы групп управления для будущих миссий.",
+   "A deep, cold mountain lake with microbialites: carbonate structures built by microbial colonies. NASA and the Canadian Space Agency fund the project; equipment and mission-control procedures for future missions are tested here."
+  ],
+  "study": [
+   "",
+   ""
+  ],
+  "quirk": [
+   "",
+   ""
+  ],
+  "image_query": "Pavilion Lake microbialites",
+  "refs": [
+   {
+    "t": "University of Delaware: Pavilion Lake microbialites",
+    "u": "https://www1.udel.edu/udaily/2015/aug/microbes-082514.html"
+   },
+   {
+    "t": "Wikipedia: Pavilion Lake Research Project",
+    "u": "https://en.wikipedia.org/wiki/Pavilion_Lake_Research_Project"
+   }
+  ]
+ },
+ {
+  "slug": "qaidam-basin",
+  "name": [
+   "Бассейн Цайдам",
+   "Qaidam Basin"
+  ],
+  "region": [
+   "Китай, Цинхай",
+   "China, Qinghai"
+  ],
+  "lat": 38.0,
+  "lon": 91.5,
+  "area_km2": null,
+  "analog_for": "mars",
+  "tags": [
+   "dust",
+   "thermal",
+   "rover"
+  ],
+  "understudied": true,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "aeolian",
+     "evaporite",
+     "sedimentary"
+    ],
+    "kind": "literature",
+    "src": "Sun et al., Frontiers in Astronomy and Space Sciences (2022): бассейн Цайдам",
+    "url": "https://www.frontiersin.org/articles/10.3389/fspas.2022.875547/pdf"
+   },
+   "ice": {
+    "v": false,
+    "kind": "inferred",
+    "src": "Осадков меньше 20 мм в год: постоянного льда на дне нет",
+    "url": ""
+   }
+  },
+  "use": [
+   "Холодная гиперзасушливая впадина на севере Тибетского нагорья: ярданги, плайи, барханы и озёрные отложения.",
+   "A cold hyper-arid basin on the northern Tibetan Plateau: yardangs, playas, barchan dunes and lake deposits."
+  ],
+  "study": [
+   "Ярданги занимают около 38 800 км². Осадки меньше 20 мм в год, испарение около 2590 мм, средняя температура поверхности 3,5 °C. В статье нет скоростей ветра. Спектры хлорит-иллитовых отложений похожи на спектры Нили-Фоссы на Марсе.",
+   "Yardangs cover about 38,800 km². Precipitation is under 20 mm/yr, evaporation about 2,590 mm, mean surface temperature 3.5 C. The paper gives no wind speeds. Chlorite-illite deposits show spectra similar to Nili Fossae on Mars."
+  ],
+  "quirk": [
+   "Авторы относят бассейн к лучшим земным аналогам Марса, но в списках NASA и ЕКА он встречается редко.",
+   "The authors rank the basin among the best terrestrial Mars analogs, yet it is rarely seen in NASA and ESA lists."
+  ],
+  "image_query": "Qaidam Basin yardang",
+  "refs": [
+   {
+    "t": "Sun et al., Frontiers in Astronomy and Space Sciences (2022): бассейн Цайдам",
+    "u": "https://www.frontiersin.org/articles/10.3389/fspas.2022.875547/pdf"
+   }
+  ]
+ },
+ {
+  "slug": "makhtesh-ramon",
+  "name": [
+   "Махтеш-Рамон",
+   "Makhtesh Ramon"
+  ],
+  "region": [
+   "Израиль, Негев",
+   "Israel, Negev"
+  ],
+  "lat": 30.6,
+  "lon": 34.8,
+  "area_km2": null,
+  "analog_for": "mars",
+  "tags": [
+   "rover",
+   "dust"
+  ],
+  "understudied": true,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "sedimentary"
+    ],
+    "kind": "inferred",
+    "src": "Эрозионный цирк, вскрывающий осадочные слои",
+    "url": ""
+   },
+   "ice": {
+    "v": false,
+    "kind": "inferred",
+    "src": "Жаркая пустыня: постоянного льда нет",
+    "url": ""
+   }
+  },
+  "use": [
+   "Эрозионный кратер в пустыне Негев. В 2021 году здесь прошла симуляция AMADEE-20: шесть «аналоговых астронавтов» жили в изоляции. Организаторы: Австрийский космический форум и Космическое агентство Израиля.",
+   "An erosional crater in the Negev desert. The AMADEE-20 simulation was held here in 2021: six 'analog astronauts' lived in isolation. Organised by the Austrian Space Forum and the Israel Space Agency."
+  ],
+  "study": [
+   "Внешне место напоминает Марс (каменистая пустыня и рыжие тона), но температура и атмосфера не похожи: так сказано в описании миссии.",
+   "It looks like Mars (stony wilderness, orange hues), but its temperature and atmosphere do not match, as the mission coverage notes."
+  ],
+  "quirk": [
+   "",
+   ""
+  ],
+  "image_query": "Makhtesh Ramon crater Israel",
+  "refs": [
+   {
+    "t": "Phys.org: Mars simulation in the Negev (2021)",
+    "u": "https://phys.org/news/2021-10-life-mars-simulating-red-planet.html"
+   }
+  ]
+ },
+ {
+  "slug": "lanzarote-corona",
+  "name": [
+   "Ланьсароте, лавовая трубка Корона",
+   "Lanzarote, Corona lava tube"
+  ],
+  "region": [
+   "Испания, Канарские острова",
+   "Spain, Canary Islands"
+  ],
+  "lat": 29.16,
+  "lon": -13.43,
+  "area_km2": null,
+  "analog_for": "moon",
+  "tags": [
+   "shelter",
+   "rover"
+  ],
+  "understudied": false,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "volcanic"
+    ],
+    "kind": "literature",
+    "src": "ESA CAVES: лавовые трубки Ланьсароте",
+    "url": "https://blogs.esa.int/caves/?p=2369"
+   },
+   "ice": {
+    "v": false,
+    "kind": "inferred",
+    "src": "Субтропический остров: льда нет",
+    "url": ""
+   },
+   "caves": {
+    "v": true,
+    "kind": "literature",
+    "src": "ESA CAVES: лавовые трубки Ланьсароте",
+    "url": "https://blogs.esa.int/caves/?p=2369"
+   }
+  },
+  "use": [
+   "Лавовая трубка Корона длиной около 8 км похожа по форме на лунные, хотя меньше. Базальтовые потоки Ланьсароте похожи на лунные моря. Здесь проходила геологическая подготовка ЕКА (PANGAEA).",
+   "The Corona lava tube, about 8 km long, resembles lunar ones in shape though smaller. Lanzarote's basalt flows resemble lunar maria. ESA's PANGAEA geology training was held here."
+  ],
+  "study": [
+   "Лунные «окна» (провалы в крыше трубок) гораздо больше: пример в 2017 году, около 50 м шириной и не менее 50 м глубиной. Низкая гравитация Луны объясняет размеры.",
+   "Lunar 'skylights' are far larger: one found in 2017 was about 50 m wide and at least 50 m deep. The Moon's low gravity explains the size."
+  ],
+  "quirk": [
+   "",
+   ""
+  ],
+  "image_query": "Cueva de los Verdes Lanzarote",
+  "refs": [
+   {
+    "t": "ESA CAVES: лавовые трубки Ланьсароте",
+    "u": "https://blogs.esa.int/caves/?p=2369"
+   }
+  ]
+ },
+ {
+  "slug": "ries-crater",
+  "name": [
+   "Кратер Рис (Нёрдлингер-Рис)",
+   "Ries crater (Nördlinger Ries)"
+  ],
+  "region": [
+   "Германия, Бавария",
+   "Germany, Bavaria"
+  ],
+  "lat": 48.88,
+  "lon": 10.57,
+  "area_km2": null,
+  "analog_for": "moon",
+  "tags": [
+   "rover"
+  ],
+  "understudied": false,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "impact"
+    ],
+    "kind": "literature",
+    "src": "Wikipedia: Nördlinger Ries",
+    "url": "https://en.wikipedia.org/wiki/Nördlinger_Ries"
+   },
+   "ice": {
+    "v": false,
+    "kind": "inferred",
+    "src": "Умеренный климат: многолетней мерзлоты нет",
+    "url": ""
+   }
+  },
+  "use": [
+   "Крупный ударный кратер в Европе. В августе 1970 года здесь проходил геологическую подготовку экипаж Apollo 14.",
+   "A major impact crater in Europe. The Apollo 14 crew trained in geology here in August 1970."
+  ],
+  "study": [
+   "",
+   ""
+  ],
+  "quirk": [
+   "Церковь Св. Георга в Нёрдлингене построена из зювита, ударной породы, в которой есть микроскопические алмазы.",
+   "St. George's church in Nördlingen is built of suevite, an impact rock containing microscopic diamonds."
+  ],
+  "image_query": "Nördlinger Ries crater",
+  "refs": [
+   {
+    "t": "Wikipedia: Nördlinger Ries",
+    "u": "https://en.wikipedia.org/wiki/Nördlinger_Ries"
+   },
+   {
+    "t": "NASA ALSJ: Apollo 14, Ries",
+    "u": "https://www.nasa.gov/history/alsj/a14/a14ries-News3.html"
+   }
+  ]
+ },
+ {
+  "slug": "mdrs-utah",
+  "name": [
+   "Mars Desert Research Station, Юта",
+   "Mars Desert Research Station, Utah"
+  ],
+  "region": [
+   "США, Юта",
+   "USA, Utah"
+  ],
+  "lat": 38.41,
+  "lon": -110.79,
+  "area_km2": null,
+  "analog_for": "mars",
+  "tags": [
+   "rover",
+   "dust"
+  ],
+  "understudied": false,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "sedimentary"
+    ],
+    "kind": "inferred",
+    "src": "Осадочные красные породы пустыни Юты",
+    "url": ""
+   },
+   "ice": {
+    "v": false,
+    "kind": "inferred",
+    "src": "Холодная полупустыня: постоянного льда нет",
+    "url": ""
+   }
+  },
+  "use": [
+   "Станция Mars Society с 2001 года: экипажи работают в скафандрах и по марсианскому расписанию. Ценна для отработки процедур, а не физических условий.",
+   "A Mars Society station since 2001: crews work in suits on a Martian schedule. It is valuable for practising procedures, not for physical conditions."
+  ],
+  "study": [
+   "",
+   ""
+  ],
+  "quirk": [
+   "",
+   ""
+  ],
+  "image_query": "Mars Desert Research Station Utah",
+  "refs": [
+   {
+    "t": "Wikipedia: Mars Desert Research Station",
+    "u": "https://en.wikipedia.org/wiki/Mars_Desert_Research_Station"
+   }
+  ]
+ },
+ {
+  "slug": "erebus-ice-caves",
+  "name": [
+   "Ледяные пещеры вулкана Эребус",
+   "Mount Erebus ice caves"
+  ],
+  "region": [
+   "Антарктида, о. Росса",
+   "Antarctica, Ross Island"
+  ],
+  "lat": -77.53,
+  "lon": 167.15,
+  "area_km2": null,
+  "analog_for": "mars",
+  "tags": [
+   "life",
+   "ice",
+   "shelter"
+  ],
+  "understudied": true,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "volcanic",
+     "glacial"
+    ],
+    "kind": "literature",
+    "src": "Tebo et al., Frontiers in Microbiology (2015): ледяные пещеры Эребуса",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4356161"
+   },
+   "ice": {
+    "v": true,
+    "kind": "literature",
+    "src": "Tebo et al., Frontiers in Microbiology (2015): ледяные пещеры Эребуса",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4356161"
+   },
+   "caves": {
+    "v": true,
+    "kind": "literature",
+    "src": "Tebo et al., Frontiers in Microbiology (2015): ледяные пещеры Эребуса",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4356161"
+   },
+   "bio": {
+    "v": true,
+    "kind": "literature",
+    "src": "Tebo et al., Frontiers in Microbiology (2015): ледяные пещеры Эребуса",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4356161"
+   }
+  },
+  "use": [
+   "Пещеры у вершины (около 3460 м) вытаивают вулканическим теплом и газом. Тёмная пещера без пищи: модель подземной жизни, которая обходится без солнца.",
+   "Caves near the summit (about 3,460 m) are melted out by volcanic heat and gas. Dark caves with little food: a model of subsurface life that lives without the sun."
+  ],
+  "study": [
+   "Воздух в пещерах около 0 °C, отложения тёплые: 10–18,5 °C. Найдены бактерии и грибы, архей не нашли. Бактерий 1,6–40 млн клеток на грамм. Предполагается питание вулканическими газами CO и H₂. Образцы взяты лишь из нескольких пещер массива.",
+   "Cave air is near 0 C, sediments are warmer: 10-18.5 C. Bacteria and fungi were found, no archaea. Bacteria number 1.6-40 million cells per gram. Volcanic gases CO and H2 are the likely energy source. Samples come from only a few caves of the massif."
+  ],
+  "quirk": [
+   "Метеоданные NASA POWER показывают климат снаружи на уровне ячейки сетки, а не тёплые пещеры у вершины: сравнивайте с этой оговоркой.",
+   "NASA POWER shows outdoor climate for a grid cell, not the warm summit caves: read the comparison with that caveat."
+  ],
+  "image_query": "Mount Erebus ice cave",
+  "refs": [
+   {
+    "t": "Tebo et al., Frontiers in Microbiology (2015): ледяные пещеры Эребуса",
+    "u": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4356161"
+   }
+  ]
+ },
+ {
+  "slug": "don-juan-pond",
+  "name": [
+   "Пруд Дон-Хуан",
+   "Don Juan Pond"
+  ],
+  "region": [
+   "Антарктида, долина Райт",
+   "Antarctica, Wright Valley"
+  ],
+  "lat": -77.55,
+  "lon": 161.18,
+  "area_km2": null,
+  "analog_for": "mars",
+  "tags": [
+   "ice",
+   "thermal"
+  ],
+  "understudied": false,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "evaporite",
+     "glacial"
+    ],
+    "kind": "inferred",
+    "src": "Хлоркальциевый рассол в ледниковой долине",
+    "url": ""
+   },
+   "ice": {
+    "v": true,
+    "kind": "literature",
+    "src": "NASA Astrobiology: Don Juan Pond",
+    "url": "https://astrobiology.nasa.gov/news/salty-antarctic-pond-could-provide-clues-about-mars-water/"
+   }
+  },
+  "use": [
+   "Хлоркальциевый рассол около 100×300 м, но глубиной лишь около 10 см, не замерзает до −50 °C, что типично для Марса. Тёмные полосы на склоне напоминают сезонные потоки на Марсе (RSL).",
+   "A calcium-chloride brine about 100x300 m but only ~10 cm deep that stays liquid to about -50 C, typical for Mars. Dark streaks on the slope resemble recurring slope lineae (RSL) on Mars."
+  ],
+  "study": [
+   "Исследование 2017 года (Toner et al.) склоняется к воде из глубокого водоносного слоя. Хватит ли соли для жизни, пока не решено. Подобных потоков на Марсе не наблюдали.",
+   "A 2017 study (Toner et al.) favours groundwater from a deep aquifer. Whether the salt is too extreme for life is unresolved. No such flows have been observed on Mars."
+  ],
+  "quirk": [
+   "",
+   ""
+  ],
+  "image_query": "Don Juan Pond Antarctica",
+  "refs": [
+   {
+    "t": "NASA Astrobiology: Don Juan Pond",
+    "u": "https://astrobiology.nasa.gov/news/salty-antarctic-pond-could-provide-clues-about-mars-water/"
+   }
+  ]
+ },
+ {
+  "slug": "badain-jaran",
+  "name": [
+   "Пустыня Бадайн-Джаран",
+   "Badain Jaran Desert"
+  ],
+  "region": [
+   "Китай, Внутренняя Монголия",
+   "China, Inner Mongolia"
+  ],
+  "lat": 40.07,
+  "lon": 102.21,
+  "area_km2": null,
+  "analog_for": "mars",
+  "tags": [
+   "dust",
+   "rover"
+  ],
+  "understudied": true,
+  "surface_data": true,
+  "facts": {
+   "origin": {
+    "v": [
+     "aeolian",
+     "sedimentary"
+    ],
+    "kind": "literature",
+    "src": "Wikipedia: Badain Jaran Desert",
+    "url": "https://en.wikipedia.org/wiki/Badain_Jaran_Desert"
+   },
+   "ice": {
+    "v": false,
+    "kind": "inferred",
+    "src": "Осадки 50–60 мм в год, жаркое лето: постоянного льда нет",
+    "url": ""
+   }
+  },
+  "use": [
+   "Одни из самых высоких неподвижных дюн мира (около 450–500 м) и более ста озёр между ними. Модель огромных дюнных полей и пыльных бурь.",
+   "Some of the world's tallest stationary dunes (about 450-500 m) with over a hundred lakes between them. A model of huge dune fields and dust storms."
+  ],
+  "study": [
+   "В Википедии пустыня не упоминается как планетарный аналог. Это наш кандидат по ветровым формам, а не признанный аналог. Данных мало, поэтому значения льда, пещер и жизни оставлены пустыми.",
+   "Wikipedia does not mention it as a planetary analog. It is our candidate for wind-formed landforms, not a recognised analog. Data is thin, so ice, caves and life values are left empty."
+  ],
+  "quirk": [
+   "",
+   ""
+  ],
+  "image_query": "Badain Jaran Desert dunes",
+  "refs": [
+   {
+    "t": "Wikipedia: Badain Jaran Desert",
+    "u": "https://en.wikipedia.org/wiki/Badain_Jaran_Desert"
+   }
+  ]
+ }
+]

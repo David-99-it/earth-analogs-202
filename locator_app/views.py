@@ -1,49 +1,74 @@
-from django.shortcuts import render
+from django.conf import settings
 from django.http import JsonResponse
-from .models import EarthAnalog
+from django.shortcuts import render
+
+from . import dataset, metrics
+from .models import Site
 
 
 def index(request):
     return render(request, "index.html")
 
 
-def get_analogs(request):
-    analogs = EarthAnalog.objects.all()
-    data = []
-    for a in analogs:
-        row = [
-            a.name_ru,
-            a.name_en,
-            a.latitude,
-            a.longitude,
-            [
-                a.score_geology,
-                a.score_relief,
-                a.score_temperature,
-                a.score_water_ice,
-                a.score_dust_wind,
-                a.score_caves,
-                a.score_life,
-            ],
-            1 if a.is_unexplored else 0,
-            a.fit_ru,
-            a.fit_en,
-            a.break_ru,
-            a.break_en,
-            0,  # Индекс 10: системная локация
-            a.moon_target_ru or "",  # 11
-            a.moon_target_en or "",  # 12
-            a.moon_desc_ru or "",  # 13
-            a.moon_desc_en or "",  # 14
-            a.mars_target_ru or "",  # 15
-            a.mars_target_en or "",  # 16
-            a.mars_desc_ru or "",  # 17
-            a.mars_desc_en or "",  # 18
-            # ТРИ ПОЛЯ КАРТИНОК ВМЕСТО ОДНОГО:
-            getattr(a, "earth_image_url", getattr(a, "image_url", ""))
-            or "",  # 19: Фото Земли
-            getattr(a, "moon_image_url", "") or "",  # 20: Фото Луны
-            getattr(a, "mars_image_url", "") or "",  # 21: Фото Марса
-        ]
-        data.append(row)
-    return JsonResponse(data, safe=False)
+def _fact(m):
+    metric = metrics.METRIC_BY_KEY.get(m.key)
+    if not metric or not m.has_data():
+        return None
+    if metric["type"] == "set":
+        v = [x.strip() for x in m.text.split(",") if x.strip()]
+    elif metric["type"] == "bool":
+        v = bool(m.value)
+    else:
+        v = m.value
+    return {"v": v, "kind": m.kind, "src": m.source, "url": m.url, "date": m.date}
+
+
+def _site(s):
+    values = {}
+    for m in s.measurements.all():
+        f = _fact(m)
+        if f:
+            values[m.key] = f
+    image = None
+    if s.cloudinary_id:
+        image = {"id": s.cloudinary_id, "credit": s.image_credit, "license": s.image_license, "page": s.image_page}
+    return {
+        "slug": s.slug,
+        "name": [s.name_ru, s.name_en or s.name_ru],
+        "region": [s.region_ru, s.region_en or s.region_ru],
+        "lat": s.lat, "lon": s.lon, "area_km2": s.area_km2,
+        "analog_for": s.analog_for, "tags": s.tag_list(),
+        "understudied": s.understudied, "surface_data": s.surface_data,
+        "values": values,
+        "use": [s.use_ru, s.use_en or s.use_ru],
+        "study": [s.study_ru, s.study_en or s.study_ru],
+        "quirk": [s.quirk_ru, s.quirk_en or s.quirk_ru],
+        "refs": s.refs or [],
+        "image": image,
+    }
+
+
+def api(request):
+    """Все данные одним ответом: параметры, цели, места. Сходство считает страница в браузере."""
+    cfg = dataset.load_targets()
+    images = dataset.load_images()
+    targets = []
+    for t in cfg.get("targets", []):
+        t = dict(t)
+        t["image"] = dataset.image_info(images.get(t["key"]))
+        targets.append(t)
+    sites = [_site(s) for s in Site.objects.filter(published=True).prefetch_related("measurements")]
+    payload = {
+        "config": {"cloud": getattr(settings, "CLOUDINARY_CLOUD_NAME", "") or ""},
+        "metrics": metrics.METRICS,
+        "origins": {k: list(v) for k, v in metrics.ORIGINS.items()},
+        "kinds": {k: list(v) for k, v in metrics.KINDS.items()},
+        "tags": [list(t) for t in metrics.TAGS],
+        "presets": metrics.PRESETS,
+        "targets": targets,
+        "physics": cfg.get("physics", []),
+        "sites": sites,
+    }
+    response = JsonResponse(payload, json_dumps_params={"ensure_ascii": False})
+    response["Cache-Control"] = "public, max-age=60"
+    return response
