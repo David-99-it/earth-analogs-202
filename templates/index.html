@@ -37,7 +37,7 @@ canvas:active{cursor:grabbing}
 .tools{position:absolute;left:10px;top:10px;display:flex;gap:6px;flex-wrap:wrap;max-width:calc(100% - 20px)}
 .tools .chip{background:var(--panel)}
 .zs{position:absolute;right:10px;top:10px;display:flex;flex-direction:column;gap:6px}
-.tip{position:absolute;pointer-events:none;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:4px 9px;font-size:13px;display:none;white-space:nowrap}
+.tip{position:absolute;pointer-events:none;background:var(--panel);border:1px solid var(--ice);border-radius:12px;padding:10px 12px;font-size:12.5px;display:none;max-width:290px;box-shadow:0 8px 24px rgba(0,0,0,.6);z-index:10;line-height:1.4}
 .hint{padding:8px 14px;color:var(--mute);font-size:12.5px;border-top:1px solid var(--line)}
 .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 input[type=search],.nm,.fi,textarea{background:var(--bg);border:1px solid var(--line);color:var(--text);border-radius:10px;padding:8px 12px;font:inherit}
@@ -159,11 +159,87 @@ if(dirty){dirty=false;draw()}requestAnimationFrame(loop)}
 function fly(i){var s=S[i];tw={t0:performance.now(),f:c.slice(),to:[s[3],s[2]],dl:((s[3]-c[0]+540)%360)-180,k0:k,k1:Math.max(k,view==="globe"?1.5:2.2)};tw.to[1]=Math.max(-70,Math.min(70,s[2]))}
 function pick(i,f){sel=i;if(f){spin=false;$("sp").setAttribute("aria-pressed","false");fly(i)}all()}
 function near(e,m){var r=$("map").getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top,b=null,bd=m;hit.forEach(function(h){var d=Math.hypot(h[0]-x,h[1]-y);if(d<bd){bd=d;b=h[2]}});return{i:b,x:x,y:y}}
+
+// 1. Получаем космический аналог (Луна или Марс)
+function getSpaceTarget(s) {
+    var isEn = lang === "en";
+    if (tg === "mars") {
+        return {
+            planet: isEn ? "🔴 Mars" : "🔴 Марс",
+            name: s[isEn ? 16 : 15] || (isEn ? "Jezero Crater" : "Кратер Езеро"),
+            desc: s[isEn ? 18 : 17] || (isEn ? "Martian landing testbed" : "Марсианский испытательный полигон")
+        };
+    } else {
+        return {
+            planet: isEn ? "🌕 Moon" : "🌕 Луна",
+            name: s[isEn ? 12 : 11] || (isEn ? "Shackleton Crater" : "Кратер Шеклтон"),
+            desc: s[isEn ? 14 : 13] || (isEn ? "Lunar polar analog" : "Аналог южного полюса Луны")
+        };
+    }
+}
+
+// 2. Автоматически ищем самый похожий объект на Земле по вектору из 7 оценок
+function getSimilarEarthSite(idx) {
+    if (S.length < 2) return null;
+    var targetScores = S[idx][4];
+    var bestIdx = -1, minDiff = 999;
+    S.forEach(function(other, i) {
+        if (i === idx) return;
+        var diff = 0;
+        for (var k = 0; k < 7; k++) {
+            diff += Math.abs(targetScores[k] - other[4][k]);
+        }
+        if (diff < minDiff) { minDiff = diff; bestIdx = i; }
+    });
+    if (bestIdx === -1) return null;
+    var simScore = Math.max(0, Math.round(100 * (1 - minDiff / 70)));
+    return { name: nm(S[bestIdx]), score: simScore, idx: bestIdx };
+}
+
 var cv=$("map");
 cv.onpointerdown=function(e){cv.setPointerCapture(e.pointerId);drag={x:e.clientX,y:e.clientY,x0:e.clientX,y0:e.clientY};tw=null};
 cv.onpointermove=function(e){if(drag){var f=57.3/SC;c[0]-=(e.clientX-drag.x)*f;c[1]=Math.max(-85,Math.min(85,c[1]+(e.clientY-drag.y)*f));drag.x=e.clientX;drag.y=e.clientY;dirty=true;$("tip").style.display="none";return}
 var n=near(e,14),tp=$("tip");if(n.i!==hv){hv=n.i===null?-1:n.i;dirty=true}cv.style.cursor=n.i===null?"":"pointer";
-if(n.i===null)tp.style.display="none";else{tp.textContent=nm(S[n.i])+": "+sim(S[n.i])+"%";tp.style.display="block";tp.style.left=Math.min(n.x+14,cv.clientWidth-160)+"px";tp.style.top=(n.y+14)+"px"}};
+if(n.i===null) tp.style.display="none";
+else {
+    var st = getSpaceTarget(S[n.i]);
+    var twin = getSimilarEarthSite(n.i);
+    var twinTxt = twin ? '<div style="margin-top:6px;padding-top:6px;border-top:1px solid var(--line);color:var(--mute)">🔄 ' + (lang==="ru"?"Похожий на Земле: ":"Similar on Earth: ") + '<b style="color:var(--text)">' + twin.name + '</b> (' + twin.score + '%)</div>' : '';
+    
+    tp.innerHTML = 
+        '<div style="font-weight:700;color:var(--ice);font-size:13.5px;margin-bottom:4px">' + nm(S[n.i]) + ' — ' + sim(S[n.i]) + '%</div>' +
+        '<div style="background:var(--bg);padding:6px 8px;border-radius:8px;border:1px solid var(--line)">' +
+            '<div style="font-size:11px;color:var(--dust);font-weight:600">' + st.planet + ' • ' + (lang==="ru"?"Космический аналог":"Space Analog") + '</div>' +
+            '<div style="font-weight:600;color:var(--text)">' + st.name + '</div>' +
+            '<div style="font-size:11.5px;color:var(--mute)">' + st.desc + '</div>' +
+        '</div>' + twinTxt;
+        
+    tp.style.display="block";
+    tp.style.left=Math.min(n.x+14,cv.clientWidth-295)+"px";
+    tp.style.top=Math.max(10, Math.min(n.y+14, cv.clientHeight-150))+"px";
+}};
+var cv=$("map");
+cv.onpointerdown=function(e){cv.setPointerCapture(e.pointerId);drag={x:e.clientX,y:e.clientY,x0:e.clientX,y0:e.clientY};tw=null};
+cv.onpointermove=function(e){if(drag){var f=57.3/SC;c[0]-=(e.clientX-drag.x)*f;c[1]=Math.max(-85,Math.min(85,c[1]+(e.clientY-drag.y)*f));drag.x=e.clientX;drag.y=e.clientY;dirty=true;$("tip").style.display="none";return}
+var n=near(e,14),tp=$("tip");if(n.i!==hv){hv=n.i===null?-1:n.i;dirty=true}cv.style.cursor=n.i===null?"":"pointer";
+if(n.i===null) tp.style.display="none";
+else {
+    var st = getSpaceTarget(S[n.i]);
+    var twin = getSimilarEarthSite(n.i);
+    var twinTxt = twin ? '<div style="margin-top:6px;padding-top:6px;border-top:1px solid var(--line);color:var(--mute)">🔄 ' + (lang==="ru"?"Похожий на Земле: ":"Similar on Earth: ") + '<b style="color:var(--text)">' + twin.name + '</b> (' + twin.score + '%)</div>' : '';
+    
+    tp.innerHTML = 
+        '<div style="font-weight:700;color:var(--ice);font-size:13.5px;margin-bottom:4px">' + nm(S[n.i]) + ' — ' + sim(S[n.i]) + '%</div>' +
+        '<div style="background:var(--bg);padding:6px 8px;border-radius:8px;border:1px solid var(--line)">' +
+            '<div style="font-size:11px;color:var(--dust);font-weight:600">' + st.planet + ' • ' + (lang==="ru"?"Космический аналог":"Space Analog") + '</div>' +
+            '<div style="font-weight:600;color:var(--text)">' + st.name + '</div>' +
+            '<div style="font-size:11.5px;color:var(--mute)">' + st.desc + '</div>' +
+        '</div>' + twinTxt;
+        
+    tp.style.display="block";
+    tp.style.left=Math.min(n.x+14,cv.clientWidth-295)+"px";
+    tp.style.top=Math.max(10, Math.min(n.y+14, cv.clientHeight-150))+"px";
+}};
 cv.onpointerup=function(e){if(drag&&Math.hypot(e.clientX-drag.x0,e.clientY-drag.y0)<5){var n=near(e,16);if(n.i!==null)pick(n.i,true)}drag=null};
 cv.onpointerleave=function(){$("tip").style.display="none";hv=-1;dirty=true};
 cv.addEventListener("wheel",function(e){e.preventDefault();zoom(Math.exp(-e.deltaY*.0015))},{passive:false});

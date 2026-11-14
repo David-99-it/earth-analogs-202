@@ -31,6 +31,15 @@ def get_analogs(request):
             a.fit_en,
             a.break_ru,
             a.break_en,
+            0,  # Индекс 10: системная локация (не пользовательская)
+            a.moon_target_ru,
+            a.moon_target_en,
+            a.moon_desc_ru,
+            a.moon_desc_en,
+            a.mars_target_ru,
+            a.mars_target_en,
+            a.mars_desc_ru,
+            a.mars_desc_en,
         ]
         data.append(row)
     return JsonResponse(data, safe=False)
