@@ -11,7 +11,6 @@ def get_analogs(request):
     analogs = EarthAnalog.objects.all()
     data = []
     for a in analogs:
-        # Формируем структуру массива, точно как в var S в исходном файле
         row = [
             a.name_ru,
             a.name_en,
@@ -31,15 +30,20 @@ def get_analogs(request):
             a.fit_en,
             a.break_ru,
             a.break_en,
-            0,  # Индекс 10: системная локация (не пользовательская)
-            a.moon_target_ru,
-            a.moon_target_en,
-            a.moon_desc_ru,
-            a.moon_desc_en,
-            a.mars_target_ru,
-            a.mars_target_en,
-            a.mars_desc_ru,
-            a.mars_desc_en,
+            0,  # Индекс 10: системная локация
+            a.moon_target_ru or "",  # 11
+            a.moon_target_en or "",  # 12
+            a.moon_desc_ru or "",  # 13
+            a.moon_desc_en or "",  # 14
+            a.mars_target_ru or "",  # 15
+            a.mars_target_en or "",  # 16
+            a.mars_desc_ru or "",  # 17
+            a.mars_desc_en or "",  # 18
+            # ТРИ ПОЛЯ КАРТИНОК ВМЕСТО ОДНОГО:
+            getattr(a, "earth_image_url", getattr(a, "image_url", ""))
+            or "",  # 19: Фото Земли
+            getattr(a, "moon_image_url", "") or "",  # 20: Фото Луны
+            getattr(a, "mars_image_url", "") or "",  # 21: Фото Марса
         ]
         data.append(row)
     return JsonResponse(data, safe=False)

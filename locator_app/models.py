@@ -69,5 +69,21 @@ class EarthAnalog(models.Model):
         blank=True,
     )
 
+    # Ссылка на фото объекта (например, с Википедии или сайта NASA)
+    image_url = models.CharField(
+        "Ссылка на фото (URL)", max_length=500, blank=True, default=""
+    )
+
+    # Фотографии для визуального сравнения (URL)
+    earth_image_url = models.CharField(
+        "Фото на Земле (URL)", max_length=500, blank=True, default=""
+    )
+    moon_image_url = models.CharField(
+        "Фото на Луне (URL)", max_length=500, blank=True, default=""
+    )
+    mars_image_url = models.CharField(
+        "Фото на Марсе (URL)", max_length=500, blank=True, default=""
+    )
+
     def __str__(self):
         return self.name_ru
