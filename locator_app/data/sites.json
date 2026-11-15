@@ -94,14 +94,14 @@
      "impact"
     ],
     "kind": "literature",
-    "src": "Wikipedia: Haughton impact structure",
-    "url": "https://en.wikipedia.org/wiki/Haughton_impact_structure"
+    "src": "Wikipedia: Haughton impact crater",
+    "url": "https://en.wikipedia.org/wiki/Haughton_impact_crater"
    },
    "ice": {
     "v": true,
     "kind": "literature",
-    "src": "Wikipedia: Haughton impact structure",
-    "url": "https://en.wikipedia.org/wiki/Haughton_impact_structure"
+    "src": "Wikipedia: Haughton impact crater",
+    "url": "https://en.wikipedia.org/wiki/Haughton_impact_crater"
    }
   },
   "use": [
@@ -119,8 +119,8 @@
   "image_query": "Haughton impact structure Devon Island",
   "refs": [
    {
-    "t": "Wikipedia: Haughton impact structure",
-    "u": "https://en.wikipedia.org/wiki/Haughton_impact_structure"
+    "t": "Wikipedia: Haughton impact crater",
+    "u": "https://en.wikipedia.org/wiki/Haughton_impact_crater"
    }
   ]
  },
@@ -235,8 +235,8 @@
    "Added from your table as under-studied. It is rarely cited as a planetary analog, so data on it is thin."
   ],
   "quirk": [
-   "По данным спутника NASA MODIS, здесь зафиксированы одни из самых высоких температур поверхности Земли, около 70 °C. Это температура грунта, а не воздуха.",
-   "NASA's MODIS satellite recorded some of the highest land-surface temperatures on Earth here, about 70 C. That is ground temperature, not air."
+   "По данным спутника NASA MODIS, здесь зафиксирована одна из самых высоких температур поверхности Земли: 80,8 °C (MODIS, 2002–2019; столько же в пустыне Сонора). Это температура грунта, а не воздуха.",
+   "NASA's MODIS satellite recorded one of the highest land-surface temperatures on Earth here: 80.8 C (2002-2019; the same value as in the Sonoran Desert). That is ground temperature, not air."
   ],
   "image_query": "Dasht-e Lut kaluts desert",
   "refs": [
@@ -1077,8 +1077,8 @@
      "volcanic"
     ],
     "kind": "literature",
-    "src": "Wikipedia: Dallol (Ethiopia)",
-    "url": "https://en.wikipedia.org/wiki/Dallol_(Ethiopia)"
+    "src": "Wikipedia: Dallol (hydrothermal system)",
+    "url": "https://en.wikipedia.org/wiki/Dallol_(hydrothermal_system)"
    },
    "ice": {
     "v": false,
@@ -1089,8 +1089,8 @@
    "bio": {
     "v": true,
     "kind": "literature",
-    "src": "Wikipedia: Dallol (Ethiopia)",
-    "url": "https://en.wikipedia.org/wiki/Dallol_(Ethiopia)"
+    "src": "Wikipedia: Dallol (hydrothermal system)",
+    "url": "https://en.wikipedia.org/wiki/Dallol_(hydrothermal_system)"
    }
   },
   "use": [
@@ -1108,8 +1108,8 @@
   "image_query": "Dallol Danakil Depression",
   "refs": [
    {
-    "t": "Wikipedia: Dallol (Ethiopia)",
-    "u": "https://en.wikipedia.org/wiki/Dallol_(Ethiopia)"
+    "t": "Wikipedia: Dallol (hydrothermal system)",
+    "u": "https://en.wikipedia.org/wiki/Dallol_(hydrothermal_system)"
    }
   ]
  },
@@ -1658,7 +1658,7 @@
     ],
     "kind": "literature",
     "src": "Sun et al., Frontiers in Astronomy and Space Sciences (2022): бассейн Цайдам",
-    "url": "https://www.frontiersin.org/articles/10.3389/fspas.2022.875547/pdf"
+    "url": "https://www.frontiersin.org/journals/astronomy-and-space-sciences/articles/10.3389/fspas.2022.875547/full"
    },
    "ice": {
     "v": false,
@@ -1683,7 +1683,7 @@
   "refs": [
    {
     "t": "Sun et al., Frontiers in Astronomy and Space Sciences (2022): бассейн Цайдам",
-    "u": "https://www.frontiersin.org/articles/10.3389/fspas.2022.875547/pdf"
+    "u": "https://www.frontiersin.org/journals/astronomy-and-space-sciences/articles/10.3389/fspas.2022.875547/full"
    }
   ]
  },
@@ -1860,7 +1860,7 @@
    },
    {
     "t": "NASA ALSJ: Apollo 14, Ries",
-    "u": "https://www.nasa.gov/history/alsj/a14/a14ries-News3.html"
+    "u": "https://www.nasa.gov/wp-content/uploads/static/history/alsj/a14/a14ries-News3.html"
    }
   ]
  },

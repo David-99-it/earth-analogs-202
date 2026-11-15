@@ -10,6 +10,7 @@ urlpatterns = [
     path("compare/", views.compare, name="compare"),
     path("calculator/", views.calculator, name="calculator"),
     path("method/", views.method, name="method"),
+    path("favicon.ico", views.favicon, name="favicon"),
     path("assets/<str:name>", views.asset, name="asset"),
     path("api/locator/", views.api, name="api"),
 ]

@@ -14,7 +14,7 @@ nxMethT:["Как это считается","How it is computed"],nxMethP:["Фо
 nxLocT:["К рейтингу и глобусу","To the ranking and globe"],nxLocP:["Фильтры, карточки мест, веса параметров.","Filters, site cards, parameter weights."],
 lead:["Какие места на Земле похожи на цели на Луне и Марсе? Выберите цель и задачу: сайт покажет рейтинг по реальным измерениям NASA в градусах, метрах и миллиметрах. Если данных нет, параметр не считается нулём, а доля учтённых данных показана рядом с процентом.","Which places on Earth resemble targets on the Moon and Mars? Pick a target and a task: the site ranks places by real NASA measurements in degrees, metres and millimetres. If data is missing, a parameter is not counted as zero, and the share of data used is shown next to the percentage."],
 custom:["Своя цель","Custom target"],
-fTask:["Задача","Task"],fTopic:["Тема","Topic"],fUnder:["Только малоизученные","Under-studied only"],
+fTask:["Задача (меняет веса)","Task (sets the weights)"],fTopic:["Фильтр по метке (только скрывает места)","Tag filter (only hides sites)"],fUnder:["Только малоизученные","Under-studied only"],
 sph:["Поиск места","Search a place"],all:["Все","All"],
 mapa:["Карта мира: места-аналоги","World map: analog sites"],spin:["Вращение","Spin"],zin:["Приблизить","Zoom in"],zout:["Отдалить","Zoom out"],rst:["Сбросить вид","Reset view"],
 vg:["Глобус","Globe"],vf:["Карта","Flat"],

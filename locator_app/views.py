@@ -13,6 +13,10 @@ ASSET_TYPES = {
     "app.css": "text/css; charset=utf-8",
     "app.js": "text/javascript; charset=utf-8",
     "engine.js": "text/javascript; charset=utf-8",
+    "favicon.svg": "image/svg+xml",
+    "favicon-32.png": "image/png",
+    "favicon-192.png": "image/png",
+    "apple-touch-icon.png": "image/png",
 }
 
 
@@ -52,6 +56,11 @@ def asset(request, name):
     response = FileResponse(open(ASSETS_DIR / name, "rb"), content_type=ctype)
     response["Cache-Control"] = "public, max-age=3600"
     return response
+
+
+def favicon(request):
+    """Браузеры сами просят /favicon.ico, отдаём им PNG-значок."""
+    return asset(request, "favicon-32.png")
 
 
 def _fact(m):
