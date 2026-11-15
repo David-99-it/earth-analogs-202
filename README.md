@@ -50,4 +50,4 @@ Then open http://127.0.0.1:8000/ in your browser.
 List the NASA and other datasets used in `data.json` here (for example, SRTM or ASTER GDEM for terrain, MODIS for surface temperature, GPM for precipitation).
 
 ## Team
-Boskunchiev David, Manasova Asema, Lomakin Matvey, Mahar Hafiza, Arliev Muhammadamin
+Boskunchiev David, Manasova Asema, Lomakin Matvey, Mahar Hafiza, Arliev Muhammadamin, Asanalieva Asema
